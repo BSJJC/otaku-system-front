@@ -1,17 +1,17 @@
 <template>
   <!-- <TestPage></TestPage> -->
-  <TopBar></TopBar>
+  <InformationCard></InformationCard>
 </template>
 
 <script>
-import TopBar from "./components/TopBar.vue";
 // import TestPage from "./components/TestPage.vue";
+import InformationCard from "./components/InformationCard.vue";
 
 export default {
   name: "App",
   components: {
     // TestPage,
-    TopBar,
+    InformationCard,
   },
 };
 </script>
