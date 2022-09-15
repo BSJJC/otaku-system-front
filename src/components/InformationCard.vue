@@ -14,27 +14,49 @@
     type="password"
     clearable
   />
+
+  <br />
+  <button @click="login">log in</button>
 </template>
 
 <script>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { useStore } from "vuex";
+import axios from "axios";
 
 export default {
   name: "InformationCard",
   setup() {
     const { t } = useI18n();
 
-    const store = useStore();
+    let account = ref("");
+    let password = ref("");
+    const login = () => {
+      axios
+        .post("http://localhost:3000/api/rest/logInCheck/tryLogIn", {
+          account: account,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res.data);
 
-    let account = ref(store.state.administrator_info.account);
-    let password = ref(store.state.administrator_info.password);
+          // const data = res.data;
+          // data.forEach((info) => {
+          //   console.log(info.account);
+          //   console.log(info.password);
+          //   console.log("@@@@@@@@@@@@@@@@@@@@@@@");
+          // });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    };
 
     return {
       t,
       account,
       password,
+      login,
     };
   },
 };
