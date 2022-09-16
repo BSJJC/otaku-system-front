@@ -42,7 +42,7 @@ export default {
         })
         .then((res) => {
           if (res.data) {
-            console.log(res);
+            console.log(res.data);
             localStorage.setItem("TOKEN", res.data.token);
           } else {
             console.log("登陆失败");
@@ -59,7 +59,7 @@ export default {
           token: localStorage.getItem("TOKEN"),
         })
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
         })
         .catch((err) => {
           console.error(err);
