@@ -17,6 +17,8 @@
 
   <br />
   <button @click="login">log in</button>
+  <br />
+  <button @click="ver">verToken</button>
 </template>
 
 <script>
@@ -31,21 +33,33 @@ export default {
 
     let account = ref("");
     let password = ref("");
+
     const login = () => {
       axios
-        .post("http://localhost:3000/api/rest/logInCheck/tryLogIn", {
+        .post("http://localhost:3000/api/rest/logInCheck/logIn", {
           account: account,
           password: password,
         })
         .then((res) => {
-          console.log(res.data);
+          if (res.data) {
+            console.log(res);
+            localStorage.setItem("TOKEN", res.data.token);
+          } else {
+            console.log("登陆失败");
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    };
 
-          // const data = res.data;
-          // data.forEach((info) => {
-          //   console.log(info.account);
-          //   console.log(info.password);
-          //   console.log("@@@@@@@@@@@@@@@@@@@@@@@");
-          // });
+    const ver = () => {
+      axios
+        .post("http://localhost:3000/api/rest/logInCheck/verToken", {
+          token: localStorage.getItem("TOKEN"),
+        })
+        .then((res) => {
+          console.log(res);
         })
         .catch((err) => {
           console.error(err);
@@ -57,6 +71,7 @@ export default {
       account,
       password,
       login,
+      ver,
     };
   },
 };
