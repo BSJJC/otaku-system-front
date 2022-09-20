@@ -6,7 +6,7 @@
       <el-button> log in </el-button>
     </router-link>
 
-    <BackgroundImg></BackgroundImg>
+    <BackgroundImg opacity="7"></BackgroundImg>
   </div>
 </template>
 

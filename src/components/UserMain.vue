@@ -6,7 +6,7 @@
       <el-button> back to top </el-button>
     </router-link>
 
-    <BackgroundImg></BackgroundImg>
+    <BackgroundImg opacity="7"></BackgroundImg>
   </div>
 </template>
 

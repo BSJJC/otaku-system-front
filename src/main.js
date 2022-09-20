@@ -9,6 +9,8 @@ import 'element-plus/dist/index.css'
 // 国际化插件
 import i18n from './language/i18n'
 
+import 'animate.css';
+
 
 const app = createApp(App);
 

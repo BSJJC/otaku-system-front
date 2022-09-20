@@ -5,7 +5,7 @@
 <script setup>
 import { computed, defineProps } from "vue";
 
-const props = defineProps(["inputLength"]);
+const props = defineProps(["opacity"]);
 
 const randomImg = computed(() => {
   /**
@@ -15,8 +15,7 @@ const randomImg = computed(() => {
 });
 
 const verOpacity = computed(() => {
-  console.log(props.inputLength);
-  return 0.5;
+  return parseInt(props.opacity) / 10;
 });
 </script>
 
@@ -25,6 +24,7 @@ div {
   position: absolute;
   width: 100vw;
   height: calc(100vh - 50px);
+  border-radius: 10%;
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center;
