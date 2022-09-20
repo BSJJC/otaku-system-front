@@ -5,17 +5,13 @@
     <router-link to="LogIn">
       <el-button> log in </el-button>
     </router-link>
+
+    <BackgroundImg></BackgroundImg>
   </div>
 </template>
 
-<script>
-export default {
-  name: "WelcomePage",
-};
+<script setup>
+import BackgroundImg from "./BackgroundImg.vue";
 </script>
 
-<style lang="less" scoped>
-.main-router-view {
-  background-color: lightblue;
-}
-</style>
+<style lang="less" scoped></style>
