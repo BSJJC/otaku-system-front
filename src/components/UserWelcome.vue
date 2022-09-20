@@ -1,7 +1,10 @@
 <template>
   <div class="main-router-view">
-    <div>welcome</div>
-    <router-link to="LogIn">log in</router-link>
+    <h1>welcome welcome</h1>
+
+    <router-link to="LogIn">
+      <el-button> log in </el-button>
+    </router-link>
   </div>
 </template>
 
@@ -11,4 +14,8 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.main-router-view {
+  background-color: lightblue;
+}
+</style>

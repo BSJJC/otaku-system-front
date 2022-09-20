@@ -1,5 +1,11 @@
 <template>
-  <div class="main-touer-view">log in page</div>
+  <div class="main-touer-view">
+    <p>log in page</p>
+
+    <router-link to="/UserMain">
+      <el-button> log in </el-button>
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -8,4 +14,8 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+  .mian-router-view{
+    background-color: red;
+  }
+</style>
