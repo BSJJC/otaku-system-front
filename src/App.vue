@@ -1,7 +1,9 @@
 <template>
-  <TopBar></TopBar>
+  <TopBar>
+    <router-link></router-link>
+  </TopBar>
 
-  <router-view id="test"></router-view>
+  <router-view></router-view>
 </template>
 
 <script>

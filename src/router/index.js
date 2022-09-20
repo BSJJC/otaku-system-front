@@ -3,9 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'logInPage',
-    component: () => import('@/components/TestPage.vue')
-  }
+    name: 'welcomePage',
+    component: () => import('@/components/TopBar.vue')
+  },
 ]
 
 const router = createRouter({
