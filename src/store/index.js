@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
 
-import administrator_info from './administrator_info'
 
 export default createStore({
   state: {
@@ -12,6 +11,5 @@ export default createStore({
   actions: {
   },
   modules: {
-    administrator_info: administrator_info
   }
 })

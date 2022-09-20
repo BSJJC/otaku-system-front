@@ -1,21 +1,18 @@
 <template>
-  <button id="changeZN" @click="change('zh')">zn</button>
-  <button id="changeEN" @click="change('en')">en</button>
-  <!-- <TestPage></TestPage> -->
-  <InformationCard></InformationCard>
+  <TopBar></TopBar>
+
+  <router-view id="test"></router-view>
 </template>
 
 <script>
-// import TestPage from "./components/TestPage.vue";
-import InformationCard from "./components/InformationCard.vue";
+import TopBar from "./components/TopBar.vue";
 
 import { useI18n } from "vue-i18n";
 
 export default {
   name: "App",
   components: {
-    // TestPage,
-    InformationCard,
+    TopBar,
   },
   setup() {
     const { t } = useI18n();
@@ -41,18 +38,5 @@ body {
   align-items: center;
   min-height: 100vh;
   overflow: hidden;
-}
-
-#changeZN,
-#changeEN {
-  position: fixed;
-  top: 0px;
-}
-
-#changeZN {
-  left: 300px;
-}
-#changeEN {
-  left: 350px;
 }
 </style>
