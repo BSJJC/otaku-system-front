@@ -1,5 +1,8 @@
 <template>
-  <div>welcome</div>
+  <div class="main-router-view">
+    <div>welcome</div>
+    <router-link to="LogIn">log in</router-link>
+  </div>
 </template>
 
 <script>

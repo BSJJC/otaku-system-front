@@ -1,4 +1,6 @@
-<template>log in page</template>
+<template>
+  <div class="main-touer-view">log in page</div>
+</template>
 
 <script>
 export default {

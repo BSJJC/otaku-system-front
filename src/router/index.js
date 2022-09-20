@@ -3,9 +3,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'welcomePage',
-    component: () => import('@/components/TopBar.vue')
+    name: 'UserWelcome',
+    component: () => import('@/components/UserWelcome.vue')
   },
+  {
+    path: '/logIn',
+    name: 'LogIn',
+    component: () => import('@/components/LogIn.vue')
+  }
 ]
 
 const router = createRouter({

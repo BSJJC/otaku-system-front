@@ -1,9 +1,7 @@
 <template>
-  <TopBar>
-    <router-link></router-link>
-  </TopBar>
+  <TopBar> </TopBar>
 
-  <router-view></router-view>
+  <router-view class="main-router-view"> </router-view>
 </template>
 
 <script>
@@ -33,12 +31,23 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
   min-height: 100vh;
   overflow: hidden;
+  margin: 0px;
+}
+
+.main-router-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: calc(100vh - 50px);
+  background: lightblue;
 }
 </style>
