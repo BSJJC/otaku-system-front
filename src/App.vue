@@ -8,6 +8,9 @@
 import TopBar from "./components/TopBar.vue";
 import { useStore } from "vuex";
 
+import { getAnimats } from "./hooks/useAnimats.js";
+getAnimats();
+
 const store = useStore();
 store.commit("test");
 </script>

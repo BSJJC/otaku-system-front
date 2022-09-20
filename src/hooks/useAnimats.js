@@ -1,19 +1,21 @@
-import axios from "vue"
+import axios from "axios"
 
-const getAnimats = () => {
- axios
-  .get("http://localhost:3000/api/rest/getAnimates/getAnimates", {})
-  .then((res) => {
-   const animats = {
-    entry: res.data.data[0].entrances,
-    exits: res.data.data[1].exits,
-   };
+export async function getAnimats() {
+  let animats = null
 
-   return animats
-  })
-  .catch((err) => {
-   console.error(err);
-  });
+  await axios.get(
+    "http://localhost:3000/api/rest/getAnimates/getAnimates")
+    .then(res => {
+      animats = {
+        entrances: res.data.data[0].entrances,
+        exits: res.data.data[1].exits
+      }
+
+      localStorage.setItem("animats", animats)
+      console.log("获取过渡动画成功");
+    })
+    .catch(e => {
+      console.error("获取过度动画失败", e)
+    })
+
 }
-
-export default getAnimats
