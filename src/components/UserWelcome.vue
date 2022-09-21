@@ -2,7 +2,10 @@
   <div class="main-router-view">
     <h1>welcome welcome</h1>
 
-    <router-link to="LogIn">
+    <router-link
+      to="LogIn"
+      @click="store.commit('appModule/mainRouterViewChange')"
+    >
       <el-button> log in </el-button>
     </router-link>
 
@@ -12,6 +15,8 @@
 
 <script setup>
 import BackgroundImg from "./BackgroundImg.vue";
+import { useStore } from "vuex";
+const store = useStore();
 </script>
 
 <style lang="less" scoped></style>

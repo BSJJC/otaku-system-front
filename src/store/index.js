@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import appModule from "./appModules/index"
 
 
 export default createStore({
@@ -7,11 +8,10 @@ export default createStore({
   getters: {
   },
   mutations: {
-    test() {
-    }
   },
   actions: {
   },
   modules: {
+    appModule: appModule
   }
 })

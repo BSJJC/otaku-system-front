@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export async function getAnimats() {
+export async function getAnimates() {
   let animats = null
 
   await axios.get(
@@ -8,10 +8,10 @@ export async function getAnimats() {
     .then(res => {
       animats = {
         entrances: res.data.data[0].entrances,
-        exits: res.data.data[1].exits
+        exits: res.data.data[0].exits
       }
 
-      localStorage.setItem("animats", animats)
+      localStorage.setItem("animates", JSON.stringify(animats))
       console.log("获取过渡动画成功");
     })
     .catch(e => {

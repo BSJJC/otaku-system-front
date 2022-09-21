@@ -1,3 +1,9 @@
+:root {
+  --animate-duration: 200ms;
+}
+* {
+  -webkit-user-drag: none;
+}
 body {
   display: flex;
   justify-content: center;

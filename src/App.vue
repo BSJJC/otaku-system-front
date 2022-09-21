@@ -1,18 +1,20 @@
 <template>
   <TopBar> </TopBar>
+  <button @click="store.commit('appModule/mainRouterViewChange')">test</button>
+  {{ store.state.appModule.mainRouterViewTransformAnimate }}
 
-  <router-view class="animate__bounceIn animate__bounceIn"> </router-view>
+  <router-view :class="store.state.appModule.mainRouterViewTransformAnimate">
+  </router-view>
 </template>
 
 <script setup>
 import TopBar from "./components/TopBar.vue";
+import { getAnimates } from "./hooks/useAnimates.js";
+
 import { useStore } from "vuex";
 
-import { getAnimats } from "./hooks/useAnimats.js";
-getAnimats();
-
+getAnimates();
 const store = useStore();
-store.commit("test");
 </script>
 
 <style lang="less" scoped>
