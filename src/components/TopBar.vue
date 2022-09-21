@@ -1,8 +1,26 @@
 <template>
-  <div class="top-bar-container">top bar</div>
+  <div class="top-bar-container">
+    top bar
+    <el-button @click="change('zh')">change</el-button>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useI18n } from "vue-i18n";
+
+const { locale } = useI18n();
+
+const change = (lang) => {
+  if (lang == "zh" && localStorage.getItem("lang") === "zh") {
+    lang = "en";
+  }
+  if (lang === "en" && localStorage.getItem("lang") === "en") {
+    lang = "zh";
+  }
+  locale.value = lang;
+  localStorage.setItem("lang", lang);
+};
+</script>
 
 <style lang="less" scoped>
 div {

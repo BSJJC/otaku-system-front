@@ -3,7 +3,7 @@ import messages from "./index"
 
 const i18n = createI18n({
  legacy: false,
- locale: localStorage.lang || "cn",
+ locale: localStorage.lang || "zh",
  messages
 })
 
