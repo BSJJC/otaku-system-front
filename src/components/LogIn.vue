@@ -29,17 +29,21 @@
       </el-form-item>
       <el-form-item id="btns">
         <!-- 登录按钮 -->
-        <!-- <router-link to="/UserMain"> -->
-        <el-button type="primary" id="submit">
-          {{ $t("message.aboutLogIn.logIn") }}
-        </el-button>
-        <!-- </router-link> -->
+        <router-link to="/UserMain">
+          <el-button
+            type="primary"
+            id="submit"
+            @click="store.commit('appModule/mainRouterViewChange')"
+          >
+            {{ $t("message.aboutLogIn.logIn") }}
+          </el-button>
+        </router-link>
         <!-- 重置 -->
         <el-button id="reset">{{ $t("message.aboutLogIn.reset") }}</el-button>
       </el-form-item>
     </el-form>
 
-    <BackgroundImg opacity="5"></BackgroundImg>
+    <BackgroundImg opacity="10"></BackgroundImg>
   </div>
 </template>
 
@@ -84,7 +88,6 @@ console.log(locale, store);
 
     button:hover {
       scale: 1.05;
-      box-shadow: 0px 0px 0px 3px black;
     }
   }
 }
