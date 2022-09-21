@@ -1,12 +1,12 @@
 <template>
   <div class="main-router-view">
-    <el-form :model="form" label-width="120px">
+    <el-form :model="form" :rules="rules" label-width="120px" size="large">
       <!-- 账号 -->
-      <el-form-item :label="$t('message.account')" required>
+      <el-form-item :label="$t('message.aboutLogIn.account')" prop="account">
         <el-input v-model="form.account" clearable />
       </el-form-item>
       <!-- 密码 -->
-      <el-form-item :label="$t('message.password')" required>
+      <el-form-item :label="$t('message.aboutLogIn.password')" prop="password">
         <el-input
           v-model="form.password"
           type="password"
@@ -14,18 +14,15 @@
           show-password
         />
       </el-form-item>
-      <el-form-item>
+      <el-form-item id="btns">
         <!-- 登录按钮 -->
         <!-- <router-link to="/UserMain"> -->
-        <el-button
-          type="primary"
-          @click="store.commit('appModule/mainRouterViewChange')"
-        >
-          {{ $t("message.logIn") }}
+        <el-button type="primary">
+          {{ $t("message.aboutLogIn.logIn") }}
         </el-button>
         <!-- </router-link> -->
         <!-- 重置 -->
-        <el-button>{{ $t("message.cancel") }}</el-button>
+        <el-button>{{ $t("message.aboutLogIn.reset") }}</el-button>
       </el-form-item>
     </el-form>
 
@@ -34,17 +31,12 @@
 </template>
 
 <script setup>
-//
-
 import BackgroundImg from "./BackgroundImg.vue";
 import { useStore } from "vuex";
 import { reactive } from "vue";
-
 import { useI18n } from "vue-i18n";
-
 const { locale } = useI18n();
 const { t } = useI18n();
-
 const store = useStore();
 
 const form = reactive({
@@ -52,11 +44,30 @@ const form = reactive({
   password: "",
 });
 
-console.log(t, locale, store);
+const rules = reactive({
+  account: [
+    {
+      required: true,
+      message: t("message.aboutLogIn.accountError"),
+      trigger: "blur",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: t("message.aboutLogIn.passwordError"),
+      trigger: "blur",
+    },
+  ],
+});
+
+console.log(locale, store);
 </script>
 
 <style lang="less" scoped>
-el-form {
-  background-color: red;
+#btns {
+  :deep(.el-form-item__content) {
+    justify-content: space-evenly;
+  }
 }
 </style>
