@@ -2,31 +2,44 @@
   <div class="main-router-view">
     <el-form :model="form" :rules="rules" label-width="120px" size="large">
       <!-- 账号 -->
-      <el-form-item :label="$t('message.aboutLogIn.account')" prop="account">
-        <el-input v-model="form.account" clearable />
+      <el-form-item
+        :label="$t('message.aboutLogIn.account')"
+        prop="account"
+        id="account"
+      >
+        <el-input
+          v-model="form.account"
+          clearable
+          :placeholder="t('message.aboutLogIn.accountError')"
+        />
       </el-form-item>
       <!-- 密码 -->
-      <el-form-item :label="$t('message.aboutLogIn.password')" prop="password">
+      <el-form-item
+        :label="$t('message.aboutLogIn.password')"
+        prop="password"
+        id="password"
+      >
         <el-input
           v-model="form.password"
           type="password"
           clearable
           show-password
+          :placeholder="t('message.aboutLogIn.passwordError')"
         />
       </el-form-item>
       <el-form-item id="btns">
         <!-- 登录按钮 -->
         <!-- <router-link to="/UserMain"> -->
-        <el-button type="primary">
+        <el-button type="primary" id="submit">
           {{ $t("message.aboutLogIn.logIn") }}
         </el-button>
         <!-- </router-link> -->
         <!-- 重置 -->
-        <el-button>{{ $t("message.aboutLogIn.reset") }}</el-button>
+        <el-button id="reset">{{ $t("message.aboutLogIn.reset") }}</el-button>
       </el-form-item>
     </el-form>
 
-    <BackgroundImg opacity="1"></BackgroundImg>
+    <BackgroundImg opacity="5"></BackgroundImg>
   </div>
 </template>
 
@@ -68,6 +81,21 @@ console.log(locale, store);
 #btns {
   :deep(.el-form-item__content) {
     justify-content: space-evenly;
+
+    button:hover {
+      scale: 1.05;
+      box-shadow: 0px 0px 0px 3px black;
+    }
+  }
+}
+
+#account,
+#password {
+  :deep(label) {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 10px rgb(252, 106, 106), 0 0 20px rgb(252, 106, 106),
+      0 0 30px rgb(252, 106, 106), 0 0 40px rgb(252, 106, 106);
   }
 }
 </style>

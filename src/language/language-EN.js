@@ -3,9 +3,9 @@ export default {
     'hello': 'Hello',
     'aboutLogIn': {
       'account': 'account',
-      'accountError': 'please input the right account',
+      'accountError': 'account here : )',
       'password': 'password',
-      'passwordError': 'please input the right password',
+      'passwordError': 'password here : )',
 
       'logIn': 'logIn',
       'reset': 'reset'
