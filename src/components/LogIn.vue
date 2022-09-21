@@ -16,6 +16,7 @@
 <script setup>
 import BackgroundImg from "./BackgroundImg.vue";
 import { useStore } from "vuex";
+
 const store = useStore();
 </script>
 

@@ -1,7 +1,5 @@
 <template>
   <TopBar> </TopBar>
-  <button @click="store.commit('appModule/mainRouterViewChange')">test</button>
-  {{ store.state.appModule.mainRouterViewTransformAnimate }}
 
   <router-view :class="store.state.appModule.mainRouterViewTransformAnimate">
   </router-view>
