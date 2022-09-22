@@ -2,9 +2,11 @@
   --animate-duration: 0.5s;
   transition: all ease-in-out;
 }
+
 * {
   -webkit-user-drag: none;
 }
+
 body {
   display: flex;
   justify-content: center;
@@ -14,6 +16,7 @@ body {
   margin: 0px;
   overflow: hidden;
 }
+
 .main-router-view {
   display: flex;
   justify-content: center;
@@ -22,6 +25,7 @@ body {
   width: 100vw;
   min-height: calc(100vh - 50px);
 }
-.main-router-view > * {
+
+.main-router-view>* {
   z-index: 5;
 }
