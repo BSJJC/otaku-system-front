@@ -1,12 +1,6 @@
 <template>
   <div class="main-router-view">
-    <h1>user main</h1>
-
-    <router-link to="/" @click="store.commit('appModule/mainRouterViewChange')">
-      <el-button> back to top </el-button>
-    </router-link>
-
-    <BackgroundImg opacity="10"></BackgroundImg>
+    <BackgroundImg opacity="1"></BackgroundImg>
   </div>
 </template>
 
@@ -15,6 +9,7 @@ import BackgroundImg from "./BackgroundImg.vue";
 import { useStore } from "vuex";
 const store = useStore();
 
+console.log(store);
 </script>
 
 <style lang="less" scoped></style>

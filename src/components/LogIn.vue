@@ -134,8 +134,11 @@ const verInfo = (account, password) => {
           message: "登陆成功",
         });
 
-        router.push("/userMain");
         store.commit("appModule/mainRouterViewChange");
+
+        setTimeout(() => {
+          router.push("/userMain");
+        }, 500);
       }
     })
     .catch((err) => {

@@ -23,7 +23,7 @@ const verOpacity = computed(() => {
 div {
   position: absolute;
   width: 100vw;
-  height: calc(100vh - 50px);
+  height: 100vh;
   border-radius: 10%;
   background-repeat: no-repeat;
   background-size: auto 100%;
