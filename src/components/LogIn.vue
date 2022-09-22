@@ -34,12 +34,8 @@
         />
       </el-form-item>
       <el-form-item id="btns">
-        <!-- 登录按钮 -->
-        <el-button
-          type="primary"
-          id="submit"
-          @click="verInfo(form.account, form.password)"
-        >
+        <!-- 登录 -->
+        <el-button id="submit" @click="verInfo(form.account, form.password)">
           {{ $t("message.aboutLogIn.logIn") }}
         </el-button>
         <!-- 重置 -->
