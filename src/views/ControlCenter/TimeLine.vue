@@ -1,15 +1,13 @@
 <template>
-  <div>time line</div>
+  <div class="time-line">time line</div>
 </template>
 
-<script>
-export default {};
-</script>
+<script setup></script>
 
 <style lang="less" scoped>
-div {
-  width: 60%;
-  height: 50%;
-  background: red;
+.time-line {
+  width: 40%;
+  height: 100%;
+  background: lightsalmon;
 }
 </style>

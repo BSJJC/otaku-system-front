@@ -1,13 +1,13 @@
 <template>
   <div class="info-overview">
-    <AvatarInfo>Avatar Info</AvatarInfo>
-    <DatePlan></DatePlan>
+    <PersonalInfo></PersonalInfo>
+    <ScheduleCard></ScheduleCard>
   </div>
 </template>
 
 <script setup>
-import AvatarInfo from "./PersonalInfo.vue";
-import DatePlan from "./DatePlan.vue";
+import PersonalInfo from "./PersonalInfo.vue";
+import ScheduleCard from "./ScheduleCard.vue";
 </script>
 
 <style lang="less" scoped>
