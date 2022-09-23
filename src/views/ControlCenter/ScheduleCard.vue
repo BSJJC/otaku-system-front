@@ -12,6 +12,9 @@ import TimeLine from "./TimeLine.vue";
 
 <style lang="less" scoped>
 .schedule-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   right: 0px;
   width: 50%;
   height: 80%;

@@ -25,6 +25,9 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
 }
 
 .avatar-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 40%;
   height: 100%;
@@ -44,6 +47,9 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
   }
 
   .configs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     bottom: 3em;
     width: 150px;

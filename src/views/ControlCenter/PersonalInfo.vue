@@ -18,6 +18,9 @@ import WordloadToday from "./WorkloadToday.vue";
 
 <style lang="less" scoped>
 .personal-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 10%;
   left: 0px;
   width: 40%;
@@ -26,12 +29,18 @@ import WordloadToday from "./WorkloadToday.vue";
   flex-direction: column;
 
   .self-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 70%;
     background-color: lightseagreen;
   }
 
   .messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 30%;
     background-color: lightyellow;

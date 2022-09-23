@@ -14,6 +14,9 @@ import PositionCard from "./PositionCard.vue";
 
 <style lang="less" scoped>
 .team-overview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0.5;
   width: 90vw;
   height: 40vh;

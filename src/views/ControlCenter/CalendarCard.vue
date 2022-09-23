@@ -6,6 +6,9 @@
 
 <style lang="less" scoped>
 .calendar-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60%;
   height: 100%;
   background: lightgreen;
