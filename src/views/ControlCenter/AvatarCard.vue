@@ -7,7 +7,11 @@
         </template>
       </el-image>
     </div>
-    <div class="configs">configs</div>
+    <div class="configs">
+      <el-button>个人中心</el-button>
+      <el-button>编辑资料</el-button>
+      <el-button>退出登录</el-button>
+    </div>
   </div>
 </template>
 
@@ -17,11 +21,12 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
 
 <style lang="less" scoped>
 * {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .avatar-card {
-  width: 50%;
+  position: relative;
+  width: 40%;
   height: 100%;
   flex-direction: column;
   background-color: lightpink;
@@ -29,27 +34,52 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
   .avatar-img {
     width: 200px;
     height: 200px;
+    z-index: 10;
 
     > * {
       width: 100%;
       height: 100%;
-      border-radius: 10%;
+      border-radius: 50%;
     }
   }
 
   .configs {
-    width: 100%;
-    height: 0px;
-    background: lightslategrey;
+    position: absolute;
+    bottom: 3em;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    flex-direction: column;
+
+    button {
+      width: calc(100% / 3);
+      opacity: 0;
+    }
   }
 
   &:hover {
     .avatar-img {
       width: 150px;
       height: 150px;
+      transform: translateY(-40px);
 
       > * {
         border-radius: 50%;
+      }
+    }
+
+    .configs {
+      bottom: 2.5em;
+      height: 10px;
+      width: 100%;
+      border-radius: 0px;
+
+      button {
+        opacity: 1;
+        width: 80%;
+        height: 25px;
+        margin: 0px;
+        margin-bottom: 2px;
       }
     }
   }
