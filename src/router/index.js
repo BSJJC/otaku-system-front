@@ -12,14 +12,9 @@ const routes = [
     component: () => import('@/components/LogIn.vue')
   },
   {
-    path: '/userMain',
-    name: 'UserMain',
-    component: () => import('@/components/UserMain.vue'),
-    children: [{
-      path: '/test',
-      name: 'test',
-      component: () => import('@/views/TestView.vue')
-    }]
+    path: '/ControlCenter',
+    name: 'ControlCenter',
+    component: () => import('@/components/ControlCenter.vue'),
   }
 ]
 

@@ -137,7 +137,7 @@ const verInfo = (account, password) => {
         store.commit("appModule/mainRouterViewChange");
 
         setTimeout(() => {
-          router.push("/userMain");
+          router.push("/ControlCenter");
         }, 500);
       }
     })
