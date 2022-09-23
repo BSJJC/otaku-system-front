@@ -5,9 +5,9 @@
 <script setup></script>
 
 <style lang="less" scoped>
- div{
+div {
   width: 200px;
   height: 100px;
   background: red;
- }
+}
 </style>

@@ -22,6 +22,12 @@ const store = useStore();
   -webkit-user-drag: none;
 }
 
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   display: flex;
   justify-content: center;

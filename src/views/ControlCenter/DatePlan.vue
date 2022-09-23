@@ -1,13 +1,10 @@
 <template>
-  dada plan
+  <div class="data-plan">data plan</div>
 </template>
 
-<script>
-export default {
+<script setup></script>
 
+<style lang="less" scoped>
+.data-plan {
 }
-</script>
-
-<style>
-
 </style>
