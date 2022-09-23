@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import AvatarInfo from "./AvatarInfo.vue";
+import AvatarInfo from "./PersonalInfo.vue";
 import DatePlan from "./DatePlan.vue";
 </script>
 

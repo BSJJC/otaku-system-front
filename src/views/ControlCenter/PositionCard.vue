@@ -1,20 +1,16 @@
 <template>
-  <div @click="test">postion card</div>
+  <div class="position-card">
+    <slot name="positionCount"></slot>
+  </div>
 </template>
 
-<script setup>
-const { default: router } = require("@/router");
-
-const test = () => {
-  router.push("test");
-};
-</script>
+<script setup></script>
 
 <style lang="less" scoped>
-div {
+.position-card {
   width: calc(100% / 3);
   height: 50%;
-  background: red;
+  background: rgba(255, 0, 0, 0.416);
   display: flex;
   justify-content: center;
   align-items: center;
