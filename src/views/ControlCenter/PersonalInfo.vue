@@ -13,7 +13,7 @@
 <script setup>
 import AvatarCard from "./AvatarCard.vue";
 import MessageCard from "./MessageCard.vue";
-import WordloadToday from "./WordloadToday.vue";
+import WordloadToday from "./WorkloadToday.vue";
 </script>
 
 <style lang="less" scoped>

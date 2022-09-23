@@ -1,5 +1,5 @@
 <template>
-  <div class="wordload-today">wordload today</div>
+  <div class="wordload-today">workload today</div>
 </template>
 
 <script setup></script>
