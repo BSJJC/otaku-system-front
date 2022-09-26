@@ -1,11 +1,5 @@
 <template>
-  <div class="workload-today">
-    <el-scrollbar height="400px">
-      <p v-for="item in 20" :key="item" class="scrollbar-demo-item">
-        {{ item }}
-      </p>
-    </el-scrollbar>
-  </div>
+  <div class="workload-today">.</div>
 </template>
 
 <script setup></script>
@@ -16,22 +10,10 @@
   justify-content: center;
   align-items: center;
   display: block;
-  width: 60%;
-  height: 100%;
-  overflow: hidden;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  padding: 20px;
   background-color: rgb(35, 171, 255);
-
-  .scrollbar-demo-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 50px;
-    margin: 10px;
-    text-align: center;
-    border-radius: 4px;
-    background: var(--el-color-primary-light-9);
-    color: var(--el-color-primary);
-  }
+  overflow: hidden;
 }
 </style>
