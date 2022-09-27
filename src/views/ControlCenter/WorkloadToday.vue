@@ -11,12 +11,14 @@
     <div class="todos">
       <div class="todo-list unfinished-todos">
         <el-scrollbar>
-          <p v-for="(i, index) in unfinishedTodos" :key="index">{{ i }}</p>
+          <p v-for="(i, index) in todos.unfinishedTodos" :key="index">
+            {{ i }}
+          </p>
         </el-scrollbar>
       </div>
       <div class="todo-list finished-todos">
         <el-scrollbar>
-          <p v-for="(i, index) in finishedTodos" :key="index">{{ i }}</p>
+          <p v-for="(i, index) in todos.finishedTodos" :key="index">{{ i }}</p>
         </el-scrollbar>
       </div>
     </div>
@@ -24,46 +26,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+import getItems from "../../api/getItem";
+
+let todos = reactive({});
+
+getItems("http://localhost:3000/api/rest/ManagerInfos/getManagerInfo").then(
+  (r) => {
+    todos.unfinishedTodos = r.data[0].todos.unfinishedTodos;
+    todos.finishedTodos = r.data[0].todos.finishedTodos;
+  }
+);
 
 const todosInoutBtn = ref(null);
 const todosInput = ref(null);
 
 const inputActive = () => {
-  console.log(todosInoutBtn.value.classList);
   todosInoutBtn.value.classList.toggle("active");
 };
-
-const unfinishedTodos = [
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "unfinished todo 1",
-  "unfinished 2",
-  "tunfinishedodo 3",
-];
-const finishedTodos = [
-  "lorm",
-  "finished 2",
-  "finished 3",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-  "this is a sentence with no meaning",
-];
 </script>
 
 <style lang="less" scoped>
