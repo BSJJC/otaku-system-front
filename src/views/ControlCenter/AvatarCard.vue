@@ -29,14 +29,14 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 40%;
+  width: 30%;
   height: 100%;
   flex-direction: column;
   background-color: lightpink;
 
   .avatar-img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     z-index: 10;
 
     > * {
@@ -65,8 +65,8 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
 
   &:hover {
     .avatar-img {
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       transform: translateY(-40px);
 
       > * {

@@ -7,6 +7,19 @@
       </div>
       <input type="text" ref="todosInput" />
     </div>
+
+    <div class="todos">
+      <div class="todo-list unfinished-todos">
+        <el-scrollbar>
+          <p v-for="(i, index) in unfinishedTodos" :key="index">{{ i }}</p>
+        </el-scrollbar>
+      </div>
+      <div class="todo-list finished-todos">
+        <el-scrollbar>
+          <p v-for="(i, index) in finishedTodos" :key="index">{{ i }}</p>
+        </el-scrollbar>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,6 +33,37 @@ const inputActive = () => {
   console.log(todosInoutBtn.value.classList);
   todosInoutBtn.value.classList.toggle("active");
 };
+
+const unfinishedTodos = [
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "unfinished todo 1",
+  "unfinished 2",
+  "tunfinishedodo 3",
+];
+const finishedTodos = [
+  "lorm",
+  "finished 2",
+  "finished 3",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+  "this is a sentence with no meaning",
+];
 </script>
 
 <style lang="less" scoped>
@@ -28,7 +72,7 @@ const inputActive = () => {
   justify-content: center;
   align-items: center;
   display: block;
-  width: calc(60% - 40px);
+  width: calc(70% - 40px);
   height: calc(100% - 40px);
   padding: 20px;
   background-color: rgb(35, 171, 255);
@@ -124,6 +168,32 @@ const inputActive = () => {
       input {
         text-indent: 10px;
         font-size: 20px;
+      }
+    }
+  }
+
+  .todos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+    background: rgba(255, 0, 0, 0.445);
+
+    .todo-list {
+      width: calc(49% - 10px);
+      height: calc(100% - 10px);
+      background: lightblue;
+      padding: 5px;
+    }
+
+    .unfinished-todos {
+      margin-right: 2%;
+    }
+
+    p {
+      &:hover {
+        cursor: pointer;
       }
     }
   }
