@@ -11,18 +11,26 @@
     <div class="todos">
       <div class="todo-list unfinished-todos" ref="unfinishedTodoList">
         <el-scrollbar>
-          <p
+          <div
+            class="item"
             v-for="(i, index) in todos.unfinishedTodos"
             :key="index"
             @click="toFinished(index)"
           >
             {{ i }}
-          </p>
+          </div>
         </el-scrollbar>
       </div>
       <div class="todo-list finished-todos" ref="finishedTodoList">
         <el-scrollbar>
-          <p v-for="(i, index) in todos.finishedTodos" :key="index">{{ i }}</p>
+          <div
+            class="item"
+            v-for="(i, index) in todos.finishedTodos"
+            :key="index"
+            @click="toUnfinished(index)"
+          >
+            {{ i }}
+          </div>
         </el-scrollbar>
       </div>
     </div>
@@ -51,18 +59,53 @@ const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
 };
 
-const toFinished = (index) => {
+const toFinished = async (index) => {
   const _this =
     unfinishedTodoList.value.children[0].children[0].children[0].children[
       index
     ];
   const innerHTML = _this.innerHTML;
 
-  _this.classList = "animate__animated animate__fadeOutRight";
+  _this.innerHTML = "";
+  _this.classList.add("todo-leave");
+
+  await todos.finishedTodos.unshift("");
+
+  const newFinishedItem =
+    finishedTodoList.value.children[0].children[0].children[0].children[0];
+  newFinishedItem.classList = "init todo-enter";
+
   setTimeout(() => {
     todos.unfinishedTodos.splice(index, 1);
-    todos.finishedTodos.unshift(innerHTML);
-    _this.classList = "";
+
+    _this.classList = "item";
+
+    newFinishedItem.classList = "item";
+    todos.finishedTodos[0] = innerHTML;
+  }, 300);
+};
+
+const toUnfinished = async (index) => {
+  const _this =
+    finishedTodoList.value.children[0].children[0].children[0].children[index];
+  const innerHTML = _this.innerHTML;
+
+  _this.innerHTML = "";
+  _this.classList.add("todo-leave");
+
+  await todos.unfinishedTodos.unshift("");
+
+  const newFinishedItem =
+    unfinishedTodoList.value.children[0].children[0].children[0].children[0];
+  newFinishedItem.classList = "init todo-enter";
+
+  setTimeout(() => {
+    todos.finishedTodos.splice(index, 1);
+
+    _this.classList = "item";
+
+    newFinishedItem.classList = "item";
+    todos.unfinishedTodos[0] = innerHTML;
   }, 300);
 };
 </script>
@@ -192,8 +235,14 @@ const toFinished = (index) => {
       margin-right: 2%;
     }
 
-    p {
-      transition: all 0.5s ease-in-out;
+    .item {
+      width: 100%;
+      height: 25px;
+      font-size: 20px;
+      background: rgba(255, 0, 0, 0.37);
+      margin-bottom: 10px;
+      border-radius: 5px;
+      text-indent: 10px;
 
       &:hover {
         cursor: pointer;
@@ -201,6 +250,41 @@ const toFinished = (index) => {
     }
 
     .todo-leave {
+      animation: todo-leave 0.3s ease-in-out forwards;
+    }
+
+    @keyframes todo-leave {
+      to {
+        height: 0px;
+        font-size: 0px;
+        margin: 0px;
+      }
+    }
+
+    .init {
+      width: 0%;
+      height: 0px;
+      font-size: 0px;
+      background: rgba(255, 0, 0, 0.37);
+      margin-bottom: 0px;
+      border-radius: 5px;
+      text-indent: 10px;
+    }
+
+    .todo-enter {
+      animation: todo-enter 0.3s ease-in-out forwards;
+    }
+
+    @keyframes todo-enter {
+      to {
+        width: 100%;
+        height: 25px;
+        font-size: 20px;
+        background: rgba(255, 0, 0, 0.37);
+        margin-bottom: 10px;
+        border-radius: 5px;
+        text-indent: 10px;
+      }
     }
   }
 }
