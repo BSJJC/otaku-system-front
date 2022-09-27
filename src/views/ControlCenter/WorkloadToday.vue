@@ -5,7 +5,11 @@
         <div class="line line-one"></div>
         <div class="line line-two"></div>
       </div>
-      <input type="text" ref="todosInput" @keypress.enter="addUnfinished" />
+      <input
+        type="text"
+        ref="todosInput"
+        @keypress.enter="addUnfinished(todosInput)"
+      />
     </div>
 
     <div :class="todosClasses">
@@ -89,7 +93,12 @@ const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
 };
 
-const addUnfinished = async () => {
+const addUnfinished = async (_this) => {
+  if (!_this.value.trim()) {
+    _this.value = "";
+    return;
+  }
+
   await todos.unfinishedTodos.unshift("");
 
   const newItem =
@@ -97,7 +106,8 @@ const addUnfinished = async () => {
   newItem.classList = "init todo-enter";
   setTimeout(() => {
     newItem.classList = "item";
-    newItem.innerHTML = 123;
+    todos.unfinishedTodos[0] = _this.value;
+    _this.value = "";
   }, 300);
 };
 
