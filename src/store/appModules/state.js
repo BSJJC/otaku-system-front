@@ -1,5 +1,5 @@
 const state = {
- mainRouterViewTransformAnimate: "animate__fadeInRight",
+ mainRouterViewTransformAnimate: "animate__animated animate__fadeInRight",
  mainRouterViewTransformIndex: 0
 }
 
