@@ -9,14 +9,18 @@
     </div>
 
     <div class="todos">
-      <div class="todo-list unfinished-todos">
+      <div class="todo-list unfinished-todos" ref="unfinishedTodoList">
         <el-scrollbar>
-          <p v-for="(i, index) in todos.unfinishedTodos" :key="index">
+          <p
+            v-for="(i, index) in todos.unfinishedTodos"
+            :key="index"
+            @click="toFinished(index)"
+          >
             {{ i }}
           </p>
         </el-scrollbar>
       </div>
-      <div class="todo-list finished-todos">
+      <div class="todo-list finished-todos" ref="finishedTodoList">
         <el-scrollbar>
           <p v-for="(i, index) in todos.finishedTodos" :key="index">{{ i }}</p>
         </el-scrollbar>
@@ -29,7 +33,12 @@
 import { ref, reactive } from "vue";
 import getItems from "../../api/getItem";
 
-let todos = reactive({});
+const todosInoutBtn = ref(null);
+const todosInput = ref(null);
+const unfinishedTodoList = ref(null);
+const finishedTodoList = ref(null);
+
+let todos = reactive({ unfinishedTodos: [], finishedTodos: [] });
 
 getItems("http://localhost:3000/api/rest/ManagerInfos/getManagerInfo").then(
   (r) => {
@@ -38,11 +47,21 @@ getItems("http://localhost:3000/api/rest/ManagerInfos/getManagerInfo").then(
   }
 );
 
-const todosInoutBtn = ref(null);
-const todosInput = ref(null);
-
 const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
+};
+
+const toFinished = (index) => {
+  // const _this =
+  //   unfinishedTodoList.value.children[0].children[0].children[0].children[
+  //     index
+  //   ];
+
+  // _this.classList = "animate__animated animate__fadeOutRight";
+  // setTimeout(() => {
+  todos.finishedTodos.unshift(todos.unfinishedTodos[index]);
+  todos.unfinishedTodos.splice(index, 1);
+  // }, 300);
 };
 </script>
 
@@ -175,6 +194,10 @@ const inputActive = () => {
       &:hover {
         cursor: pointer;
       }
+    }
+
+    .animate__animated {
+      animation-duration: 0.3s;
     }
   }
 }
