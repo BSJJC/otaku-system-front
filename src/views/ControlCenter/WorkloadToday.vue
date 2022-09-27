@@ -5,7 +5,7 @@
         <div class="line line-one"></div>
         <div class="line line-two"></div>
       </div>
-      <input type="text" ref="todosInput" />
+      <input type="text" ref="todosInput" @keypress.enter="addUnfinished" />
     </div>
 
     <div :class="todosClasses">
@@ -89,6 +89,18 @@ const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
 };
 
+const addUnfinished = async () => {
+  await todos.unfinishedTodos.unshift("");
+
+  const newItem =
+    unfinishedTodoList.value.children[0].children[0].children[0].children[0];
+  newItem.classList = "init todo-enter";
+  setTimeout(() => {
+    newItem.classList = "item";
+    newItem.innerHTML = 123;
+  }, 300);
+};
+
 const toFinished = async (index) => {
   const _this =
     unfinishedTodoList.value.children[0].children[0].children[0].children[
@@ -154,9 +166,10 @@ const toUnfinished = async (index) => {
 
   .todos-input {
     position: relative;
-    width: 30px;
-    height: 30px;
-    transition: all 1s ease-in-out;
+    top: -10px;
+    width: 25px;
+    height: 25px;
+    transition: all 0.5s ease-in-out;
 
     .btn {
       display: flex;
@@ -165,8 +178,8 @@ const toUnfinished = async (index) => {
       position: absolute;
       right: 0px;
       z-index: 10;
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
       border-radius: 45px;
       background: rgb(108, 104, 104);
 
@@ -180,7 +193,7 @@ const toUnfinished = async (index) => {
         border-radius: 45px;
         background: lightcoral;
         position: absolute;
-        transition: all 1s ease-in-out;
+        transition: all 0.5s ease-in-out;
       }
 
       .line-one {
@@ -213,8 +226,8 @@ const toUnfinished = async (index) => {
         position: absolute;
         right: 0px;
         z-index: 10;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         border-radius: 45px;
         background: rgb(108, 104, 104);
 
