@@ -52,16 +52,18 @@ const inputActive = () => {
 };
 
 const toFinished = (index) => {
-  // const _this =
-  //   unfinishedTodoList.value.children[0].children[0].children[0].children[
-  //     index
-  //   ];
+  const _this =
+    unfinishedTodoList.value.children[0].children[0].children[0].children[
+      index
+    ];
+  const innerHTML = _this.innerHTML;
 
-  // _this.classList = "animate__animated animate__fadeOutRight";
-  // setTimeout(() => {
-  todos.finishedTodos.unshift(todos.unfinishedTodos[index]);
-  todos.unfinishedTodos.splice(index, 1);
-  // }, 300);
+  _this.classList = "animate__animated animate__fadeOutRight";
+  setTimeout(() => {
+    todos.unfinishedTodos.splice(index, 1);
+    todos.finishedTodos.unshift(innerHTML);
+    _this.classList = "";
+  }, 300);
 };
 </script>
 
@@ -191,13 +193,14 @@ const toFinished = (index) => {
     }
 
     p {
+      transition: all 0.5s ease-in-out;
+
       &:hover {
         cursor: pointer;
       }
     }
 
-    .animate__animated {
-      animation-duration: 0.3s;
+    .todo-leave {
     }
   }
 }
