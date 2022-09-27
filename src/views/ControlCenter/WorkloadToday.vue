@@ -8,7 +8,7 @@
       <input type="text" ref="todosInput" />
     </div>
 
-    <div class="todos">
+    <div :class="todosClasses">
       <div class="todo-list unfinished-todos" ref="unfinishedTodoList">
         <el-scrollbar>
           <div
@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, watch } from "vue";
 import getItems from "../../api/getItem";
 
 const todosInoutBtn = ref(null);
@@ -47,6 +47,36 @@ const unfinishedTodoList = ref(null);
 const finishedTodoList = ref(null);
 
 let todos = reactive({ unfinishedTodos: [], finishedTodos: [] });
+const todosClasses = reactive({
+  todos: true,
+  "all-unfinished": false,
+  "all-finished": false,
+});
+
+watch(todos, (newValue) => {
+  if (
+    // 未完成列表和完成列表都有
+    newValue.unfinishedTodos.length !== 0 &&
+    newValue.finishedTodos.length !== 0
+  ) {
+    todosClasses["all-finished"] = false;
+    todosClasses["all-unfinished"] = false;
+  } else if (
+    // 仅完成列表有
+    newValue.unfinishedTodos.length === 0 &&
+    newValue.finishedTodos.length !== 0
+  ) {
+    todosClasses["all-finished"] = true;
+    todosClasses["all-unfinished"] = false;
+  } else if (
+    // 仅未完成列表有
+    newValue.unfinishedTodos.length !== 0 &&
+    newValue.finishedTodos.length === 0
+  ) {
+    todosClasses["all-finished"] = false;
+    todosClasses["all-unfinished"] = true;
+  }
+});
 
 getItems("http://localhost:3000/api/rest/ManagerInfos/getManagerInfo").then(
   (r) => {
@@ -225,14 +255,20 @@ const toUnfinished = async (index) => {
     background: rgba(255, 0, 0, 0.445);
 
     .todo-list {
-      width: calc(49% - 10px);
       height: calc(100% - 10px);
       background: lightblue;
       padding: 5px;
     }
 
     .unfinished-todos {
+      transition: all 0.3s ease-in-out;
+      width: calc(49% - 10px);
       margin-right: 2%;
+    }
+
+    .finished-todos {
+      transition: all 0.3s ease-in-out;
+      width: calc(49% - 10px);
     }
 
     .item {
@@ -284,6 +320,28 @@ const toUnfinished = async (index) => {
         margin-bottom: 10px;
         border-radius: 5px;
         text-indent: 10px;
+      }
+    }
+
+    &.all-finished {
+      .unfinished-todos {
+        width: 0%;
+        padding: 0px;
+        margin: 0px;
+      }
+      .finished-todos {
+        width: 100%;
+      }
+    }
+
+    &.all-unfinished {
+      .unfinished-todos {
+        width: 100%;
+        margin: 0px;
+      }
+      .finished-todos {
+        width: 0%;
+        padding: 0px;
       }
     }
   }
