@@ -41,7 +41,6 @@ import WordloadToday from "./WorkloadToday.vue";
     align-items: center;
     width: 100%;
     height: 30%;
-    background-color: rgba(255, 255, 224, 0.404);
   }
 }
 </style>

@@ -18,6 +18,15 @@ import TimeLine from "./TimeLine.vue";
   right: 0px;
   width: 50%;
   height: 80%;
-  background: rgba(0, 0, 255, 0.132);
+
+  .time-line {
+    width: calc(30% - 20px);
+    height: calc(100% - 20px);
+  }
+
+  .calendar-card {
+    width: 70%;
+    height: 100%;
+  }
 }
 </style>

@@ -15,6 +15,5 @@ import ScheduleCard from "./ScheduleCard.vue";
   display: flex;
   justify-content: center;
   align-items: center;
-  background: lightblue;
 }
 </style>

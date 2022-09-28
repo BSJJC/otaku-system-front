@@ -53,8 +53,11 @@ const data = [
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(40% - 20px);
-  height: calc(100% - 20px);
+
   padding: 10px;
+
+  .el-timeline {
+    padding: 0px;
+  }
 }
 </style>
