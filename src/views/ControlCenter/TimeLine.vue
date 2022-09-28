@@ -58,6 +58,10 @@ const data = [
 
   .el-timeline {
     padding: 0px;
+
+    :deep(.el-card) {
+      border-radius: 30px;
+    }
   }
 }
 </style>
