@@ -66,7 +66,7 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
     .avatar-img {
       width: 120px;
       height: 120px;
-      transform: translateY(-40px);
+      transform: translateY(-55px);
 
       > * {
         border-radius: 50%;
@@ -74,7 +74,7 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
     }
 
     .configs {
-      bottom: 2.5em;
+      bottom: 3.5em;
       height: 10px;
       width: 100%;
       border-radius: 0px;
