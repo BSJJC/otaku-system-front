@@ -191,6 +191,7 @@ const toUnfinished = async (index) => {
 
   .todos-input {
     position: relative;
+    left: 15px;
     top: -10px;
     width: 25px;
     height: 25px;
