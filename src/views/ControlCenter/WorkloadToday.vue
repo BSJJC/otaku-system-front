@@ -8,6 +8,7 @@
       <input
         type="text"
         ref="todosInput"
+        maxlength="10"
         @keypress.enter="addUnfinished(todosInput)"
         @blur="inputBlur"
       />
@@ -108,6 +109,9 @@ const addUnfinished = async (_this) => {
     return;
   }
 
+  const innerHTML = _this.value.trim();
+  _this.value = "";
+
   await todos.unfinishedTodos.unshift("");
 
   const newItem =
@@ -115,8 +119,7 @@ const addUnfinished = async (_this) => {
   newItem.classList = "init todo-enter";
   setTimeout(() => {
     newItem.classList = "item";
-    todos.unfinishedTodos[0] = _this.value.trim();
-    _this.value = "";
+    todos.unfinishedTodos[0] = innerHTML;
   }, 300);
 };
 
@@ -203,7 +206,7 @@ const toUnfinished = async (index) => {
       width: 25px;
       height: 25px;
       border-radius: 45px;
-      background: rgb(108, 104, 104);
+      background: rgba(0, 0, 0, 0.463);
 
       &:hover {
         cursor: pointer;
@@ -213,7 +216,7 @@ const toUnfinished = async (index) => {
         width: 20px;
         height: 2px;
         border-radius: 45px;
-        background: rgba(240, 128, 128, 0.502);
+        background: rgba(255, 255, 255, 0.479);
         position: absolute;
         transition: all 0.5s ease-in-out;
       }
@@ -239,7 +242,7 @@ const toUnfinished = async (index) => {
     }
 
     &.active {
-      width: 100%;
+      width: 50%;
 
       .btn {
         display: flex;
@@ -251,7 +254,6 @@ const toUnfinished = async (index) => {
         width: 25px;
         height: 25px;
         border-radius: 45px;
-        background: rgb(108, 104, 104);
 
         &:hover {
           cursor: pointer;
@@ -261,7 +263,6 @@ const toUnfinished = async (index) => {
           width: 20px;
           height: 2px;
           border-radius: 45px;
-          background: lightcoral;
           position: absolute;
         }
 
@@ -295,23 +296,29 @@ const toUnfinished = async (index) => {
 
     .unfinished-todos {
       transition: all 0.3s ease-in-out;
+      color: white;
       width: calc(49% - 10px);
       margin-right: 2%;
     }
 
     .finished-todos {
+      text-decoration: line-through;
+      color: rgba(0, 0, 0, 0.368);
       transition: all 0.3s ease-in-out;
       width: calc(49% - 10px);
+      // opacity: 0.5;
     }
 
     .item {
+      display: flex;
+      flex-wrap: nowrap;
       width: 100%;
-      height: 25px;
+      height: 27px;
       font-size: 20px;
-      background: rgba(255, 0, 0, 0.37);
+      text-indent: 10px;
+      background: rgba(212, 125, 125, 0.381);
       margin-bottom: 10px;
       border-radius: 5px;
-      text-indent: 10px;
 
       &:hover {
         cursor: pointer;
@@ -334,7 +341,7 @@ const toUnfinished = async (index) => {
       width: 100%;
       height: 0px;
       font-size: 0px;
-      background: rgba(255, 0, 0, 0.37);
+      background: rgba(209, 77, 77, 0.381);
       margin-bottom: 0px;
       border-radius: 5px;
       text-indent: 10px;
@@ -348,7 +355,7 @@ const toUnfinished = async (index) => {
       to {
         height: 25px;
         font-size: 20px;
-        background: rgba(255, 0, 0, 0.37);
+        background: rgba(209, 77, 77, 0.381);
         margin-bottom: 10px;
         border-radius: 5px;
         text-indent: 10px;
