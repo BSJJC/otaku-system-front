@@ -3,7 +3,7 @@
     <InfoOverview></InfoOverview>
     <TeamOverview></TeamOverview>
 
-    <BackgroundImg opacity="1"></BackgroundImg>
+    <BackgroundImg opacity="5"></BackgroundImg>
   </div>
 </template>
 <script setup>

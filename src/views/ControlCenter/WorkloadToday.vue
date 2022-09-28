@@ -206,7 +206,6 @@ const toUnfinished = async (index) => {
       width: 25px;
       height: 25px;
       border-radius: 45px;
-      background: rgba(0, 0, 0, 0.463);
 
       &:hover {
         cursor: pointer;
@@ -216,7 +215,7 @@ const toUnfinished = async (index) => {
         width: 20px;
         height: 2px;
         border-radius: 45px;
-        background: rgba(255, 255, 255, 0.479);
+        background: black;
         position: absolute;
         transition: all 0.5s ease-in-out;
       }
@@ -276,8 +275,10 @@ const toUnfinished = async (index) => {
       }
 
       input {
+        transition: all 0.3s ease-in-out;
         text-indent: 10px;
         font-size: 20px;
+        box-shadow: 3px 3px 3px black;
       }
     }
   }
@@ -296,7 +297,7 @@ const toUnfinished = async (index) => {
 
     .unfinished-todos {
       transition: all 0.3s ease-in-out;
-      color: white;
+      color: black;
       width: calc(49% - 10px);
       margin-right: 2%;
     }
@@ -315,12 +316,16 @@ const toUnfinished = async (index) => {
       height: 27px;
       font-size: 20px;
       text-indent: 10px;
-      background: rgba(212, 125, 125, 0.381);
       margin-bottom: 10px;
       border-radius: 5px;
 
       &:hover {
         cursor: pointer;
+
+        &.item {
+          transition: all 0.3s ease-in-out;
+          background: rgb(208, 208, 208);
+        }
       }
     }
 
@@ -340,7 +345,6 @@ const toUnfinished = async (index) => {
       width: 100%;
       height: 0px;
       font-size: 0px;
-      background: rgba(209, 77, 77, 0.381);
       margin-bottom: 0px;
       border-radius: 5px;
       text-indent: 10px;
@@ -354,7 +358,6 @@ const toUnfinished = async (index) => {
       to {
         height: 25px;
         font-size: 20px;
-        background: rgba(209, 77, 77, 0.381);
         margin-bottom: 10px;
         border-radius: 5px;
         text-indent: 10px;
