@@ -331,7 +331,7 @@ const toUnfinished = async (index) => {
     }
 
     .init {
-      width: 0%;
+      width: 100%;
       height: 0px;
       font-size: 0px;
       background: rgba(255, 0, 0, 0.37);
@@ -346,7 +346,6 @@ const toUnfinished = async (index) => {
 
     @keyframes todo-enter {
       to {
-        width: 100%;
         height: 25px;
         font-size: 20px;
         background: rgba(255, 0, 0, 0.37);
