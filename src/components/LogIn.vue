@@ -54,9 +54,9 @@ import BackgroundImg from "./BackgroundImg.vue";
 import { useStore } from "vuex";
 import { ref, reactive } from "vue";
 import router from "@/router";
-import axios from "axios";
 import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
+import postItem from "../api/postItem";
 
 const { locale } = useI18n();
 const { t } = useI18n();
@@ -92,13 +92,12 @@ const rules = reactive({
  * 登录验证
  */
 const verInfo = (account, password) => {
-  axios
-    .post("http://localhost:3000/api/rest/logInCheck/logIn", {
-      account: account,
-      password: password,
-    })
+  postItem("http://localhost:3000/api/rest/logInCheck/logIn", {
+    account: account,
+    password: password,
+  })
     .then((res) => {
-      if (!res.data) {
+      if (!res.token) {
         /**
          * 请求发送成功，但没这号人
          */
@@ -123,7 +122,7 @@ const verInfo = (account, password) => {
         form.account = "";
         form.password = "";
 
-        const token = JSON.stringify(res.data.token);
+        const token = JSON.stringify(res.token);
         localStorage.setItem("TOKEN", token);
 
         ElMessage({

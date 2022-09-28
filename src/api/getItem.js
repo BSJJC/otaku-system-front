@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getItems = async url => {
-  let data;
+  let data = null;
 
   await axios.get(url)
     .then(res => {
