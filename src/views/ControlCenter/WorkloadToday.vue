@@ -91,6 +91,7 @@ getItems("http://localhost:3000/api/rest/ManagerInfos/getManagerInfo").then(
 
 const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
+  todosInput.value.focus();
 };
 
 const addUnfinished = async (_this) => {
@@ -106,7 +107,7 @@ const addUnfinished = async (_this) => {
   newItem.classList = "init todo-enter";
   setTimeout(() => {
     newItem.classList = "item";
-    todos.unfinishedTodos[0] = _this.value;
+    todos.unfinishedTodos[0] = _this.value.trim();
     _this.value = "";
   }, 300);
 };
@@ -227,7 +228,7 @@ const toUnfinished = async (index) => {
     }
 
     &.active {
-      width: 80%;
+      width: 100%;
 
       .btn {
         display: flex;
