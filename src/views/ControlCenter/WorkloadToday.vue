@@ -306,7 +306,6 @@ const toUnfinished = async (index) => {
       color: rgba(0, 0, 0, 0.368);
       transition: all 0.3s ease-in-out;
       width: calc(49% - 10px);
-      // opacity: 0.5;
     }
 
     .item {

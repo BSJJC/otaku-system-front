@@ -18,8 +18,6 @@ import PositionCard from "./PositionCard.vue";
   justify-content: center;
   align-items: center;
   opacity: 0.5;
-  width: 90vw;
-  height: 40vh;
   background: lightcoral;
   flex-wrap: wrap;
 }
