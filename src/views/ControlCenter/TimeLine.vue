@@ -33,8 +33,8 @@ const data = [
     timestamp: "20220929",
     placement: "top",
     card: {
-      uploadDetail: "upload detail 2",
-      uploader: "Jean",
+      uploadDetail: "upload detail someting amazing 2",
+      uploader: "Jean the quean of asshole",
     },
   },
   {
@@ -61,6 +61,11 @@ const data = [
 
     :deep(.el-card) {
       border-radius: 30px;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
