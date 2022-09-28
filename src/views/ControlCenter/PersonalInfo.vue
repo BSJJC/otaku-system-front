@@ -25,7 +25,6 @@ import WordloadToday from "./WorkloadToday.vue";
   left: 0px;
   width: 40%;
   height: 80%;
-  background: red;
   flex-direction: column;
 
   .self-info {
@@ -34,7 +33,6 @@ import WordloadToday from "./WorkloadToday.vue";
     align-items: center;
     width: 100%;
     height: 70%;
-    background-color: lightseagreen;
   }
 
   .messages {

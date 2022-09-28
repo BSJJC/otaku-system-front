@@ -9,6 +9,7 @@
         type="text"
         ref="todosInput"
         @keypress.enter="addUnfinished(todosInput)"
+        @blur="inputBlur"
       />
     </div>
 
@@ -91,7 +92,14 @@ getItems("http://localhost:3000/api/rest/ManagerInfos/getManagerInfo").then(
 
 const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
-  todosInput.value.focus();
+  todosInoutBtn.value.classList.contains("active")
+    ? todosInput.value.focus()
+    : todosInput.value.blur();
+};
+
+const inputBlur = () => {
+  todosInoutBtn.value.classList.remove("active");
+  todosInput.value.value = "";
 };
 
 const addUnfinished = async (_this) => {
@@ -164,6 +172,10 @@ const toUnfinished = async (index) => {
 </script>
 
 <style lang="less" scoped>
+* {
+  user-select: none;
+}
+
 .workload-today {
   display: flex;
   justify-content: center;
@@ -172,7 +184,6 @@ const toUnfinished = async (index) => {
   width: calc(70% - 40px);
   height: calc(100% - 40px);
   padding: 20px;
-  background-color: rgb(35, 171, 255);
   overflow: hidden;
 
   .todos-input {
@@ -202,7 +213,7 @@ const toUnfinished = async (index) => {
         width: 20px;
         height: 2px;
         border-radius: 45px;
-        background: lightcoral;
+        background: rgba(240, 128, 128, 0.502);
         position: absolute;
         transition: all 0.5s ease-in-out;
       }
@@ -276,11 +287,9 @@ const toUnfinished = async (index) => {
     align-items: center;
     width: 100%;
     height: 90%;
-    background: rgba(255, 0, 0, 0.445);
 
     .todo-list {
       height: calc(100% - 10px);
-      background: lightblue;
       padding: 5px;
     }
 

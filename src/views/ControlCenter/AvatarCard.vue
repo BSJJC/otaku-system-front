@@ -32,7 +32,6 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head";
   width: 30%;
   height: 100%;
   flex-direction: column;
-  background-color: lightpink;
 
   .avatar-img {
     width: 150px;
