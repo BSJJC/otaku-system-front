@@ -1,6 +1,6 @@
 <template>
   <router-view
-    :class="store.state.appModule.mainRouterViewClasses.transiformAnimate"
+    :class="store.state.appModule.transiformAnimate"
   >
   </router-view>
 </template>

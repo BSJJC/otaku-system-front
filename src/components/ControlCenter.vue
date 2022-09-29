@@ -1,9 +1,10 @@
 <template>
-  <div :class="mainRouterViewClasses">
-    <InfoOverview></InfoOverview>
+  <div :class="store.state.appModule.mainRouterViewClasses">
+    <InfoOverview @click="change"></InfoOverview>
     <TeamOverview></TeamOverview>
 
-    <router-view class="detail-info"> </router-view>
+    <router-view :class="store.state.controlCenterModule.controlCenterClasses">
+    </router-view>
 
     <BackgroundImg opacity="5"></BackgroundImg>
   </div>
@@ -12,21 +13,27 @@
 import BackgroundImg from "./BackgroundImg.vue";
 import InfoOverview from "@/views/ControlCenter/InfoOverview.vue";
 import TeamOverview from "@/views/ControlCenter/TeamOverview.vue";
-import router from "@/router";
+import { useStore } from "vuex";
 
-const mainRouterViewClasses = {
-  "main-router-view": true,
-  "main-router-view-hide": false,
-};
+import router from "@/router";
+const store = useStore();
 
 const change = () => {
   router.push("/ControlCenter/DetailInfo");
-
-  mainRouterViewClasses["main-router-view-hide"] =
-    !mainRouterViewClasses["main-router-view-hide"];
+  // includes
+  if (
+    store.state.appModule.mainRouterViewClasses.includes(
+      "main-router-view-hide"
+    )
+  ) {
+    return;
+  }
+  store.state.appModule.mainRouterViewClasses.push("main-router-view-hide");
+  store.state.controlCenterModule.controlCenterClasses.push("detail-info-in");
+  setTimeout(() => {
+    store.state.controlCenterModule.controlCenterClasses.splice(1, 1);
+  }, 500);
 };
-
-document.addEventListener("click", change);
 </script>
 
 <style lang="less" scoped>
@@ -50,6 +57,9 @@ document.addEventListener("click", change);
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .detail-info-in {
     animation: detail-info-in 0.5s ease-in-out forwards;
   }
 
@@ -64,6 +74,24 @@ document.addEventListener("click", change);
       height: 100vh;
       width: 90vw;
       opacity: 1;
+    }
+  }
+
+  .detail-info-out {
+    animation: detail-info-out 0.5s ease-in-out;
+  }
+
+  @keyframes detail-info-out {
+    0% {
+      height: 100vh;
+      width: 90vw;
+      opacity: 1;
+    }
+
+    100% {
+      height: 0px;
+      width: 0px;
+      opacity: 0;
     }
   }
 
@@ -88,6 +116,30 @@ document.addEventListener("click", change);
         border-radius: 30px;
         transition: al 0.5sl ease-in-out;
       }
+    }
+  }
+
+  &.main-router-view-in {
+    .info-overview {
+      width: 90vw;
+      height: 60vh;
+      opacity: 1;
+      user-select: auto;
+      z-index: 5;
+      overflow: hidden;
+      border-radius: 0px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .team-overview {
+      width: 90vw;
+      height: 40vh;
+      opacity: 1;
+      user-select: auto;
+      z-index: 5;
+      overflow: hidden;
+      border-radius: 0px;
+      transition: all 0.5s ease-in-out;
     }
   }
 }

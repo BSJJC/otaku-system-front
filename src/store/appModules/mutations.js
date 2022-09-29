@@ -16,12 +16,12 @@ const mutations = {
 
 
     this.state.appModule.transformIndex = index;
-    this.state.appModule.mainRouterViewClasses.transiformAnimate = `animate__animated ${randomExiteAnimate}`;
+    this.state.appModule.transiformAnimate = `animate__animated ${randomExiteAnimate}`;
 
-    console.log(this.state.appModule.mainRouterViewClasses.transiformAnimate);
+    console.log(this.state.appModule.transiformAnimate);
 
     setTimeout(() => {
-      this.state.appModule.mainRouterViewClasses.transiformAnimate = `animate__animated ${randomEntrancesAnimate}`;
+      this.state.appModule.transiformAnimate = `animate__animated ${randomEntrancesAnimate}`;
     }, 500);
 
   }
