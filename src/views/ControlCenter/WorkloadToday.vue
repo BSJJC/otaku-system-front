@@ -52,9 +52,9 @@ const unfinishedTodoList = ref(null);
 const finishedTodoList = ref(null);
 
 let todos = reactive({
-  unfinishedTodos: JSON.parse(localStorage.getItem("managerInfo")).todos
+  unfinishedTodos: JSON.parse(sessionStorage.getItem("managerInfo")).todos
     .unfinishedTodos,
-  finishedTodos: JSON.parse(localStorage.getItem("managerInfo")).todos
+  finishedTodos: JSON.parse(sessionStorage.getItem("managerInfo")).todos
     .finishedTodos,
 });
 const todosClasses = reactive({

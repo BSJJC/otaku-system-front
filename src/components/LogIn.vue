@@ -132,7 +132,7 @@ const verInfo = (account, password) => {
         getItem(
           "http://localhost:3000/api/rest/ManagerInfos/getManagerInfo"
         ).then((r) => {
-          localStorage.setItem("managerInfo", JSON.stringify(r.data[0]));
+          sessionStorage.setItem("managerInfo", JSON.stringify(r.data[0]));
         });
 
         ElMessage({
