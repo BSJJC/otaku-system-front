@@ -29,7 +29,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0px;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .main-router-view {

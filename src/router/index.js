@@ -15,6 +15,13 @@ const routes = [
     path: '/ControlCenter',
     name: 'ControlCenter',
     component: () => import('@/components/ControlCenter.vue'),
+    children: [
+      {
+        path: 'DetailInfo',
+        name: 'DetailInfo',
+        component: () => import('../views/ControlCenter/DetailInfo.vue')
+      }
+    ]
   }
 ]
 

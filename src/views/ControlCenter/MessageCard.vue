@@ -1,18 +1,16 @@
 <template>
   <div class="message-card">
     <el-badge :value="12" class="item">
-      <el-button>comments</el-button>
-    </el-badge>
-    <el-badge :value="12" class="item">
-      <el-button>comments</el-button>
-    </el-badge>
-    <el-badge :value="12" class="item">
-      <el-button>comments</el-button>
+      <el-button @click="test">comments</el-button>
     </el-badge>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const test = () => {
+  alert(1);
+};
+</script>
 
 <style lang="less" scoped>
 :deep(.el-badge) {

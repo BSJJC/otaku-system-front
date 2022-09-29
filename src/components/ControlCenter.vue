@@ -1,7 +1,10 @@
 <template>
   <div class="main-router-view">
+    <el-button @click="test">test</el-button>
     <InfoOverview></InfoOverview>
     <TeamOverview></TeamOverview>
+
+    <router-view> </router-view>
 
     <BackgroundImg opacity="5"></BackgroundImg>
   </div>
@@ -10,6 +13,10 @@
 import BackgroundImg from "./BackgroundImg.vue";
 import InfoOverview from "@/views/ControlCenter/InfoOverview.vue";
 import TeamOverview from "@/views/ControlCenter/TeamOverview.vue";
+
+const test = () => {
+  alert(1)
+};
 </script>
 
 <style lang="less" scoped>
