@@ -56,7 +56,8 @@ import { ref, reactive } from "vue";
 import router from "@/router";
 import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
-import postItem from "../api/postItem";
+import postItem from "@/api/postItem";
+import getItem from "@/api/getItem";
 
 const { locale } = useI18n();
 const { t } = useI18n();
@@ -124,6 +125,15 @@ const verInfo = (account, password) => {
 
         const token = JSON.stringify(res.token);
         localStorage.setItem("TOKEN", token);
+
+        /**
+         *    将所有用户信息保存到localStorage
+         */
+        getItem(
+          "http://localhost:3000/api/rest/ManagerInfos/getManagerInfo"
+        ).then((r) => {
+          localStorage.setItem("managerInfo", JSON.stringify(r.data[0]));
+        });
 
         ElMessage({
           type: "success",

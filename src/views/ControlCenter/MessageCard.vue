@@ -10,6 +10,7 @@
 import { useStore } from "vuex";
 
 const store = useStore();
+
 const test = () => {
   store.commit("controlCenterModule/change");
 };

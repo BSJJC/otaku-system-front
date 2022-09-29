@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getItems = async url => {
+const getItem = async url => {
   let data = null;
 
   await axios.get(url)
@@ -14,4 +14,4 @@ const getItems = async url => {
   return data
 }
 
-export default getItems;
+export default getItem;
