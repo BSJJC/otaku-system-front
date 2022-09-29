@@ -45,14 +45,18 @@
 
 <script setup>
 import { ref, reactive, watch } from "vue";
-import getItems from "../../api/getItem";
 
 const todosInoutBtn = ref(null);
 const todosInput = ref(null);
 const unfinishedTodoList = ref(null);
 const finishedTodoList = ref(null);
 
-let todos = reactive({ unfinishedTodos: [], finishedTodos: [] });
+let todos = reactive({
+  unfinishedTodos: JSON.parse(localStorage.getItem("managerInfo")).todos
+    .unfinishedTodos,
+  finishedTodos: JSON.parse(localStorage.getItem("managerInfo")).todos
+    .finishedTodos,
+});
 const todosClasses = reactive({
   todos: true,
   "all-unfinished": false,
@@ -83,13 +87,6 @@ watch(todos, (newValue) => {
     todosClasses["all-unfinished"] = true;
   }
 });
-
-getItems("http://localhost:3000/api/rest/ManagerInfos/getManagerInfo").then(
-  (r) => {
-    todos.unfinishedTodos = r.data[0].todos.unfinishedTodos;
-    todos.finishedTodos = r.data[0].todos.finishedTodos;
-  }
-);
 
 const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
