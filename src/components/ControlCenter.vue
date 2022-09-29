@@ -1,6 +1,6 @@
 <template>
   <div :class="store.state.appModule.mainRouterViewClasses">
-    <InfoOverview @click="change"></InfoOverview>
+    <InfoOverview></InfoOverview>
     <TeamOverview></TeamOverview>
 
     <router-view :class="store.state.controlCenterModule.controlCenterClasses">
@@ -15,25 +15,7 @@ import InfoOverview from "@/views/ControlCenter/InfoOverview.vue";
 import TeamOverview from "@/views/ControlCenter/TeamOverview.vue";
 import { useStore } from "vuex";
 
-import router from "@/router";
 const store = useStore();
-
-const change = () => {
-  router.push("/ControlCenter/DetailInfo");
-  // includes
-  if (
-    store.state.appModule.mainRouterViewClasses.includes(
-      "main-router-view-hide"
-    )
-  ) {
-    return;
-  }
-  store.state.appModule.mainRouterViewClasses.push("main-router-view-hide");
-  store.state.controlCenterModule.controlCenterClasses.push("detail-info-in");
-  setTimeout(() => {
-    store.state.controlCenterModule.controlCenterClasses.splice(1, 1);
-  }, 500);
-};
 </script>
 
 <style lang="less" scoped>
