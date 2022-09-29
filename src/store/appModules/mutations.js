@@ -1,6 +1,6 @@
 const mutations = {
   mainRouterViewChange() {
-    const animateIndexNow = this.state.appModule.mainRouterViewTransformIndex;
+    const animateIndexNow = this.state.appModule.transformIndex;
     const animates = {
       entrances: JSON.parse(localStorage.getItem("animates")).entrances,
       exits: JSON.parse(localStorage.getItem("animates")).exits
@@ -14,11 +14,14 @@ const mutations = {
     const randomEntrancesAnimate = animates.entrances[index];
     const randomExiteAnimate = animates.exits[index];
 
-    this.state.appModule.mainRouterViewTransformIndex = index;
-    this.state.appModule.mainRouterViewTransformAnimate = `animate__animated ${randomExiteAnimate}`;
+
+    this.state.appModule.transformIndex = index;
+    this.state.appModule.mainRouterViewClasses.transiformAnimate = `animate__animated ${randomExiteAnimate}`;
+
+    console.log(this.state.appModule.mainRouterViewClasses.transiformAnimate);
 
     setTimeout(() => {
-      this.state.appModule.mainRouterViewTransformAnimate = `animate__animated ${randomEntrancesAnimate}`;
+      this.state.appModule.mainRouterViewClasses.transiformAnimate = `animate__animated ${randomEntrancesAnimate}`;
     }, 500);
 
   }

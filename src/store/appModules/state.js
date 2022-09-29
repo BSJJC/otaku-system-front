@@ -1,6 +1,9 @@
 const state = {
- mainRouterViewTransformAnimate: "animate__animated animate__fadeInRight",
- mainRouterViewTransformIndex: 0
+  mainRouterViewClasses: {
+    transiformAnimate: "animate__animated animate__fadeInRight",
+    mainRouterViewHide: false
+  },
+  transformIndex: 0,
 }
 
 export default state;
