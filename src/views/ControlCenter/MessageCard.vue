@@ -1,35 +1,11 @@
 <template>
-  <!-- <div class="message-card">
-    <el-badge :value="msgs['primary'].length" type="primary">
-      <el-button @click="test">primary</el-button>
-    </el-badge>
-
-    <el-badge :value="msgs['success'].length" type="success">
-      <el-button>success</el-button>
-    </el-badge>
-
-    <el-badge :value="msgs['warning'].length" type="warning">
-      <el-button>warning</el-button>
-    </el-badge>
-
-    <el-badge :value="msgs['danger'].length" type="danger">
-      <el-button>danger</el-button>
-    </el-badge>
-
-    <el-badge :value="msgs['info'].length" type="info">
-      <el-button>info</el-button>
-    </el-badge>
-  </div> -->
   <div class="message-card">
-    <!-- <el-badge :value="msgs['primary'].length" type="primary">
-      <el-button @click="test">primary</el-button>
-    </el-badge> -->
     <el-badge
       v-for="(i, index) in msgs"
       :key="index"
       :type="index"
       :value="i.length"
-      @click="test"
+      @click="shwoMsg(index)"
     >
       <el-button :type="index">
         {{ index }}
@@ -45,8 +21,8 @@ const store = useStore();
 
 const msgs = JSON.parse(sessionStorage.getItem("managerInfo")).msgs;
 
-const test = () => {
-  store.commit("controlCenterModule/change");
+const shwoMsg = (index) => {
+  store.commit(`controlCenterModule/change`, index);
 };
 </script>
 

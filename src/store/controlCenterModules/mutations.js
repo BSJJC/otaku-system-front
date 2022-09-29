@@ -1,9 +1,9 @@
 import router from "@/router";
 
 const mutations = {
-  change() {
-    console.log(this);
-    router.push("/ControlCenter/DetailInfo");
+  change(state, targetView) {
+    console.log(targetView);
+    router.push(`/ControlCenter/DetailInfo`);
 
     if (
       this.state.appModule.mainRouterViewClasses.includes(
