@@ -1,25 +1,22 @@
 import router from "@/router";
-import { useStore } from "vuex";
 
 const mutations = {
- change() {
+  change() {
+    console.log(this);
+    router.push("/ControlCenter/DetailInfo");
 
-  const store = useStore();
+    if (
+      this.state.appModule.mainRouterViewClasses.includes(
+        "main-router-view-hide"
+      )
+    ) return;
 
-  router.push("/ControlCenter/DetailInfo");
-  if (
-   store.state.appModule.mainRouterViewClasses.includes(
-    "main-router-view-hide"
-   )
-  ) {
-   return;
+    this.state.appModule.mainRouterViewClasses.push("main-router-view-hide");
+    this.state.controlCenterModule.controlCenterClasses.push("detail-info-in");
+    setTimeout(() => {
+      this.state.controlCenterModule.controlCenterClasses.splice(1, 1);
+    }, 500);
   }
-  store.state.appModule.mainRouterViewClasses.push("main-router-view-hide");
-  store.state.controlCenterModule.controlCenterClasses.push("detail-info-in");
-  setTimeout(() => {
-   store.state.controlCenterModule.controlCenterClasses.splice(1, 1);
-  }, 500);
- }
 }
 
 export default mutations

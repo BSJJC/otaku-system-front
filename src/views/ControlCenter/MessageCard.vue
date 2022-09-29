@@ -7,8 +7,11 @@
 </template>
 
 <script setup>
+import { useStore } from "vuex";
+
+const store = useStore();
 const test = () => {
-  alert(1);
+  store.commit("controlCenterModule/change");
 };
 </script>
 
