@@ -1,25 +1,12 @@
 <template>
   <div class="calendar-card">
-    <div class="configs">
+    <div class="calendar-configs">
       <el-button>本周</el-button>
       <el-button>周</el-button>
       <el-button>月</el-button>
       <el-button>年</el-button>
     </div>
-    <div class="calendarTable">
-      <table>
-        <thead>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
-          <th>4</th>
-          <th>5</th>
-          <th>6</th>
-          <th>7</th>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    <div class="calendarTable"></div>
   </div>
 </template>
 
@@ -29,7 +16,7 @@
 .calendar-card {
   background: lightblue;
 
-  .configs {
+  .calendar-configs {
     display: flex;
     justify-content: right;
     align-items: center;
