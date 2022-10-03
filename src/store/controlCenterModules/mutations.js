@@ -9,7 +9,7 @@ const mutations = {
       }, 500);
     }
     else {
-      router.push("DetailInfo")
+      router.push("/ControlCenter/DetailInfo")
     }
     this.state.controlCenterModule.controlCenterShow = !this.state.controlCenterModule.controlCenterShow
   }
