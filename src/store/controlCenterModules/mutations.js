@@ -1,11 +1,12 @@
-// import router from "@/router";
+import router from "@/router";
+
 
 const mutations = {
   change() {
-    // router.push(`/ControlCenter/DetailInfo`);
-
-    this.state.controlCenterShow = !this.state.controlCenterShow;
-    console.log(this.state.controlCenterShow);
+    router.currentRoute._value.fullPath == "/ControlCenter/DetailInfo"
+      ? router.back()
+      : router.push("DetailInfo")
+    this.state.controlCenterModule.controlCenterShow = !this.state.controlCenterModule.controlCenterShow
   }
 }
 

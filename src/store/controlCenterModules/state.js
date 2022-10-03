@@ -1,8 +1,5 @@
-const state = {
-  controlCenterClasses: [
-    "detail-info",
-  ],
 
+const state = {
   controlCenterShow: true
 }
 
