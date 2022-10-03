@@ -3,10 +3,14 @@ import router from "@/router";
 
 const mutations = {
   change() {
-    // router.currentRoute._value.fullPath == "/ControlCenter/DetailInfo"
-    //   ? router.back()
-    //   : router.push("DetailInfo")
-    router.push("DetailInfo")
+    if (router.currentRoute._value.fullPath == "/ControlCenter/DetailInfo") {
+      setTimeout(() => {
+        router.back()
+      }, 500);
+    }
+    else {
+      router.push("DetailInfo")
+    }
     this.state.controlCenterModule.controlCenterShow = !this.state.controlCenterModule.controlCenterShow
   }
 }
