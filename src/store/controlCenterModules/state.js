@@ -1,9 +1,9 @@
 const state = {
   controlCenterClasses: [
     "detail-info",
-    // "detail-info-out",
-    // "detail-info-in"
-  ]
+  ],
+
+  controlCenterShow: true
 }
 
 export default state;

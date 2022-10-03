@@ -21,8 +21,8 @@ const store = useStore();
 
 const msgs = JSON.parse(sessionStorage.getItem("managerInfo")).msgs;
 
-const shwoMsg = (index) => {
-  store.commit(`controlCenterModule/change`, index);
+const shwoMsg = () => {
+  store.commit(`controlCenterModule/change`);
 };
 </script>
 
