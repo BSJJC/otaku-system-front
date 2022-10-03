@@ -6,11 +6,21 @@
       <el-button>月</el-button>
       <el-button>年</el-button>
     </div>
-    <div class="calendarTable"></div>
+    <div class="calendar-table">
+      <transition-group name="nums">
+        <div class="date-card" v-for="(i, index) in nums" :key="index">
+          {{ i }}
+        </div>
+      </transition-group>
+    </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+let nums = ref(7);
+</script>
 
 <style lang="less" scoped>
 .calendar-card {
@@ -25,15 +35,23 @@
     padding: 10px;
   }
 
-  .calendarTable {
+  .calendar-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     width: calc(100% - 20px);
     height: calc(80% - 20px);
     padding: 10px;
     background: lightgreen;
 
-    table {
-      width: 100%;
-      height: 100%;
+    .date-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(100% / 4);
+      height: calc(100% / 3);
+      background: lightcoral;
     }
   }
 }
