@@ -39,7 +39,9 @@ const store = useStore();
 }
 
 .control-center-container-enter-to,
-.control-center-container-leave-from {
+.control-center-container-leave-from,
+.router-container-enter-to,
+.router-container-leave-from {
   transition: all 0.5s ease-in-out;
   transform: scale(1);
   transform-origin: top;
@@ -47,26 +49,12 @@ const store = useStore();
 }
 
 .control-center-container-enter-from,
-.control-center-container-leave-to {
-  transition: all 0.5s ease-in-out;
-  transform: scale(0);
-  transform-origin: top;
-  height: 0px;
-}
-
-.router-container-enter-to,
-.router-container-leave-from {
-  transition: all 0.5s ease-in-out;
-  transform: scale(1);
-  transform-origin: bottom;
-  height: 100vh;
-}
-
+.control-center-container-leave-to,
 .router-container-enter-from,
 .router-container-leave-to {
   transition: all 0.5s ease-in-out;
   transform: scale(0);
-  transform-origin: bottom;
+  transform-origin: top;
   height: 0px;
 }
 
