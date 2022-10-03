@@ -21,7 +21,7 @@ const verOpacity = computed(() => {
 
 <style lang="less" scoped>
 div {
-  position: absolute;
+  position: fixed;
   top: 0px;
   width: 100vw;
   height: 100vh;

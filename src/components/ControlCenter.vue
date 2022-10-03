@@ -34,8 +34,8 @@ const store = useStore();
 
 <style lang="less" scoped>
 .control-center {
-  width: 90%;
-  height: 100%;
+  width: 90vw;
+  height: 100vh;
 }
 
 .control-center-container-enter-to,
@@ -43,6 +43,7 @@ const store = useStore();
   transition: all 0.5s ease-in-out;
   transform: scale(1);
   transform-origin: top;
+  height: 100vh;
 }
 
 .control-center-container-enter-from,
@@ -50,22 +51,23 @@ const store = useStore();
   transition: all 0.5s ease-in-out;
   transform: scale(0);
   transform-origin: top;
+  height: 0px;
 }
 
 .router-container-enter-to,
 .router-container-leave-from {
-  transform: scale(1);
   transition: all 0.5s ease-in-out;
-  transition-delay: 0.5s;
+  transform: scale(1);
   transform-origin: bottom;
+  height: 100vh;
 }
 
 .router-container-enter-from,
 .router-container-leave-to {
-  transform: scale(0);
   transition: all 0.5s ease-in-out;
-  transition-delay: 0.5s;
+  transform: scale(0);
   transform-origin: bottom;
+  height: 0px;
 }
 
 .info-overview {
