@@ -7,19 +7,98 @@
       <el-button>年</el-button>
     </div>
     <div class="calendar-table">
-      <transition-group name="nums">
-        <div class="date-card" v-for="(i, index) in nums" :key="index">
-          {{ i }}
-        </div>
+      <transition-group name="nums"> 
+
       </transition-group>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
 
-let nums = ref(7);
+
+
+let year_2022 = {
+  arrangements: true,
+
+  Jan: {
+    arrangements: true,
+
+    weeks: [
+      [
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          // 本周第一天
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+      ],
+      [
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+        {
+          // 本周第一天
+          arrangements: true,
+          title: "there are something you gonna do",
+        },
+      ],
+      [],
+      [],
+      [],
+    ],
+  },
+
+  Feb: {
+    arrangements: false,
+  },
+};
+
+console.log(year_2022);
 </script>
 
 <style lang="less" scoped>
