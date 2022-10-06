@@ -9,7 +9,7 @@ const mutations = {
           placement: "top",
           card: {
             title: "nothing to do!",
-            info: "slack off!",
+            info: Math.random(2),
           },
         }
       ]
