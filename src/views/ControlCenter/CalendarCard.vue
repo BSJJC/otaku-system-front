@@ -30,8 +30,7 @@
             :class="day.arrangements ? 'has-arrangements' : 'no-arrangements'"
             @click="changeWeek(index)"
           >
-            <span>{{ day.date ? day.date : "20010803" }}</span>
-            <span>{{ day.title ? day.title : "title holder" }}</span>
+            <span>{{ month }} 第 {{ index + 1 }} 周</span>
           </div>
         </div>
         <!-- 以月为单位显示 -->
