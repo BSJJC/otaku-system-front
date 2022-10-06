@@ -1,6 +1,5 @@
 import router from "@/router";
 
-
 const mutations = {
   change() {
     if (router.currentRoute._value.fullPath == "/ControlCenter/DetailInfo") {

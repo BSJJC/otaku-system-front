@@ -15,8 +15,8 @@
             :key="index"
             :class="day.arrangements ? 'has-arrangements' : 'no-arrangements'"
           >
+            <span>{{ day.date ? day.date : "20010803" }}</span>
             <span>{{ day.title ? day.title : "title holder" }}</span>
-            <span>{{ day.arrange ? day.arrange : "arrange holder" }}</span>
           </div>
         </div>
         <!-- 以月为单位显示 -->

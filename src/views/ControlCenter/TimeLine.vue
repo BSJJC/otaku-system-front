@@ -10,8 +10,8 @@
           :placement="i.placement"
         >
           <el-card>
-            <h4>{{ i.card.uploadDetail }}</h4>
-            <p>{{ i.card.uploader }}</p>
+            <h4>{{ i.card.title }}</h4>
+            <span>{{ i.card.info }}</span>
           </el-card>
         </el-timeline-item>
       </el-timeline>
