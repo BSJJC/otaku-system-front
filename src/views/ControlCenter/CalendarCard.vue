@@ -13,6 +13,7 @@
             class="date-card"
             v-for="(i, index) in year_2022.Jan.weeks[0]"
             :key="index"
+            :class="i.arrangements ? 'has-arrangements' : 'no-arrangements'"
           >
             {{ i.title }}
           </div>
@@ -24,7 +25,7 @@
         </div>
         <div class="year" v-else-if="judge == 'year'">
           <div class="date-card">
-            {{ year_2022.year }}
+            {{ year_2022[Object.getOwnPropertySymbols(year_2022)[1]] }}
           </div>
         </div>
       </transition-group>
@@ -47,8 +48,8 @@ const change = () => {
 };
 
 let year_2022 = {
-  year: 2022,
   [Symbol("arrangements")]: true,
+  [Symbol("year")]: 2022,
 
   Jan: {
     [Symbol("arrangements")]: true,
@@ -56,31 +57,31 @@ let year_2022 = {
     weeks: [
       [
         {
-          [Symbol("arrangements")]: true,
+          arrangements: false,
           title: "there are something you gonna do",
         },
         {
-          [Symbol("arrangements")]: true,
+          arrangements: true,
           title: "there are something you gonna do",
         },
         {
-          [Symbol("arrangements")]: true,
+          arrangements: true,
           title: "there are something you gonna do",
         },
         {
-          [Symbol("arrangements")]: true,
+          arrangements: true,
           title: "there are something you gonna do",
         },
         {
-          [Symbol("arrangements")]: true,
+          arrangements: true,
           title: "there are something you gonna do",
         },
         {
-          [Symbol("arrangements")]: true,
+          arrangements: true,
           title: "there are something you gonna do",
         },
         {
-          [Symbol("arrangements")]: true,
+          arrangements: true,
           title: "there are something you gonna do",
         },
       ],
@@ -183,7 +184,13 @@ let year_2022 = {
       align-items: center;
       width: calc(100% / 4);
       height: calc(100% / 3);
-      background: lightcoral;
+    }
+    .has-arrangements {
+      background: lightyellow;
+    }
+
+    .no-arrangements {
+      background: lightblue;
     }
   }
 }
