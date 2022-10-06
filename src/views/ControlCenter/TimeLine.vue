@@ -4,7 +4,7 @@
       <el-timeline>
         <el-timeline-item
           center
-          v-for="(i, index) in data"
+          v-for="(i, index) in store.state.calendarModule.selectedDayArrange"
           :key="index"
           :timestamp="i.timestamp"
           :placement="i.placement"
@@ -20,32 +20,9 @@
 </template>
 
 <script setup>
-const data = [
-  {
-    timestamp: "20180403",
-    placement: "top",
-    card: {
-      uploadDetail: "upload detail",
-      uploader: "Tom",
-    },
-  },
-  {
-    timestamp: "20220929",
-    placement: "top",
-    card: {
-      uploadDetail: "upload detail someting amazing 2",
-      uploader: "Jean the quean of asshole",
-    },
-  },
-  {
-    timestamp: "20220929",
-    placement: "top",
-    card: {
-      uploadDetail: "upload detail 2",
-      uploader: "Jean",
-    },
-  },
-];
+import { useStore } from "vuex";
+
+const store = useStore();
 </script>
 
 <style lang="less" scoped>

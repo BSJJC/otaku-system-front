@@ -1,132 +1,65 @@
 <template>
   <div class="calendar-card">
     <div class="calendar-configs">
-      <el-button>本周</el-button>
       <el-button>周</el-button>
       <el-button>月</el-button>
       <el-button>年</el-button>
     </div>
     <div class="calendar-table">
       <transition-group name="num">
+        <!-- 以周为单位显示 -->
         <div class="week" v-if="judge == 'week'">
           <div
             class="date-card"
-            v-for="(i, index) in year_2022.Jan.weeks[0]"
+            v-for="(day, index) in schedule[year].months[month].weeks[0]"
             :key="index"
-            :class="i.arrangements ? 'has-arrangements' : 'no-arrangements'"
+            :class="day.arrangements ? 'has-arrangements' : 'no-arrangements'"
           >
-            {{ i.title }}
+            <span>{{ day.title ? day.title : "title holder" }}</span>
+            <span>{{ day.arrange ? day.arrange : "arrange holder" }}</span>
           </div>
         </div>
-        <div class="month" v-else-if="judge == 'month'">
-          <div class="date-card" v-for="(i, index) in year_2022" :key="index">
+        <!-- 以月为单位显示 -->
+        <div class="week" v-else-if="judge == 'month'">
+          <div
+            class="date-card"
+            v-for="(month, index) in schedule[year].months"
+            :key="index"
+            :class="month.arrangements ? 'has-arrangements' : 'no-arrangements'"
+          >
             {{ index }}
           </div>
         </div>
-        <div class="year" v-else-if="judge == 'year'">
-          <div class="date-card">
-            {{ year_2022[Object.getOwnPropertySymbols(year_2022)[1]] }}
+        <!-- 以年为单位显示 -->
+        <div class="week" v-else-if="judge == 'year'">
+          <div
+            class="date-card"
+            v-for="(year, index) in schedule"
+            :key="index"
+            :class="month.arrangements ? 'has-arrangements' : 'no-arrangements'"
+          >
+            {{ index }}
           </div>
         </div>
       </transition-group>
     </div>
-
-    <el-button @click="change">change</el-button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
 
 let judge = ref("week");
+let year = ref("year_2022");
+let month = ref("Jan");
 
-let index = 1;
-const change = () => {
-  let arr = ["week", "month", "year"];
-  judge.value = arr[index++];
-  if (index === arr.length) index = 0;
-};
+const info = JSON.parse(sessionStorage.getItem("managerInfo"));
+const schedule = info.schedule;
 
-let year_2022 = {
-  [Symbol("arrangements")]: true,
-  [Symbol("year")]: 2022,
-
-  Jan: {
-    [Symbol("arrangements")]: true,
-
-    weeks: [
-      [
-        {
-          arrangements: false,
-          title: "there are something you gonna do",
-        },
-        {
-          arrangements: true,
-          title: "there are something you gonna do",
-        },
-        {
-          arrangements: true,
-          title: "there are something you gonna do",
-        },
-        {
-          arrangements: true,
-          title: "there are something you gonna do",
-        },
-        {
-          arrangements: true,
-          title: "there are something you gonna do",
-        },
-        {
-          arrangements: true,
-          title: "there are something you gonna do",
-        },
-        {
-          arrangements: true,
-          title: "there are something you gonna do",
-        },
-      ],
-      [
-        {
-          [Symbol("arrangements")]: true,
-          title: "there are something you gonna do",
-        },
-        {
-          [Symbol("arrangements")]: true,
-          title: "there are something you gonna do",
-        },
-        {
-          [Symbol("arrangements")]: true,
-          title: "there are something you gonna do",
-        },
-        {
-          [Symbol("arrangements")]: true,
-          title: "there are something you gonna do",
-        },
-        {
-          [Symbol("arrangements")]: true,
-          title: "there are something you gonna do",
-        },
-        {
-          [Symbol("arrangements")]: true,
-          title: "there are something you gonna do",
-        },
-        {
-          [Symbol("arrangements")]: true,
-          title: "there are something you gonna do",
-        },
-      ],
-      [],
-      [],
-      [],
-    ],
-  },
-
-  Feb: {
-    arrangements: false,
-  },
-};
-
-// console.log(year_2022[Object.getOwnPropertySymbols(year_2022)[0]]);
+store.commit(`calendarModule/setSelectedDayArrange`);
 </script>
 
 <style lang="less" scoped>
@@ -152,7 +85,7 @@ let year_2022 = {
     justify-content: right;
     align-items: center;
     width: calc(100% - 20px);
-    height: calc(20% - 20px);
+    height: calc(15% - 20px);
     padding: 10px;
   }
 
@@ -162,7 +95,7 @@ let year_2022 = {
     align-items: center;
     flex-wrap: wrap;
     width: calc(100% - 20px);
-    height: calc(80% - 20px);
+    height: calc(85% - 20px);
     padding: 10px;
     background: lightgreen;
     overflow: hidden;
@@ -182,6 +115,7 @@ let year_2022 = {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       width: calc(100% / 4);
       height: calc(100% / 3);
     }
