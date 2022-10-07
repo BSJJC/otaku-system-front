@@ -105,11 +105,7 @@ const timelineChange = (targetDate, index) => {
 
   date.timestamp = `${y} ${m} ${d}`;
   date.placement = "top";
-  (date.card = {
-    title: "???????",
-    info: "gogogo",
-  }),
-    store.commit(`calendarModule/setSelectedDayArrange`, [date]);
+  store.commit(`calendarModule/setSelectedDayArrange`, [date]);
 };
 
 const yearChange = (newYearNum) => {
@@ -127,13 +123,21 @@ const changeWeek = (newWeekNum) => {
   judge.value = "day";
 };
 
-const date = new Date();
+const init = () => {
+  const date = new Date();
 
-const dateNow = `${date.getFullYear()}/${
-  date.getMonth() + 1
-}/${date.getDate()}`;
+  const dateNow = `${date.getFullYear()}/${
+    date.getMonth() + 1
+  }/${date.getDate()}`;
 
-timelineChange(dateNow, date.getDay());
+  timelineChange(dateNow, date.getDay());
+
+  year.value = `year_${date.getFullYear()}`;
+  month.value = monthAbbs[date.getMonth()];
+  week.value = Math.floor(date.getDate() / 7 - 1);
+};
+
+init();
 </script>
 
 <style lang="less" scoped>
@@ -241,11 +245,13 @@ timelineChange(dateNow, date.getDay());
     }
 
     .has-arrangements {
-      background: lightyellow;
+      background: rgba(240, 128, 128, 0.539);
+      opacity: 0.8;
     }
 
     .no-arrangements {
-      background: lightblue;
+      background: white;
+      opacity: 0.3;
     }
   }
 }
