@@ -1,6 +1,9 @@
 <template>
   <div class="calendar-card">
     <div class="calendar-configs">
+      <div class="date-now">
+        {{ year.split("_")[1] }}年 {{ month }}月 第{{ week }}周
+      </div>
       <el-button @click="judge = 'day'">日</el-button>
       <el-button @click="judge = 'week'">周</el-button>
       <el-button @click="judge = 'month'">月</el-button>
@@ -72,7 +75,7 @@ const store = useStore();
 let judge = ref("day");
 let year = ref("year_2022");
 let month = ref("Jan");
-let week = ref(0);
+let week = ref(1);
 
 const info = JSON.parse(sessionStorage.getItem("managerInfo"));
 const schedule = info.schedule;
@@ -134,7 +137,27 @@ const changeWeek = (newWeekNum) => {
 }
 
 .calendar-card {
+  position: relative;
   .calendar-configs {
+    .date-now {
+      position: absolute;
+      left: 13%;
+    }
+
+    .date-now-enter-active {
+      transition: all 0.3s ease-out;
+    }
+
+    .date-now-leave-active {
+      transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+
+    .date-now-enter-from,
+    .date-now-leave-to {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+
     display: flex;
     justify-content: right;
     align-items: center;
