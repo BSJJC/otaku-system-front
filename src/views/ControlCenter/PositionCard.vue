@@ -1,18 +1,28 @@
 <template>
-  <div class="position-card">
-    <slot name="positionCount"></slot>
+  <div class="position-card" @click="show">
+    <el-badge value="new" class="item">
+      <slot name="positionCount"></slot>
+    </el-badge>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useStore } from "vuex";
+
+const store = useStore();
+const show = () => {
+  store.commit(`controlCenterModule/change`);
+};
+</script>
 
 <style lang="less" scoped>
 .position-card {
   width: calc(100% / 3);
   height: 50%;
-  background: rgba(255, 0, 0, 0.416);
+  background: rgba(218, 62, 62, 0.233);
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 </style>

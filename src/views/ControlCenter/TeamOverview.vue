@@ -1,8 +1,8 @@
 <template>
   <div class="team-overview">
-    <PositionCard v-for="(i, index) in 6" :key="index">
+    <PositionCard v-for="(i, index) in positions" :key="index">
       <template #positionCount>
-        <h2>position {{ i }}</h2>
+        <h2>{{ i }}</h2>
       </template>
     </PositionCard>
   </div>
@@ -10,6 +10,8 @@
 
 <script setup>
 import PositionCard from "./PositionCard.vue";
+
+let positions = ["UI", "前端", "后端", "移动端", "运维", "QA"];
 </script>
 
 <style lang="less" scoped>
@@ -17,7 +19,7 @@ import PositionCard from "./PositionCard.vue";
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.5;
   flex-wrap: wrap;
+  user-select: none;
 }
 </style>

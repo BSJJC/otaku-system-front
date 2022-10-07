@@ -4,15 +4,11 @@
       <AvatarCard></AvatarCard>
       <WordloadToday></WordloadToday>
     </div>
-    <div class="messages">
-      <MessageCard></MessageCard>
-    </div>
   </div>
 </template>
 
 <script setup>
 import AvatarCard from "./AvatarCard.vue";
-import MessageCard from "./MessageCard.vue";
 import WordloadToday from "./WorkloadToday.vue";
 </script>
 
