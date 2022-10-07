@@ -2,7 +2,7 @@
   <div class="calendar-card">
     <div class="calendar-configs">
       <div class="date-now">
-        {{ year.split("_")[1] }}年 {{ month }}月 第{{ week }}周
+        {{ year.split("_")[1] }}年 {{ month }}月 第{{ week + 1 }}周
       </div>
       <el-button @click="judge = 'day'">日</el-button>
       <el-button @click="judge = 'week'">周</el-button>
@@ -18,7 +18,7 @@
             v-for="(day, index) in schedule[year].months[month].weeks[week]"
             :key="index"
             :class="day.arrangements ? 'has-arrangements' : 'no-arrangements'"
-            @click="timelineChange(day, index)"
+            @click="timelineChange(day.date, index)"
           >
             <span>{{ day.date ? day.date : "20010803" }}</span>
             <span>{{ day.title ? day.title : "title holder" }}</span>
@@ -75,10 +75,11 @@ const store = useStore();
 let judge = ref("day");
 let year = ref("year_2022");
 let month = ref("Jan");
-let week = ref(1);
+let week = ref(0);
 
 const info = JSON.parse(sessionStorage.getItem("managerInfo"));
 const schedule = info.schedule;
+
 let monthAbbs = [
   "Jan",
   "Feb",
@@ -95,14 +96,20 @@ let monthAbbs = [
 ];
 
 const timelineChange = (targetDate, index) => {
-  const [y, m, d] = targetDate.date.split("/");
+  const [y, m, d] = targetDate.split("/");
 
   const date =
     schedule[`year_${y}`].months[monthAbbs[m - 1]].weeks[Math.ceil(d / 7) - 1][
       index
     ];
 
-  store.commit(`calendarModule/setSelectedDayArrange`, date?.arrange);
+  date.timestamp = `${y} ${m} ${d}`;
+  date.placement = "top";
+  (date.card = {
+    title: "???????",
+    info: "gogogo",
+  }),
+    store.commit(`calendarModule/setSelectedDayArrange`, [date]);
 };
 
 const yearChange = (newYearNum) => {
@@ -119,6 +126,14 @@ const changeWeek = (newWeekNum) => {
   week.value = newWeekNum;
   judge.value = "day";
 };
+
+const date = new Date();
+
+const dateNow = `${date.getFullYear()}/${
+  date.getMonth() + 1
+}/${date.getDate()}`;
+
+timelineChange(dateNow, date.getDay());
 </script>
 
 <style lang="less" scoped>
