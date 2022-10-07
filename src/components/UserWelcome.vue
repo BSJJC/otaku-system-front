@@ -1,9 +1,5 @@
 <template>
   <div class="main-router-view">
-    <button @click="show = !show">Toggle</button>
-    <Transition>
-      <p v-if="show">hello</p>
-    </Transition>
     <h1>welcome welcome</h1>
 
     <router-link
@@ -18,12 +14,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import BackgroundImg from "./BackgroundImg.vue";
 import { useStore } from "vuex";
 const store = useStore();
-
-let show = ref(true);
 </script>
 
 <style lang="less" scoped>
