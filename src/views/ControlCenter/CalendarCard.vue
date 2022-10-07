@@ -143,6 +143,7 @@ init();
 <style lang="less" scoped>
 .calendar-enter-active {
   transition: all 0.3s ease-out;
+  transition-delay: 0.3s;
 }
 
 .calendar-leave-active {
