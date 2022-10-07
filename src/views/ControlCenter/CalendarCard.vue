@@ -28,6 +28,7 @@
             v-for="(day, index) in schedule[year].months[month].weeks"
             :key="index"
             :class="day.arrangements ? 'has-arrangements' : 'no-arrangements'"
+            v-show="day.length != 0"
             @click="changeWeek(index)"
           >
             <span>{{ month }} 第 {{ index + 1 }} 周</span>
