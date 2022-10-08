@@ -36,32 +36,28 @@
               value-format="YYYY年MM月DD日"
             />
           </el-form-item>
-          <el-form-item label="行程时间">
-            <el-col>
-              <el-form-item prop="startTime">
-                <el-time-select
-                  v-model="oneDayTrip.startTime"
-                  :max-time="oneDayTrip.endTime"
-                  placeholder="开始时间"
-                  start="08:00"
-                  step="00:15"
-                  end="18:00"
-                />
-              </el-form-item>
-            </el-col>
-            <el-col>
-              <el-form-item prop="endTime">
-                <el-time-select
-                  v-model="oneDayTrip.endTime"
-                  :min-time="oneDayTrip.endTime"
-                  placeholder="结束时间"
-                  start="08:00"
-                  step="00:15"
-                  end="18:00"
-                />
-              </el-form-item>
-            </el-col>
-          </el-form-item>
+          <div style="display: flex; flex-direction: row">
+            <el-form-item prop="startTime" label="行程开始时间">
+              <el-time-select
+                v-model="oneDayTrip.startTime"
+                :max-time="oneDayTrip.endTime"
+                placeholder="开始时间"
+                start="08:00"
+                step="00:15"
+                end="18:00"
+              />
+            </el-form-item>
+            <el-form-item prop="endTime" label="行程结束时间">
+              <el-time-select
+                v-model="oneDayTrip.endTime"
+                :min-time="oneDayTrip.endTime"
+                placeholder="结束时间"
+                start="08:00"
+                step="00:15"
+                end="18:00"
+              />
+            </el-form-item>
+          </div>
           <el-form-item>
             <el-button type="primary" @click="submit(oneDayTripRuleRef)"
               >Create</el-button
@@ -180,7 +176,9 @@ const oneDayTrip = reactive({
 const oneDayTripRules = reactive({
   tripName: [{ required: true, message: "请输入日程名称", trigger: "blur" }],
   tripDate: [{ required: true, message: "请输入日程日期", trigger: "blur" }],
-  startTime: [{ required: true, message: "请输入日程开始时间", trigger: "blur" }],
+  startTime: [
+    { required: true, message: "请输入日程开始时间", trigger: "blur" },
+  ],
   endTime: [{ required: true, message: "请输入日程结束时间", trigger: "blur" }],
 });
 
@@ -190,7 +188,7 @@ const submit = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!");
+      console.log(oneDayTrip);
     } else {
       console.log("error submit!", fields);
     }
