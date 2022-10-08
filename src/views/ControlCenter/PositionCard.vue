@@ -1,8 +1,6 @@
 <template>
   <div class="position-card" @click="show">
-    <el-badge value="new" class="item">
-      <slot name="positionCount"></slot>
-    </el-badge>
+    <slot name="positionCount"></slot>
   </div>
 </template>
 
@@ -19,10 +17,11 @@ const show = () => {
 .position-card {
   width: calc(100% / 3);
   height: 50%;
-  background: rgba(218, 62, 62, 0.233);
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  text-shadow: 3px 3px 3px black;
   cursor: pointer;
 }
 </style>
