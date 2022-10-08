@@ -154,6 +154,7 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { ref, reactive } from "vue";
 import { useStore } from "vuex";
 
@@ -190,19 +191,48 @@ const submit = async (formEl) => {
     if (valid) {
       const time = oneDayTrip.startTime.split(":").toString().replace(",", "");
       const timestamp = new Date().getFullYear().toString() + time;
-      console.log(timestamp);
 
-      const arrArr = [
-        {
-          timestamp,
-          placement: "top",
-          info: oneDayTrip.tripName,
-        },
-      ];
+      const arrArr = {
+        timestamp,
+        placement: "top",
+        info: oneDayTrip.tripName,
+      };
 
-      
+      const prop = {
+        year: oneDayTrip.tripDate.split("年")[0],
+        month:
+          monthAbbs[
+            parseInt(oneDayTrip.tripDate.split("年")[1].split("月")[0]) - 1
+          ],
+        week:
+          Math.ceil(
+            parseInt(oneDayTrip.tripDate.split("月")[1].split("日")[0]) / 7
+          ) - 1,
+        day:
+          Math.floor(
+            parseInt(oneDayTrip.tripDate.split("月")[1].split("日")[0]) % 7
+          ) -
+            1 ==
+          -1
+            ? 6
+            : Math.floor(
+                parseInt(oneDayTrip.tripDate.split("月")[1].split("日")[0]) % 7
+              ) - 1,
+      };
 
-      console.log(arrArr);
+      console.log(prop);
+
+      axios
+        .post("http://localhost:3000/api/rest/ManagerInfos/editManagerInfo", {
+          arrArr: arrArr,
+          prop: prop,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     } else {
       console.log("error submit!", fields);
     }
