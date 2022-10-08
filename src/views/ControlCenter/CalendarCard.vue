@@ -36,24 +36,31 @@
               value-format="YYYY年MM月DD日"
             />
           </el-form-item>
-          <el-form-item label="行程时间" prop="time">
-            <el-time-select
-              v-model="oneDayTrip.time.startTime"
-              :max-time="oneDayTrip.endTime"
-              placeholder="开始时间"
-              start="08:00"
-              step="00:15"
-              end="18:00"
-            />
-            &nbsp;-&nbsp;
-            <el-time-select
-              v-model="oneDayTrip.time.endTime"
-              :min-time="oneDayTrip.time.endTime"
-              placeholder="结束时间"
-              start="08:00"
-              step="00:15"
-              end="18:00"
-            />
+          <el-form-item label="行程时间">
+            <el-col>
+              <el-form-item prop="startTime">
+                <el-time-select
+                  v-model="oneDayTrip.startTime"
+                  :max-time="oneDayTrip.endTime"
+                  placeholder="开始时间"
+                  start="08:00"
+                  step="00:15"
+                  end="18:00"
+                />
+              </el-form-item>
+            </el-col>
+            <el-col>
+              <el-form-item prop="endTime">
+                <el-time-select
+                  v-model="oneDayTrip.endTime"
+                  :min-time="oneDayTrip.endTime"
+                  placeholder="结束时间"
+                  start="08:00"
+                  step="00:15"
+                  end="18:00"
+                />
+              </el-form-item>
+            </el-col>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submit(oneDayTripRuleRef)"
@@ -76,16 +83,13 @@
             </el-form-item>
           </transition>
           <transition name="trip-info">
-            <el-form-item
-              v-show="oneDayTrip.time.startTime"
-              label="行程开始时间"
-            >
-              <h3 style="margin: 0px">{{ oneDayTrip.time.startTime }}</h3>
+            <el-form-item v-show="oneDayTrip.startTime" label="行程开始时间">
+              <h3 style="margin: 0px">{{ oneDayTrip.startTime }}</h3>
             </el-form-item>
           </transition>
           <transition name="trip-info">
-            <el-form-item v-show="oneDayTrip.time.endTime" label="行程结束时间">
-              <h3 style="margin: 0px">{{ oneDayTrip.time.endTime }}</h3>
+            <el-form-item v-show="oneDayTrip.endTime" label="行程结束时间">
+              <h3 style="margin: 0px">{{ oneDayTrip.endTime }}</h3>
             </el-form-item>
           </transition>
         </el-form>
@@ -169,16 +173,15 @@ const drawer = ref(true);
 const oneDayTrip = reactive({
   tripName: "",
   tripDate: "",
-  time: {
-    startTime: "",
-    endTime: "",
-  },
+  startTime: "",
+  endTime: "",
 });
 
 const oneDayTripRules = reactive({
-  tripName: [
-    { required: true, message: "Please input Activity name", trigger: "blur" },
-  ],
+  tripName: [{ required: true, message: "请输入日程名称", trigger: "blur" }],
+  tripDate: [{ required: true, message: "请输入日程日期", trigger: "blur" }],
+  startTime: [{ required: true, message: "请输入日程开始时间", trigger: "blur" }],
+  endTime: [{ required: true, message: "请输入日程结束时间", trigger: "blur" }],
 });
 
 const oneDayTripRuleRef = ref();
@@ -194,7 +197,6 @@ const submit = async (formEl) => {
   });
 };
 
-// 重置表单
 const reset = async (formEl) => {
   if (!formEl) return;
   formEl.resetFields();
