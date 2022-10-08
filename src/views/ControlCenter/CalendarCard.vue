@@ -220,8 +220,6 @@ const submit = async (formEl) => {
               ) - 1,
       };
 
-      console.log(prop);
-
       axios
         .post("http://localhost:3000/api/rest/ManagerInfos/editManagerInfo", {
           arrArr: arrArr,
