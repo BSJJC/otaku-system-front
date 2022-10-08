@@ -10,8 +10,7 @@
           :placement="i.placement"
         >
           <el-card>
-            <h4>{{ i.card.title }}</h4>
-            <span>{{ i.card.info }}</span>
+            <h4>{{ i.info }}</h4>
           </el-card>
         </el-timeline-item>
       </el-timeline>

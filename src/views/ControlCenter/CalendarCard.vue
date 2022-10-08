@@ -167,7 +167,7 @@ let week = ref(0);
 const drawer = ref(true);
 
 const oneDayTrip = reactive({
-  tripName: "",
+  tripName: "das",
   tripDate: "",
   startTime: "",
   endTime: "",
@@ -188,7 +188,21 @@ const submit = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log(oneDayTrip);
+      const time = oneDayTrip.startTime.split(":").toString().replace(",", "");
+      const timestamp = new Date().getFullYear().toString() + time;
+      console.log(timestamp);
+
+      const arrArr = [
+        {
+          timestamp,
+          placement: "top",
+          info: oneDayTrip.tripName,
+        },
+      ];
+
+      
+
+      console.log(arrArr);
     } else {
       console.log("error submit!", fields);
     }
