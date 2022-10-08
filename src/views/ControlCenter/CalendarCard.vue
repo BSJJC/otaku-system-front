@@ -7,7 +7,95 @@
       <el-button @click="judge = 'day'">日</el-button>
       <el-button @click="judge = 'week'">周</el-button>
       <el-button @click="judge = 'month'">月</el-button>
-      <el-button @click="judge = 'year'">年</el-button>
+      <el-button @click="drawer = true">添加事件</el-button>
+
+      <el-drawer
+        v-model="drawer"
+        title="添加行程"
+        :with-header="true"
+        size="50%"
+      >
+        <el-form
+          ref="oneDayTripRuleRef"
+          :model="oneDayTrip"
+          :rules="oneDayTripRules"
+          label-width="120px"
+        >
+          <el-form-item label="单日行程名称" prop="tripName">
+            <el-input
+              v-model="oneDayTrip.tripName"
+              clearable
+              style="width: 40%"
+            />
+          </el-form-item>
+          <el-form-item label="行程日期" prop="tripDate">
+            <el-date-picker
+              v-model="oneDayTrip.tripDate"
+              placeholder="行程日期"
+              style="width: 40%"
+              value-format="YYYY年MM月DD日"
+            />
+          </el-form-item>
+          <el-form-item label="行程时间" prop="time">
+            <el-time-select
+              v-model="oneDayTrip.time.startTime"
+              :max-time="oneDayTrip.endTime"
+              placeholder="开始时间"
+              start="08:00"
+              step="00:15"
+              end="18:00"
+            />
+            &nbsp;-&nbsp;
+            <el-time-select
+              v-model="oneDayTrip.time.endTime"
+              :min-time="oneDayTrip.time.endTime"
+              placeholder="结束时间"
+              start="08:00"
+              step="00:15"
+              end="18:00"
+            />
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submit(oneDayTripRuleRef)"
+              >Create</el-button
+            >
+            <el-button @click="reset(oneDayTripRuleRef)">Cancel</el-button>
+          </el-form-item>
+        </el-form>
+
+        <!-- 单日行程添加确认显示 -->
+        <el-form label-width="120px">
+          <transition name="trip-info">
+            <el-form-item v-show="oneDayTrip.tripName" label="行程名">
+              <h3 style="margin: 0px">{{ oneDayTrip.tripName }}</h3>
+            </el-form-item>
+          </transition>
+          <transition name="trip-info">
+            <el-form-item v-show="oneDayTrip.tripDate" label="行程日期">
+              <h3 style="margin: 0px">{{ oneDayTrip.tripDate }}</h3>
+            </el-form-item>
+          </transition>
+          <transition name="trip-info">
+            <el-form-item
+              v-show="oneDayTrip.time.startTime"
+              label="行程开始时间"
+            >
+              <h3 style="margin: 0px">{{ oneDayTrip.time.startTime }}</h3>
+            </el-form-item>
+          </transition>
+          <transition name="trip-info">
+            <el-form-item v-show="oneDayTrip.time.endTime" label="行程结束时间">
+              <h3 style="margin: 0px">{{ oneDayTrip.time.endTime }}</h3>
+            </el-form-item>
+          </transition>
+        </el-form>
+
+        <el-divider />
+
+        <div class="range">
+          <h3>添加多日行程</h3>
+        </div>
+      </el-drawer>
     </div>
     <div class="calendar-table">
       <transition-group name="calendar">
@@ -21,7 +109,6 @@
             @click="timelineChange(day.date, index)"
           >
             <span>{{ day.date ? day.date : "20010803" }}</span>
-            <span>{{ day.title ? day.title : "title holder" }}</span>
           </div>
         </div>
         <!-- 以周为单位显示 -->
@@ -67,7 +154,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -76,6 +163,42 @@ let judge = ref("day");
 let year = ref("year_2022");
 let month = ref("Jan");
 let week = ref(0);
+
+const drawer = ref(true);
+
+const oneDayTrip = reactive({
+  tripName: "",
+  tripDate: "",
+  time: {
+    startTime: "",
+    endTime: "",
+  },
+});
+
+const oneDayTripRules = reactive({
+  tripName: [
+    { required: true, message: "Please input Activity name", trigger: "blur" },
+  ],
+});
+
+const oneDayTripRuleRef = ref();
+
+const submit = async (formEl) => {
+  if (!formEl) return;
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      console.log("submit!");
+    } else {
+      console.log("error submit!", fields);
+    }
+  });
+};
+
+// 重置表单
+const reset = async (formEl) => {
+  if (!formEl) return;
+  formEl.resetFields();
+};
 
 const info = JSON.parse(sessionStorage.getItem("managerInfo"));
 const schedule = info.schedule;
@@ -152,6 +275,20 @@ init();
 
 .calendar-enter-from,
 .calendar-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.trip-info-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.trip-info-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.trip-info-enter-from,
+.trip-info-leave-to {
   transform: translateX(20px);
   opacity: 0;
 }
