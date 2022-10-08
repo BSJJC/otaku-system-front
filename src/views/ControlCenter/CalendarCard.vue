@@ -165,7 +165,7 @@ let year = ref("year_2022");
 let month = ref("Jan");
 let week = ref(0);
 
-const drawer = ref(true);
+const drawer = ref(false);
 
 const oneDayTrip = reactive({
   tripName: "das",
@@ -260,17 +260,31 @@ let monthAbbs = [
   "Dec",
 ];
 
-const timelineChange = (targetDate, index) => {
+const timelineChange = (targetDate) => {
   const [y, m, d] = targetDate.split("/");
 
-  const date =
-    schedule[`year_${y}`].months[monthAbbs[m - 1]].weeks[Math.ceil(d / 7) - 1][
-      index
-    ];
+  console.log(y, m, d);
+  // schedule.year_2022.months.Oct.weeks[1][1]
 
-  date.timestamp = `${y} ${m} ${d}`;
-  date.placement = "top";
-  store.commit(`calendarModule/setSelectedDayArrange`, [date]);
+  const path = `year_${y}.months.${monthAbbs[m - 1]}.weeks`;
+  console.log(path);
+
+  console.log(
+    schedule[`year_${y}`].months[monthAbbs[m - 1]].weeks[Math.ceil(d / 7) - 1]
+  );
+
+  // const path =
+  //   schedule[`year_${y}`].months[monthAbbs[m - 1]].weeks[Math.ceil(d / 7) - 1][
+  //     index
+  //   ];
+
+  // console.log(path);
+
+  console.log(store);
+
+  // date.timestamp = `${y} ${m} ${d}`;
+  // date.placement = "top";
+  // store.commit(`calendarModule/setSelectedDayArrange`, date);
 };
 
 const yearChange = (newYearNum) => {

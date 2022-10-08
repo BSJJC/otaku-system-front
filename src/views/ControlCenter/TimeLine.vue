@@ -6,11 +6,11 @@
           center
           v-for="(i, index) in store.state.calendarModule.selectedDayArrange"
           :key="index"
-          :timestamp="i.timestamp"
-          :placement="i.placement"
+          :timestamp="i.arrange.timestamp"
+          :placement="i.arrange.placement"
         >
           <el-card>
-            <h4>{{ i.info }}</h4>
+            <h4>{{ i.arrange.info }}</h4>
           </el-card>
         </el-timeline-item>
       </el-timeline>

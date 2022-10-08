@@ -8,7 +8,8 @@ const mutations = {
         {
           timestamp: arrangeObj[0].timestamp,
           placement: arrangeObj[0].placement,
-          info: "nothing to do!",
+          title: "nothing to do!",
+          info: Math.random().toFixed(2),
         }
       ]
 
