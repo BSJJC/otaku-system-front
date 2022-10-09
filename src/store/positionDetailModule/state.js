@@ -19,7 +19,30 @@ const state = {
         logoLink: "https://cdn.cdnlogo.com/logos/b/42/bilibili-blue.svg"
       },
     ],
-    workProgress: []
+    workProgress: [
+      {
+        title: "打开vsCode",
+        finished: false,
+        chidren: [
+          {
+            title: "打开电脑",
+            finished: false,
+            chidren: [
+              {
+                title: "插上电源",
+                finished: true,
+                chidren: []
+              }
+            ]
+          },
+          {
+            title: "作息在电脑前",
+            finished: true,
+            chidren: []
+          }
+        ]
+      }
+    ]
   }
 }
 

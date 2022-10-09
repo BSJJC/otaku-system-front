@@ -43,7 +43,16 @@
             </a>
           </div>
         </div>
-        <div class="staffProgress">114514</div>
+        <div class="staffProgress">
+          <div
+            class="todo"
+            v-for="(i, index) in info.workProgress"
+            :key="index"
+          >
+            <el-checkbox :checked="i.finished"></el-checkbox>
+            {{ i.finished }}
+          </div>
+        </div>
       </el-main>
     </el-container>
   </div>
@@ -55,7 +64,6 @@ import { useStore } from "vuex";
 const store = useStore();
 
 const info = store.state.positionDetail.info;
-console.log(info);
 </script>
 
 <style lang="less" scoped>
@@ -140,6 +148,9 @@ console.log(info);
     }
 
     .staffProgress {
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 20px;
       width: 80%;
       height: 100%;
       background: rgba(211, 211, 211, 0.13);
