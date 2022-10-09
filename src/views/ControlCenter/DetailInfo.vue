@@ -3,11 +3,7 @@
     <el-button @click="store.commit(`controlCenterModule/change`)">
       back
     </el-button>
-    <h1>123</h1>
-    <h1>123</h1>
-    <h1>123</h1>
-    <h1>123</h1>
-    <h1>123</h1>
+    <slot name="ppp"></slot>
   </div>
 </template>
 

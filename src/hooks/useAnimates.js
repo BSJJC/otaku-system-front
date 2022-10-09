@@ -12,10 +12,8 @@ export async function getAnimates() {
       }
 
       localStorage.setItem("animates", JSON.stringify(animats))
-      console.log("获取过渡动画成功");
     })
-    .catch(e => {
-      console.error("获取过度动画失败", e)
+    .catch(() => {
     })
 
 }

@@ -18,8 +18,6 @@ const mutations = {
     this.state.appModule.transformIndex = index;
     this.state.appModule.transiformAnimate = `animate__animated ${randomExiteAnimate}`;
 
-    console.log(this.state.appModule.transiformAnimate);
-
     setTimeout(() => {
       this.state.appModule.transiformAnimate = `animate__animated ${randomEntrancesAnimate}`;
     }, 500);

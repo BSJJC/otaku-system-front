@@ -119,7 +119,6 @@ const verInfo = (account, password) => {
          * 成功登录
          * 拿到token
          */
-        console.log("登陆成功");
         form.account = "";
         form.password = "";
 
