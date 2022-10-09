@@ -122,11 +122,7 @@ const submit = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      const time = oneDayTrip.startTime.split(":").toString().replace(",", "");
-      const timestamp = new Date().getFullYear().toString() + time;
-
       const arrArr = {
-        timestamp,
         placement: "top",
         info: oneDayTrip.tripName,
       };

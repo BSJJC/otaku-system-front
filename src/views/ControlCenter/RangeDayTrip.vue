@@ -1,13 +1,13 @@
 <template>
   <el-form
-    ref="oneDayTripRuleRef"
-    :model="oneDayTrip"
-    :rules="oneDayTripRules"
+    ref="RangeDayTripRuleRef"
+    :model="RangeDayTrip"
+    :rules="RangeDayTripRules"
     label-width="120px"
   >
     <el-form-item label="多日行程名称" prop="tripName">
       <el-input
-        v-model="oneDayTrip.tripName"
+        v-model="RangeDayTrip.tripName"
         placeholder="多日行程名称"
         clearable
         style="width: 40%"
@@ -15,7 +15,7 @@
     </el-form-item>
     <el-form-item label="行程日期" prop="tripDate" style="width: 50%">
       <el-date-picker
-        v-model="oneDayTrip.tripDate"
+        v-model="RangeDayTrip.tripDate"
         type="daterange"
         style="width: 40%"
         value-format="YYYY年MM月DD日"
@@ -26,8 +26,8 @@
     <div style="display: flex; flex-direction: row">
       <el-form-item prop="startTime" label="行程开始时间">
         <el-time-select
-          v-model="oneDayTrip.startTime"
-          :max-time="oneDayTrip.endTime"
+          v-model="RangeDayTrip.startTime"
+          :max-time="RangeDayTrip.endTime"
           placeholder="开始时间"
           start="08:00"
           step="00:15"
@@ -36,8 +36,8 @@
       </el-form-item>
       <el-form-item prop="endTime" label="行程结束时间">
         <el-time-select
-          v-model="oneDayTrip.endTime"
-          :min-time="oneDayTrip.startTime"
+          v-model="RangeDayTrip.endTime"
+          :min-time="RangeDayTrip.startTime"
           placeholder="结束时间"
           start="08:00"
           step="00:15"
@@ -46,38 +46,38 @@
       </el-form-item>
     </div>
     <el-form-item>
-      <el-button type="primary" @click="submit(oneDayTripRuleRef)"
+      <el-button type="primary" @click="submit(RangeDayTripRuleRef)"
         >Create</el-button
       >
-      <el-button @click="reset(oneDayTripRuleRef)">Cancel</el-button>
+      <el-button @click="reset(RangeDayTripRuleRef)">Cancel</el-button>
     </el-form-item>
   </el-form>
 
   <!-- 单日行程添加确认显示 -->
   <el-form label-width="120px">
     <transition name="trip-info">
-      <el-form-item v-show="oneDayTrip.tripName" label="行程名">
-        <h3 style="margin: 0px">{{ oneDayTrip.tripName }}</h3>
+      <el-form-item v-show="RangeDayTrip.tripName" label="行程名">
+        <h3 style="margin: 0px">{{ RangeDayTrip.tripName }}</h3>
       </el-form-item>
     </transition>
     <transition name="trip-info">
-      <el-form-item v-show="oneDayTrip.tripDate" label="行程开始日期">
-        <h3 style="margin: 0px">{{ oneDayTrip.tripDate[0] }}</h3>
+      <el-form-item v-show="RangeDayTrip.tripDate" label="行程开始日期">
+        <h3 style="margin: 0px">{{ RangeDayTrip.tripDate[0] }}</h3>
       </el-form-item>
     </transition>
     <transition name="trip-info">
-      <el-form-item v-show="oneDayTrip.tripDate" label="行程结束日期">
-        <h3 style="margin: 0px">{{ oneDayTrip.tripDate[1] }}</h3>
+      <el-form-item v-show="RangeDayTrip.tripDate" label="行程结束日期">
+        <h3 style="margin: 0px">{{ RangeDayTrip.tripDate[1] }}</h3>
       </el-form-item>
     </transition>
     <transition name="trip-info">
-      <el-form-item v-show="oneDayTrip.startTime" label="行程开始时间">
-        <h3 style="margin: 0px">{{ oneDayTrip.startTime }}</h3>
+      <el-form-item v-show="RangeDayTrip.startTime" label="行程开始时间">
+        <h3 style="margin: 0px">{{ RangeDayTrip.startTime }}</h3>
       </el-form-item>
     </transition>
     <transition name="trip-info">
-      <el-form-item v-show="oneDayTrip.endTime" label="行程结束时间">
-        <h3 style="margin: 0px">{{ oneDayTrip.endTime }}</h3>
+      <el-form-item v-show="RangeDayTrip.endTime" label="行程结束时间">
+        <h3 style="margin: 0px">{{ RangeDayTrip.endTime }}</h3>
       </el-form-item>
     </transition>
   </el-form>
@@ -89,14 +89,14 @@ import getItem from "../../api/getItem";
 import postItem from "../../api/postItem";
 import { ElMessageBox } from "element-plus";
 
-const oneDayTrip = reactive({
+const RangeDayTrip = reactive({
   tripName: "",
   tripDate: "",
   startTime: "",
   endTime: "",
 });
 
-const oneDayTripRules = reactive({
+const RangeDayTripRules = reactive({
   tripName: [{ required: true, message: "请输入日程名称", trigger: "blur" }],
   tripDate: [{ required: true, message: "请输入日程日期", trigger: "blur" }],
   startTime: [
@@ -105,7 +105,7 @@ const oneDayTripRules = reactive({
   endTime: [{ required: true, message: "请输入日程结束时间", trigger: "blur" }],
 });
 
-const oneDayTripRuleRef = ref();
+const RangeDayTripRuleRef = ref();
 
 const info = JSON.parse(sessionStorage.getItem("managerInfo"));
 const schedule = info.schedule;
@@ -129,34 +129,30 @@ const submit = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      const time = oneDayTrip.startTime.split(":").toString().replace(",", "");
-      const timestamp = new Date().getFullYear().toString() + time;
-
       const arrArr = {
-        timestamp,
         placement: "top",
-        info: oneDayTrip.tripName,
+        info: RangeDayTrip.tripName,
       };
 
       const prop = {
-        year: oneDayTrip.tripDate.split("年")[0],
+        year: RangeDayTrip.tripDate.split("年")[0],
         month:
           monthAbbs[
-            parseInt(oneDayTrip.tripDate.split("年")[1].split("月")[0]) - 1
+            parseInt(RangeDayTrip.tripDate.split("年")[1].split("月")[0]) - 1
           ],
         week:
           Math.ceil(
-            parseInt(oneDayTrip.tripDate.split("月")[1].split("日")[0]) / 7
+            parseInt(RangeDayTrip.tripDate.split("月")[1].split("日")[0]) / 7
           ) - 1,
         day:
           Math.floor(
-            parseInt(oneDayTrip.tripDate.split("月")[1].split("日")[0]) % 7
+            parseInt(RangeDayTrip.tripDate.split("月")[1].split("日")[0]) % 7
           ) -
             1 ==
           -1
             ? 6
             : Math.floor(
-                parseInt(oneDayTrip.tripDate.split("月")[1].split("日")[0]) % 7
+                parseInt(RangeDayTrip.tripDate.split("月")[1].split("日")[0]) % 7
               ) - 1,
       };
 
