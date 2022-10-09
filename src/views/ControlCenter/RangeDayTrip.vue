@@ -6,15 +6,21 @@
     label-width="120px"
   >
     <el-form-item label="多日行程名称" prop="tripName">
-      <el-input v-model="oneDayTrip.tripName" clearable style="width: 40%" />
+      <el-input
+        v-model="oneDayTrip.tripName"
+        placeholder="多日行程名称"
+        clearable
+        style="width: 40%"
+      />
     </el-form-item>
     <el-form-item label="行程日期" prop="tripDate" style="width: 50%">
       <el-date-picker
         v-model="oneDayTrip.tripDate"
         type="daterange"
-        placeholder="行程日期"
         style="width: 40%"
         value-format="YYYY年MM月DD日"
+        start-placeholder="行程开始时间"
+        end-placeholder="行程结束时间"
       />
     </el-form-item>
     <div style="display: flex; flex-direction: row">
