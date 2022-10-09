@@ -43,15 +43,9 @@
             </a>
           </div>
         </div>
+
         <div class="staffProgress">
-          <div
-            class="todo"
-            v-for="(i, index) in info.workProgress"
-            :key="index"
-          >
-            <el-checkbox :checked="i.finished"></el-checkbox>
-            {{ i.finished }}
-          </div>
+          <TodoRecursion :data="info"> </TodoRecursion>
         </div>
       </el-main>
     </el-container>
@@ -60,10 +54,13 @@
 
 <script setup>
 import { useStore } from "vuex";
+import TodoRecursion from "./TodoRecursion.vue";
 
 const store = useStore();
 
-const info = store.state.positionDetail.info;
+const info = store.state.positionDetailModule.info.workProgress;
+
+// :style="{ transform: `translateX(${i.level * 100}px)` }"
 </script>
 
 <style lang="less" scoped>
@@ -148,11 +145,11 @@ const info = store.state.positionDetail.info;
     }
 
     .staffProgress {
-      justify-content: center;
+      justify-content: flex-start;
       align-items: flex-start;
-      margin-top: 20px;
-      width: 80%;
-      height: 100%;
+      padding: 20px;
+      width: calc(80% - 40px);
+      height: calc(100% - 40px);
       background: rgba(211, 211, 211, 0.13);
     }
   }

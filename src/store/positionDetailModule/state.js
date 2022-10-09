@@ -23,14 +23,17 @@ const state = {
       {
         title: "打开vsCode",
         finished: false,
+        level: 0,
         chidren: [
           {
             title: "打开电脑",
             finished: false,
+            level: 1,
             chidren: [
               {
                 title: "插上电源",
                 finished: true,
+                level: 2,
                 chidren: []
               }
             ]
@@ -38,6 +41,7 @@ const state = {
           {
             title: "作息在电脑前",
             finished: true,
+            level: 1,
             chidren: []
           }
         ]

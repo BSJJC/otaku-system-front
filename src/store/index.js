@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 import appModule from "./appModules/index"
 import controlCenterModule from "./controlCenterModules/index"
 import calendarModule from "./calendarModules/index"
-import positionDetail from "./positionDetailModule/index"
+import positionDetailModule from "./positionDetailModule/index"
 
 
 export default createStore({
@@ -19,6 +19,6 @@ export default createStore({
     appModule: appModule,
     controlCenterModule: controlCenterModule,
     calendarModule: calendarModule,
-    positionDetail: positionDetail
+    positionDetailModule: positionDetailModule
   }
 })
