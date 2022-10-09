@@ -50,7 +50,7 @@
             <el-form-item prop="endTime" label="行程结束时间">
               <el-time-select
                 v-model="oneDayTrip.endTime"
-                :min-time="oneDayTrip.endTime"
+                :min-time="oneDayTrip.startTime"
                 placeholder="结束时间"
                 start="08:00"
                 step="00:15"
@@ -106,7 +106,7 @@
             v-for="(day, index) in schedule[year].months[month].weeks[week]"
             :key="index"
             :class="day.arrangements ? 'has-arrangements' : 'no-arrangements'"
-            @click="timelineChange(day.date, index)"
+            @click="timelineChange(day.date)"
           >
             <span>{{ day.date ? day.date : "20010803" }}</span>
           </div>
@@ -154,7 +154,8 @@
 </template>
 
 <script setup>
-import axios from "axios";
+import getItem from "../../api/getItem";
+import postItem from "../../api/postItem";
 import { ref, reactive } from "vue";
 import { useStore } from "vuex";
 
@@ -220,13 +221,21 @@ const submit = async (formEl) => {
               ) - 1,
       };
 
-      axios
-        .post("http://localhost:3000/api/rest/ManagerInfos/editManagerInfo", {
-          arrArr: arrArr,
-          prop: prop,
-        })
-        .then((res) => {
-          console.log(res);
+      postItem("http://localhost:3000/api/rest/ManagerInfos/editManagerInfo", {
+        schedule: schedule,
+        arrArr: arrArr,
+        prop: prop,
+      })
+        .then(() => {
+          getItem(
+            "http://localhost:3000/api/rest/ManagerInfos/getManagerInfo"
+          ).then((d) => {
+            sessionStorage.setItem("managerInfo", JSON.stringify(d.data[0]));
+            alert("OK");
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+          });
         })
         .catch((err) => {
           console.error(err);
@@ -263,14 +272,13 @@ let monthAbbs = [
 const timelineChange = (targetDate) => {
   const [y, m, d] = targetDate.split("/");
 
-  const path = `schudule_year_${y}.months.${monthAbbs[m - 1]}.weeks`;
-  store.commit(`calendarModule/setWeekOfSelectedDay`, path);
-
-  const indexes = [
+  const path = [
+    y,
+    monthAbbs[m - 1],
     Math.ceil(d / 7) - 1,
     Math.ceil(d % 7) - 1 == -1 ? 6 : Math.ceil(d % 7) - 1,
   ];
-  store.commit(`calendarModule/setDayOfSelectedDay`, indexes);
+  store.commit(`calendarModule/setWeekOfSelectedDay`, path);
 };
 
 const yearChange = (newYearNum) => {
@@ -288,21 +296,21 @@ const changeWeek = (newWeekNum) => {
   judge.value = "day";
 };
 
-// const init = () => {
-//   const date = new Date();
+const init = () => {
+  const date = new Date();
 
-//   const dateNow = `${date.getFullYear()}/${
-//     date.getMonth() + 1
-//   }/${date.getDate()}`;
+  const dateNowPath = `${date.getFullYear()}/${
+    date.getMonth() + 1
+  }/${date.getDate()}`;
 
-//   timelineChange(dateNow, date.getDay());
+  timelineChange(dateNowPath);
 
-//   year.value = `year_${date.getFullYear()}`;
-//   month.value = monthAbbs[date.getMonth()];
-//   week.value = Math.floor(date.getDate() / 7 - 1);
-// };
+  year.value = `year_${date.getFullYear()}`;
+  month.value = monthAbbs[date.getMonth()];
+  week.value = Math.floor(date.getDate() / 7);
+};
 
-// init();
+init();
 </script>
 
 <style lang="less" scoped>
@@ -425,7 +433,7 @@ const changeWeek = (newWeekNum) => {
     }
 
     .has-arrangements {
-      background: rgba(240, 128, 128, 0.539);
+      background: rgba(202, 232, 255, 0.539);
       opacity: 0.8;
     }
 

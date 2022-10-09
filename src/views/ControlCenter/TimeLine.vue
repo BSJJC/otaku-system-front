@@ -2,26 +2,42 @@
   <div class="time-line">
     <el-scrollbar>
       <el-timeline>
-        <!-- <el-timeline-item
+        <el-timeline-item
           center
-          v-for="(i, index) in store.state.calendarModule.weekOfSelectedDay"
+          v-show="data.arrange"
+          v-for="(i, index) in data.arrange"
           :key="index"
-          :timestamp="i.arrange.timestamp"
-          :placement="i.arrange.placement"
+          :placement="i.placement"
         >
           <el-card>
-            <h4>{{ i.arrange.info }}</h4>
+            {{ i.info }}
           </el-card>
-        </el-timeline-item> -->
+        </el-timeline-item>
       </el-timeline>
     </el-scrollbar>
   </div>
 </template>
 
 <script setup>
-// import { useStore } from "vuex";
+import { reactive } from "vue";
+import { watch } from "@vue/runtime-core";
+import { useStore } from "vuex";
 
-// const store = useStore();
+const store = useStore();
+
+let schedule, path;
+let data = reactive({
+  arrange: [],
+});
+
+watch(store.state.calendarModule, () => {
+  path = store.state.calendarModule.weekOfSelectedDay;
+
+  schedule = JSON.parse(sessionStorage.getItem("managerInfo")).schedule;
+
+  data.arrange =
+    schedule[`year_${path[0]}`].months[path[1]].weeks[path[2]][path[3]].arrange;
+});
 </script>
 
 <style lang="less" scoped>
