@@ -1,5 +1,6 @@
 const state = {
-  selectedDayArrange: {}
+  weekOfSelectedDay: [],
+  dayOfSelectedDay: []
 }
 
 export default state;

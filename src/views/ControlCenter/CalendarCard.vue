@@ -263,28 +263,14 @@ let monthAbbs = [
 const timelineChange = (targetDate) => {
   const [y, m, d] = targetDate.split("/");
 
-  console.log(y, m, d);
-  // schedule.year_2022.months.Oct.weeks[1][1]
+  const path = `schudule_year_${y}.months.${monthAbbs[m - 1]}.weeks`;
+  store.commit(`calendarModule/setWeekOfSelectedDay`, path);
 
-  const path = `year_${y}.months.${monthAbbs[m - 1]}.weeks`;
-  console.log(path);
-
-  console.log(
-    schedule[`year_${y}`].months[monthAbbs[m - 1]].weeks[Math.ceil(d / 7) - 1]
-  );
-
-  // const path =
-  //   schedule[`year_${y}`].months[monthAbbs[m - 1]].weeks[Math.ceil(d / 7) - 1][
-  //     index
-  //   ];
-
-  // console.log(path);
-
-  console.log(store);
-
-  // date.timestamp = `${y} ${m} ${d}`;
-  // date.placement = "top";
-  // store.commit(`calendarModule/setSelectedDayArrange`, date);
+  const indexes = [
+    Math.ceil(d / 7) - 1,
+    Math.ceil(d % 7) - 1 == -1 ? 6 : Math.ceil(d % 7) - 1,
+  ];
+  store.commit(`calendarModule/setDayOfSelectedDay`, indexes);
 };
 
 const yearChange = (newYearNum) => {
@@ -302,21 +288,21 @@ const changeWeek = (newWeekNum) => {
   judge.value = "day";
 };
 
-const init = () => {
-  const date = new Date();
+// const init = () => {
+//   const date = new Date();
 
-  const dateNow = `${date.getFullYear()}/${
-    date.getMonth() + 1
-  }/${date.getDate()}`;
+//   const dateNow = `${date.getFullYear()}/${
+//     date.getMonth() + 1
+//   }/${date.getDate()}`;
 
-  timelineChange(dateNow, date.getDay());
+//   timelineChange(dateNow, date.getDay());
 
-  year.value = `year_${date.getFullYear()}`;
-  month.value = monthAbbs[date.getMonth()];
-  week.value = Math.floor(date.getDate() / 7 - 1);
-};
+//   year.value = `year_${date.getFullYear()}`;
+//   month.value = monthAbbs[date.getMonth()];
+//   week.value = Math.floor(date.getDate() / 7 - 1);
+// };
 
-init();
+// init();
 </script>
 
 <style lang="less" scoped>
