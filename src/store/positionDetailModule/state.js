@@ -1,6 +1,9 @@
 const state = {
   info: {
-    name: "haha"
+    name: "Joe",
+    position: "UI",
+    contactInfo: [],
+    workProgress: []
   }
 }
 

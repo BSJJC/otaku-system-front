@@ -11,7 +11,20 @@
           </el-icon>
         </div>
       </el-header>
-      <el-main class="main">Main</el-main>
+      <el-main class="main">
+        <div class="staffInfo">
+          <el-avatar
+            :size="100"
+            src="https://api.yimian.xyz/img?type=head"
+            @error="errorHandler"
+          >
+            <img
+              src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+            />
+          </el-avatar>
+        </div>
+        <div class="staffProgress">114514</div>
+      </el-main>
     </el-container>
   </div>
 </template>
@@ -20,7 +33,9 @@
 import { useStore } from "vuex";
 
 const store = useStore();
-console.log(store.state.positionDetail.info);
+
+const info = store.state.positionDetail.info;
+console.log(info);
 </script>
 
 <style lang="less" scoped>
@@ -37,7 +52,7 @@ console.log(store.state.positionDetail.info);
     justify-content: center;
     align-items: center;
     width: 90vw;
-    height: auto;
+    height: 30px;
 
     .backBtn {
       padding: 5px 10px 0px;
@@ -49,7 +64,7 @@ console.log(store.state.positionDetail.info);
 
       .arrow {
         color: black;
-        animation: arrowRoll 0.8s ease-in-out infinite;
+        animation: arrowRoll 0.8s linear infinite;
       }
 
       @keyframes arrowRoll {
@@ -57,7 +72,7 @@ console.log(store.state.positionDetail.info);
           transform: translateY(-2em);
         }
         to {
-          transform: translateY(4em);
+          transform: translateY(40px);
         }
       }
     }
@@ -67,6 +82,28 @@ console.log(store.state.positionDetail.info);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 90vw;
+    height: calc(100vh - 20px);
+    padding: 0px;
+    background: rgba(240, 128, 128, 0.091);
+
+    & > * {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .staffInfo {
+      width: 20%;
+      height: 100%;
+      background: rgba(173, 216, 230, 0.174);
+    }
+
+    .staffProgress {
+      width: 80%;
+      height: 100%;
+      background: rgba(211, 211, 211, 0.13);
+    }
   }
 }
 </style>
