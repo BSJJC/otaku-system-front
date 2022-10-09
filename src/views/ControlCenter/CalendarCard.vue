@@ -162,6 +162,21 @@ init();
   display: none;
 }
 
+.calendar-enter-active {
+  transition: all 0.3s ease-out;
+  transition-delay: 0.3s;
+}
+
+.calendar-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.calendar-enter-from,
+.calendar-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
 .calendar-card {
   position: relative;
   .calendar-configs {
