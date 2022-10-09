@@ -1,5 +1,5 @@
 <template>
-  <div :class="store.state.controlCenterModule.controlCenterClasses">
+  <div>
     <el-container>
       <el-header class="header">
         <div
@@ -110,7 +110,6 @@ const info = store.state.positionDetailModule.info.workProgress;
     width: 90vw;
     height: calc(100vh - 20px);
     padding: 0px;
-    background: rgba(240, 128, 128, 0.091);
     user-select: none;
 
     & > * {
@@ -123,7 +122,6 @@ const info = store.state.positionDetailModule.info.workProgress;
     .staffInfo {
       width: 20%;
       height: 100%;
-      background: rgba(173, 216, 230, 0.174);
       flex-direction: column;
       justify-content: start;
 
@@ -150,7 +148,6 @@ const info = store.state.positionDetailModule.info.workProgress;
       padding: 20px;
       width: calc(80% - 40px);
       height: calc(100% - 40px);
-      background: rgba(211, 211, 211, 0.13);
     }
   }
 }
