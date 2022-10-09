@@ -1,6 +1,6 @@
 <template>
   <div class="position-card" @click="show">
-    <slot name="positionCount"></slot>
+    <slot name="positionName"></slot>
   </div>
 </template>
 

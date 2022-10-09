@@ -1,7 +1,7 @@
 <template>
   <div class="team-overview">
     <PositionCard v-for="(i, index) in positions" :key="index">
-      <template #positionCount>
+      <template #positionName>
         <h2>{{ i }}</h2>
       </template>
     </PositionCard>

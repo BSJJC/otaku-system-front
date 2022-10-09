@@ -1,9 +1,18 @@
 <template>
   <div :class="store.state.controlCenterModule.controlCenterClasses">
-    <el-button @click="store.commit(`controlCenterModule/change`)">
-      back
-    </el-button>
-    <slot name="ppp"></slot>
+    <el-container>
+      <el-header class="header">
+        <div
+          class="backBtn"
+          @click="store.commit(`controlCenterModule/change`)"
+        >
+          <el-icon class="arrow">
+            <ArrowDownBold />
+          </el-icon>
+        </div>
+      </el-header>
+      <el-main class="main">Main</el-main>
+    </el-container>
   </div>
 </template>
 
@@ -11,6 +20,7 @@
 import { useStore } from "vuex";
 
 const store = useStore();
+console.log(store.state.positionDetail.info);
 </script>
 
 <style lang="less" scoped>
@@ -21,6 +31,42 @@ const store = useStore();
   flex-direction: column;
   width: 90vw;
   height: 100vh;
-  background: rgba(173, 216, 230, 0.579);
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: auto;
+
+    .backBtn {
+      padding: 5px 10px 0px;
+      overflow: hidden;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .arrow {
+        color: black;
+        animation: arrowRoll 0.8s ease-in-out infinite;
+      }
+
+      @keyframes arrowRoll {
+        from {
+          transform: translateY(-2em);
+        }
+        to {
+          transform: translateY(4em);
+        }
+      }
+    }
+  }
+
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
