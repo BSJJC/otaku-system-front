@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-const avatarUrl = "https://api.yimian.xyz/img?type=head";
+const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
 </script>
 
 <style lang="less" scoped>

@@ -14,14 +14,34 @@
       <el-main class="main">
         <div class="staffInfo">
           <el-avatar
-            :size="100"
-            src="https://api.yimian.xyz/img?type=head"
-            @error="errorHandler"
+            :size="150"
+            src="https://api.yimian.xyz/img?type=head&b:Math.random()"
+            style="margin-top: 40px"
           >
             <img
               src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
             />
           </el-avatar>
+
+          <el-form label-width="40px" style="margin-top: 20px">
+            <el-form-item label="name">{{ info.name }}</el-form-item>
+            <el-form-item label="position">{{ info.position }}</el-form-item>
+          </el-form>
+
+          <div class="contactWay">
+            <a
+              :href="i.hyperlink"
+              target="blank"
+              v-for="(i, index) in info.contactInfo"
+              :key="index"
+            >
+              <el-image
+                :src="i.logoLink"
+                fit="contain"
+                style="width: 30px; height: 30px; margin-left: 20px"
+              />
+            </a>
+          </div>
         </div>
         <div class="staffProgress">114514</div>
       </el-main>
@@ -86,17 +106,37 @@ console.log(info);
     height: calc(100vh - 20px);
     padding: 0px;
     background: rgba(240, 128, 128, 0.091);
+    user-select: none;
 
     & > * {
       display: flex;
       justify-content: center;
       align-items: center;
+      user-select: none;
     }
 
     .staffInfo {
       width: 20%;
       height: 100%;
       background: rgba(173, 216, 230, 0.174);
+      flex-direction: column;
+      justify-content: start;
+
+      :deep(.el-form-item__label),
+      :deep(.el-form-item__content) {
+        font-size: 20px;
+      }
+
+      .contactWay {
+        & > * {
+          opacity: 0.5;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
     }
 
     .staffProgress {
