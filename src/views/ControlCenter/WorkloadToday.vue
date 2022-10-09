@@ -48,6 +48,7 @@ import { ref, reactive, watch } from "vue";
 
 const todosInoutBtn = ref(null);
 const todosInput = ref(null);
+
 const unfinishedTodoList = ref(null);
 const finishedTodoList = ref(null);
 
@@ -63,6 +64,7 @@ const todosClasses = reactive({
   "all-finished": false,
 });
 
+// 切换未完成 / 完成列表 css
 watch(todos, (newValue) => {
   if (
     // 未完成列表和完成列表都有
@@ -88,6 +90,7 @@ watch(todos, (newValue) => {
   }
 });
 
+// 切换按钮 css
 const inputActive = () => {
   todosInoutBtn.value.classList.toggle("active");
   todosInoutBtn.value.classList.contains("active")
@@ -100,6 +103,7 @@ const inputBlur = () => {
   todosInput.value.value = "";
 };
 
+//  添加未完成
 const addUnfinished = async (_this) => {
   if (!_this.value.trim()) {
     _this.value = "";
@@ -120,6 +124,7 @@ const addUnfinished = async (_this) => {
   }, 300);
 };
 
+// 将未完成项目标为完成
 const toFinished = async (index) => {
   const _this =
     unfinishedTodoList.value.children[0].children[0].children[0].children[
@@ -146,6 +151,7 @@ const toFinished = async (index) => {
   }, 300);
 };
 
+// 将完成项目标为未完成
 const toUnfinished = async (index) => {
   const _this =
     finishedTodoList.value.children[0].children[0].children[0].children[index];

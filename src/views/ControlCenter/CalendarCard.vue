@@ -88,7 +88,7 @@ let year = ref("year_2022");
 let month = ref("Jan");
 let week = ref(0);
 
-const drawer = ref(true);
+const drawer = ref(false);
 
 const info = JSON.parse(sessionStorage.getItem("managerInfo"));
 const schedule = info.schedule;
