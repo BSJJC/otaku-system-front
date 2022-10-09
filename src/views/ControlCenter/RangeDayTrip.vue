@@ -61,8 +61,13 @@
       </el-form-item>
     </transition>
     <transition name="trip-info">
-      <el-form-item v-show="oneDayTrip.tripDate" label="行程日期">
-        <h3 style="margin: 0px">{{ oneDayTrip.tripDate }}</h3>
+      <el-form-item v-show="oneDayTrip.tripDate" label="行程开始日期">
+        <h3 style="margin: 0px">{{ oneDayTrip.tripDate[0] }}</h3>
+      </el-form-item>
+    </transition>
+    <transition name="trip-info">
+      <el-form-item v-show="oneDayTrip.tripDate" label="行程结束日期">
+        <h3 style="margin: 0px">{{ oneDayTrip.tripDate[1] }}</h3>
       </el-form-item>
     </transition>
     <transition name="trip-info">
