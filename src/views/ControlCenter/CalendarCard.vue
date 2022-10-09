@@ -17,10 +17,6 @@
       >
         <el-scrollbar height="100%">
           <one-day-trip></one-day-trip>
-
-          <el-divider />
-
-          <range-day-trip></range-day-trip>
         </el-scrollbar>
       </el-drawer>
     </div>
@@ -84,7 +80,6 @@
 import { ref } from "vue";
 import { useStore } from "vuex";
 import OneDayTrip from "./OneDayTrip.vue";
-import RangeDayTrip from "./RangeDayTrip.vue";
 
 const store = useStore();
 
