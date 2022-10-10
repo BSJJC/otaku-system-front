@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <div class="staffProgress">
+        <div class="staff-progress">
           <TodoRecursion :data="info.workProgress"> </TodoRecursion>
         </div>
       </el-main>
@@ -112,7 +112,8 @@ const info = store.state.positionDetailModule.info;
     padding: 0px;
     user-select: none;
 
-    & > * {
+    & ~ div {
+      position: absolute;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -142,7 +143,7 @@ const info = store.state.positionDetailModule.info;
       }
     }
 
-    .staffProgress {
+    .staff-progress {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;

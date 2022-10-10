@@ -34,7 +34,13 @@
       {{ i.title }}
     </div>
 
-    <transition name="son-todo">
+    <transition
+      name="son-todo"
+      @enter="sonTodoEnter"
+      @after-enter="sonTodoAfterEnter"
+      @leave="sonTodoLeave"
+      @after-leave="sonTodoAfterLeave"
+    >
       <div v-show="i.chidren.length != 0 && !i.fold" class="son-todo">
         <TodoRecursion :data="i.chidren"> </TodoRecursion>
       </div>
@@ -43,9 +49,8 @@
 </template>
 
 <script setup>
-import TodoRecursion from "./TodoRecursion.vue";
-
 import { defineProps, reactive, toRaw } from "vue";
+import TodoRecursion from "./TodoRecursion.vue";
 
 const props = defineProps({
   data: {
@@ -56,10 +61,33 @@ const props = defineProps({
 
 const temp = toRaw(props);
 const data = reactive(temp.data);
+
+const sonTodoEnter = (el) => {
+  el.style.height = "auto";
+  let endHeight = getComputedStyle(el).height;
+  el.style.height = "0px";
+  el.offsetHeight;
+  el.style.height = endHeight;
+};
+
+const sonTodoAfterEnter = (el) => {
+  el.style.height = null;
+};
+
+const sonTodoLeave = (el) => {
+  el.style.height = getComputedStyle(el).height;
+  el.offsetHeight;
+  el.style.height = "0px";
+};
+
+const sonTodoAfterLeave = (el) => {
+  el.style.height = null;
+};
 </script>
 
 <style lang="less" scoped>
 .todo {
+  position: relative;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -68,10 +96,10 @@ const data = reactive(temp.data);
   .father-todo {
     display: flex;
     align-items: center;
+    flex-direction: row;
     margin-bottom: 10px;
     transform: translateX(-50px);
     width: 100%;
-    flex-direction: row;
 
     .icon {
       height: 100%;
@@ -87,6 +115,7 @@ const data = reactive(temp.data);
 
   .son-todo {
     width: 100%;
+    overflow: hidden;
   }
 }
 
@@ -99,11 +128,8 @@ const data = reactive(temp.data);
   transform: rotate(0deg);
 }
 
+.son-todo-enter-active,
 .son-todo-leave-active {
-  transition: all 0.2s ease-in-out;
-}
-
-.son-todo-leave-to {
-  transform-origin: left;
+  transition: all 0.3s ease-in-out;
 }
 </style>
