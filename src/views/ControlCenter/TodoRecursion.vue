@@ -8,13 +8,21 @@
   >
     <div class="father-todo" @click="data[index].fold = !data[index].fold">
       <div class="icon">
-        <el-icon size="large" v-if="!i.fold && i.chidren.length !== 0">
-          <ArrowDownBold />
-        </el-icon>
-        <el-icon size="large" v-else-if="i.fold && i.chidren.length !== 0">
+        <el-icon
+          size="large"
+          :class="i.fold ? 'arrow-down' : 'arrow-right'"
+          v-if="i.chidren.length !== 0"
+        >
           <ArrowRightBold />
         </el-icon>
-        <el-icon size="large" color="transparent" v-else><CloseBold /></el-icon>
+        <el-icon
+          size="large"
+          :class="i.fold ? 'arrow-down' : 'arrow-right'"
+          v-else
+          color="transparent"
+        >
+          <ArrowDownBold />
+        </el-icon>
 
         <template v-if="i.finished">
           <el-icon color="#90ee90" :size="30"><Check /></el-icon>
@@ -46,7 +54,7 @@ const props = defineProps({
   },
 });
 
-let temp = toRaw(props);
+const temp = toRaw(props);
 const data = reactive(temp.data);
 </script>
 
@@ -70,8 +78,10 @@ const data = reactive(temp.data);
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 10px;
-      margin-left: 10px;
+
+      & > * {
+        margin: 0px 5px 0px 5px;
+      }
     }
   }
 
@@ -81,12 +91,19 @@ const data = reactive(temp.data);
 }
 
 .arrow-right {
-  transform: rotate(-90deg);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  transform: rotate(90deg);
+}
+.arrow-down {
+  transition: all 0.2s ease-in-out;
+  transform: rotate(0deg);
 }
 
-.arrow-down {
-  transform: rotate(0deg);
-  transition: all 0.3s ease-in-out;
+.son-todo-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.son-todo-leave-to {
+  transform-origin: left;
 }
 </style>
