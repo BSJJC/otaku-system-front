@@ -9,29 +9,32 @@
     <div class="father-todo" @click="data[index].fold = !data[index].fold">
       <div class="icon">
         <el-icon
+          v-if="i.chidren.length !== 0"
           size="large"
           :class="i.fold ? 'arrow-down' : 'arrow-right'"
-          v-if="i.chidren.length !== 0"
+          :color="i.finished ? '#409EFF' : '#F56C6C'"
         >
           <ArrowRightBold />
         </el-icon>
         <el-icon
+          v-else
           size="large"
           :class="i.fold ? 'arrow-down' : 'arrow-right'"
-          v-else
           color="transparent"
         >
           <ArrowDownBold />
         </el-icon>
 
         <template v-if="i.finished">
-          <el-icon color="#90ee90" :size="30"><Check /></el-icon>
+          <el-icon color="#409EFF" :size="30"><Check /></el-icon>
         </template>
         <template v-else-if="!i.finished">
-          <el-icon color="#f08080" :size="30"><More /></el-icon>
+          <el-icon color="#F56C6C" :size="30"><More /></el-icon>
         </template>
       </div>
-      {{ i.title }}
+      <div :style="{ color: i.finished ? '#409EFF' : '#F56C6C' }">
+        {{ i.title }}
+      </div>
     </div>
 
     <transition

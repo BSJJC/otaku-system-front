@@ -45,12 +45,12 @@ const state = {
             chidren: [
               {
                 title: "坐在电脑前",
-                finished: true,
+                finished: false,
                 fold: false,
                 chidren: [
                   {
                     title: "坐在电脑前",
-                    finished: true,
+                    finished: false,
                     fold: false,
                     chidren: []
                   }
