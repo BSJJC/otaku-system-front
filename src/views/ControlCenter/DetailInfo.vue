@@ -45,7 +45,7 @@
         </div>
 
         <div class="staffProgress">
-          <TodoRecursion :data="info"> </TodoRecursion>
+          <TodoRecursion :data="info.workProgress"> </TodoRecursion>
         </div>
       </el-main>
     </el-container>
@@ -58,7 +58,7 @@ import TodoRecursion from "./TodoRecursion.vue";
 
 const store = useStore();
 
-const info = store.state.positionDetailModule.info.workProgress;
+const info = store.state.positionDetailModule.info;
 
 // :style="{ transform: `translateX(${i.level * 100}px)` }"
 </script>
@@ -143,11 +143,13 @@ const info = store.state.positionDetailModule.info.workProgress;
     }
 
     .staffProgress {
+      flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
       padding: 20px;
       width: calc(80% - 40px);
       height: calc(100% - 40px);
+      overflow-x: hidden;
     }
   }
 }
