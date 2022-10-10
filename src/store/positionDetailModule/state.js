@@ -86,46 +86,6 @@ const state = {
           }
         ]
       },
-      {
-        title: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, amet labore. Ab cupiditate architecto voluptatum molestias delectus et unde, commodi illo, ullam placeat impedit, optio tempora amet blanditiis excepturi sed.",
-        finished: false,
-        fold: false,
-        chidren: [
-          {
-            title: "打开电脑",
-            finished: false,
-            fold: false,
-            chidren: [
-              {
-                title: "插上电源",
-                finished: true,
-                fold: false,
-                chidren: []
-              }
-            ]
-          },
-          {
-            title: "坐在电脑前",
-            finished: true,
-            fold: false,
-            chidren: [
-              {
-                title: "坐在电脑前",
-                finished: true,
-                fold: false,
-                chidren: [
-                  {
-                    title: "坐在电脑前",
-                    finished: true,
-                    fold: false,
-                    chidren: []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
     ]
   }
 }

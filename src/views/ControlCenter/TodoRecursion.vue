@@ -7,9 +7,15 @@
     style="width: 100%"
   >
     <div class="father-todo" @click="data[index].fold = !data[index].fold">
-      <el-icon size="large"><ArrowDownBold /></el-icon>
-
       <div class="icon">
+        <el-icon size="large" v-if="!i.fold && i.chidren.length !== 0">
+          <ArrowDownBold />
+        </el-icon>
+        <el-icon size="large" v-else-if="i.fold && i.chidren.length !== 0">
+          <ArrowRightBold />
+        </el-icon>
+        <el-icon size="large" color="transparent" v-else><CloseBold /></el-icon>
+
         <template v-if="i.finished">
           <el-icon color="#90ee90" :size="30"><Check /></el-icon>
         </template>
