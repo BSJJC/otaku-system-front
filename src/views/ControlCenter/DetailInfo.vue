@@ -23,7 +23,7 @@
             />
           </el-avatar>
 
-          <el-form label-width="40px" style="margin-top: 20px">
+          <el-form label-width="100px" style="margin-top: 20px">
             <el-form-item label="name">{{ info.name }}</el-form-item>
             <el-form-item label="position">{{ info.position }}</el-form-item>
           </el-form>
@@ -45,7 +45,9 @@
         </div>
 
         <div class="staff-progress">
-          <TodoRecursion :data="info.workProgress"> </TodoRecursion>
+          <el-scrollbar height="100%">
+            <TodoRecursion :data="info.workProgress"> </TodoRecursion>
+          </el-scrollbar>
         </div>
       </el-main>
     </el-container>
@@ -59,8 +61,6 @@ import TodoRecursion from "./TodoRecursion.vue";
 const store = useStore();
 
 const info = store.state.positionDetailModule.info;
-
-// :style="{ transform: `translateX(${i.level * 100}px)` }"
 </script>
 
 <style lang="less" scoped>
@@ -147,11 +147,13 @@ const info = store.state.positionDetailModule.info;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: 20px;
-      width: calc(80% - 40px);
+      width: calc(100% - 40px);
       height: calc(100% - 40px);
-      overflow-x: hidden;
     }
   }
+}
+
+:deep(.is-horizontal) {
+  display: none;
 }
 </style>

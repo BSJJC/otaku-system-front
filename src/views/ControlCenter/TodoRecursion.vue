@@ -3,8 +3,9 @@
     class="todo"
     v-for="(i, index) in data"
     :key="index"
-    :style="{ transform: `translateX(${50}px)` }"
-    style="width: 100%"
+    :style="{
+      transform: `translateX(${50}px)`,
+    }"
   >
     <div class="father-todo" @click="data[index].fold = !data[index].fold">
       <div class="icon">
@@ -32,7 +33,12 @@
           <el-icon color="#F56C6C" :size="30"><More /></el-icon>
         </template>
       </div>
-      <div :style="{ color: i.finished ? '#409EFF' : '#F56C6C' }">
+      <div
+        :style="{
+          color: i.finished ? '#409EFF' : '#F56C6C',
+          maxWidth: `70%`,
+        }"
+      >
         {{ i.title }}
       </div>
     </div>
@@ -94,7 +100,6 @@ const sonTodoAfterLeave = (el) => {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  width: 100%;
 
   .father-todo {
     display: flex;
@@ -102,7 +107,6 @@ const sonTodoAfterLeave = (el) => {
     flex-direction: row;
     margin-bottom: 10px;
     transform: translateX(-50px);
-    width: 100%;
 
     .icon {
       height: 100%;
@@ -117,7 +121,6 @@ const sonTodoAfterLeave = (el) => {
   }
 
   .son-todo {
-    width: 100%;
     overflow: hidden;
   }
 }
