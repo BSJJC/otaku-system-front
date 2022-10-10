@@ -101,6 +101,10 @@ const sonTodoAfterLeave = (el) => {
   align-items: flex-start;
   flex-direction: column;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .father-todo {
     display: flex;
     align-items: center;
