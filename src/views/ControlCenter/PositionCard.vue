@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineProps, reactive, ref, toRaw, watch } from "vue";
+import { defineProps, reactive, ref, toRaw } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -54,10 +54,6 @@ const getProgress = async (arr) => {
 let progress = ref(0);
 getProgress(positionInfo.workProgress).then((d) => {
   progress.value = Math.round((d[0] / d[1]) * 100);
-});
-
-watch(progress, () => {
-  console.log(progress.value);
 });
 </script>
 
