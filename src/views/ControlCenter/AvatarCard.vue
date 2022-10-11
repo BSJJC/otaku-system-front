@@ -9,6 +9,7 @@
     </div>
     <div class="configs">
       <el-button>切换语言</el-button>
+      <el-divider />
       <el-button>退出登录</el-button>
     </div>
   </div>
@@ -52,7 +53,7 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
     align-items: center;
     position: absolute;
     bottom: 3em;
-    width: 150px;
+    width: 0px;
     height: 150px;
     border-radius: 50%;
     flex-direction: column;
