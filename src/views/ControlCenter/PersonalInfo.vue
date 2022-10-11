@@ -30,13 +30,5 @@ import WordloadToday from "./WorkloadToday.vue";
     width: 100%;
     height: 70%;
   }
-
-  .messages {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 30%;
-  }
 }
 </style>

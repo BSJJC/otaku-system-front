@@ -8,8 +8,7 @@
       </el-image>
     </div>
     <div class="configs">
-      <el-button>个人中心</el-button>
-      <el-button>编辑资料</el-button>
+      <el-button>切换语言</el-button>
       <el-button>退出登录</el-button>
     </div>
   </div>
@@ -26,12 +25,14 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
 
 .avatar-card {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   position: relative;
   width: 30%;
   height: 100%;
   flex-direction: column;
+
+  background: lightcoral;
 
   .avatar-img {
     width: 150px;
@@ -66,7 +67,6 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
     .avatar-img {
       width: 120px;
       height: 120px;
-      transform: translateY(-55px);
 
       > * {
         border-radius: 50%;
@@ -74,7 +74,7 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
     }
 
     .configs {
-      bottom: 3.5em;
+      bottom: 5em;
       height: 10px;
       width: 100%;
       border-radius: 0px;
@@ -84,7 +84,6 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
         width: 80%;
         height: 25px;
         margin: 0px;
-        margin-bottom: 2px;
       }
     }
   }
