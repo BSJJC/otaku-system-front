@@ -5,12 +5,20 @@
 </template>
 
 <script setup>
+import { defineProps } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
 const show = () => {
   store.commit(`controlCenterModule/change`);
+  sessionStorage.setItem("selectedPosition", JSON.stringify(props.position));
 };
+
+const props = defineProps({
+  position: {
+    type: String,
+  },
+});
 </script>
 
 <style lang="less" scoped>

@@ -60,7 +60,9 @@ import TodoRecursion from "./TodoRecursion.vue";
 
 const store = useStore();
 
-const info = store.state.positionDetailModule.info;
+const teammemberInfo = JSON.parse(sessionStorage.getItem("teammemberInfo"));
+const position = JSON.parse(sessionStorage.getItem("selectedPosition")).trim();
+const info = teammemberInfo[position];
 </script>
 
 <style lang="less" scoped>

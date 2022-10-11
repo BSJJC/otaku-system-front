@@ -1,6 +1,6 @@
 <template>
   <div class="team-overview">
-    <PositionCard v-for="(i, index) in positions" :key="index">
+    <PositionCard v-for="(i, index) in positions" :key="index" :position="i">
       <template #positionName>
         <h2>{{ i }}</h2>
       </template>
@@ -9,9 +9,29 @@
 </template>
 
 <script setup>
+import { reactive } from "vue";
+
+import getItem from "../../api/getItem";
+
 import PositionCard from "./PositionCard.vue";
 
-let positions = ["UI", "前端", "后端", "移动端", "运维", "QA"];
+let positions = reactive([]);
+
+getItem("http://localhost:3000/api/rest/Teammember/getTeammemberInfo").then(
+  (d) => {
+    const data = d.data[0];
+    sessionStorage.setItem("teammemberInfo", JSON.stringify(data));
+
+    for (const key in data) {
+      if (Object.hasOwnProperty.call(data, key)) {
+        const teammember = data[key];
+        if (teammember.position) {
+          positions.push(teammember.position);
+        }
+      }
+    }
+  }
+);
 </script>
 
 <style lang="less" scoped>
