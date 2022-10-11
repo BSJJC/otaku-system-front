@@ -11,7 +11,7 @@ const randomImg = computed(() => {
   /**
    * do something
    */
-  return `url(${require("../assets/img/1.png")})`;
+  return `url(${require("../assets/img/3.png")})`;
 });
 
 const verOpacity = computed(() => {
