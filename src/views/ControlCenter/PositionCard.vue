@@ -97,21 +97,18 @@ getProgress(positionInfo.workProgress).then((d) => {
     }
 
     .wave2 {
-      transform: translateX(50px);
       animation: wave-to-right 6s ease-in-out infinite;
       opacity: 0.3;
       transition-delay: 0.5s;
     }
 
     .wave3 {
-      transform: translateX(100px);
       animation: wave-to-left 7s ease-in-out infinite;
       opacity: 0.3;
       transition-delay: 0.2s;
     }
 
     .wave4 {
-      transform: translateX(-100px);
       animation: wave-to-left 9s ease-in-out infinite;
       opacity: 0.2;
       transition-delay: 0.8s;

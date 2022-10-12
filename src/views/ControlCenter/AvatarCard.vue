@@ -26,7 +26,7 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
 
 .avatar-card {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   width: 30%;
@@ -53,7 +53,7 @@ const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
     align-items: center;
     position: absolute;
     bottom: 3em;
-    width: 0px;
+    width: 0%;
     height: 150px;
     border-radius: 50%;
     flex-direction: column;
