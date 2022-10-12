@@ -1,4 +1,6 @@
 <template>
+  <ConfigCenter></ConfigCenter>
+
   <div class="main-router-view">
     <h1>welcome welcome</h1>
 
@@ -16,6 +18,7 @@
 <script setup>
 import BackgroundImg from "./BackgroundImg.vue";
 import { useStore } from "vuex";
+import ConfigCenter from "./ConfigCenter.vue";
 const store = useStore();
 </script>
 

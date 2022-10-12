@@ -1,5 +1,6 @@
 <template>
   <svg
+    class="btn"
     viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
     data-v-029747aa=""
@@ -13,8 +14,22 @@
 
 <script setup></script>
 
-<style>
-* {
+<style lang="less" scoped>
+.btn {
   position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  animation: roll 10s linear infinite;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @keyframes roll {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 </style>
