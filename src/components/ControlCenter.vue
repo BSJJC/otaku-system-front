@@ -1,4 +1,6 @@
 <template>
+  <div style="position: absolute">123123</div>
+
   <div :class="store.state.appModule.mainRouterViewClasses">
     <transition name="control-center-container">
       <div
@@ -20,7 +22,7 @@
       </transition>
     </router-view>
 
-    <BackgroundImg opacity="5"></BackgroundImg>
+    <BackgroundImg opacity="8"></BackgroundImg>
   </div>
 </template>
 <script setup>

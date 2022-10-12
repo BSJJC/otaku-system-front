@@ -9,7 +9,6 @@
     </div>
     <div class="configs">
       <el-button>切换语言</el-button>
-      <el-divider />
       <el-button>退出登录</el-button>
     </div>
   </div>
