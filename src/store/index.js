@@ -2,7 +2,6 @@ import { createStore } from 'vuex'
 
 import controlCenterModule from "./controlCenterModules/index"
 import calendarModule from "./calendarModules/index"
-import positionDetailModule from "./positionDetailModule/index"
 
 
 export default createStore({
@@ -17,6 +16,5 @@ export default createStore({
   modules: {
     controlCenterModule: controlCenterModule,
     calendarModule: calendarModule,
-    positionDetailModule: positionDetailModule
   }
 })

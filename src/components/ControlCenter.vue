@@ -1,7 +1,6 @@
 <template>
-  <ConfigCenter></ConfigCenter>
-
   <div class="main-router-view">
+    <ConfigCenter></ConfigCenter>
     <transition name="control-center-container">
       <div
         class="control-center"
