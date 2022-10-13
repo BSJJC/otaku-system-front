@@ -9,8 +9,20 @@
         </div>
         <div v-else-if="$t('message.lang') === 'en'">
           {{ month }}
-          {{ week }}{{ week === 1 ? "st" : "" }}{{ week === 2 ? "nd" : ""
-          }}{{ week === 3 ? "rd" : "" }} week year{{ year.split("_")[1] }}
+          {{
+            week +
+            1 +
+            `${
+              week + 1 == 1
+                ? "st"
+                : week + 1 == 2
+                ? "nd"
+                : week + 1 == 3
+                ? "rd"
+                : "th"
+            }`
+          }}
+          week year{{ year.split("_")[1] }}
         </div>
       </div>
       <div class="date-range-switch">
@@ -55,10 +67,15 @@
             </span>
             <span v-else-if="$t('message.lang') === 'en'">
               {{ day.date.split("/")[2] }}
-              {{ day.date.split("/")[2] == 1 ? "st" : "" }}
-              {{ day.date.split("/")[2] == 2 ? "nd" : "" }}
-              {{ day.date.split("/")[2] == 3 ? "rd" : "" }}
-              {{ day.date.split("/")[2] !== 1 || 2 || 3 ? "th" : "" }}
+              {{
+                day.date.split("/")[2] == 1
+                  ? "st"
+                  : day.date.split("/")[2] == 2
+                  ? "nd"
+                  : day.date.split("/")[2] == 3
+                  ? "rd"
+                  : "th"
+              }}
             </span>
           </div>
         </div>
