@@ -15,6 +15,7 @@
     <router-view
       v-slot="{ Component }"
       v-show="!store.state.controlCenterModule.controlCenterShow"
+      class="detail-info"
     >
       <transition name="router-container">
         <component :is="Component" />

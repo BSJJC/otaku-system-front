@@ -1,7 +1,6 @@
 <template>
-  <ConfigCenter></ConfigCenter>
-
   <div class="main-router-view">
+    <ConfigCenter></ConfigCenter>
     <el-form
       ref="formRef"
       :model="form"

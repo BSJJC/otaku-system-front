@@ -1,7 +1,6 @@
 <template>
-  <ConfigCenter></ConfigCenter>
-
   <div class="main-router-view">
+    <ConfigCenter></ConfigCenter>
     <h1>welcome welcome</h1>
 
     <router-link to="LogIn">
