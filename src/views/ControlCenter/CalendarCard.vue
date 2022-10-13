@@ -121,18 +121,6 @@
             }}</span>
           </div>
         </div>
-        <!-- 以年为单位显示 -->
-        <div class="date-container" v-else-if="judge == 'year'">
-          <div
-            class="date-card year-size"
-            v-for="(year, index) in schedule"
-            :key="index"
-            :class="month.arrangements ? 'has-arrangements' : 'no-arrangements'"
-            @click="yearChange(index)"
-          >
-            {{ index }}
-          </div>
-        </div>
       </transition-group>
     </div>
   </div>
@@ -199,11 +187,6 @@ const timelineChange = (targetDate) => {
     Math.ceil(d % 7) - 1 == -1 ? 6 : Math.ceil(d % 7) - 1,
   ];
   store.commit(`calendarModule/setWeekOfSelectedDay`, path);
-};
-
-const yearChange = (newYearNum) => {
-  year = newYearNum;
-  judge.value = "month";
 };
 
 const changeMonth = (newMonthNum) => {

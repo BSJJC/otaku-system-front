@@ -19,6 +19,15 @@ export default {
       'month': 'month',
       'year': 'month',
       'addEvent': 'add event'
+    },
+    'schedule': {
+      'name': 'plan name',
+      'date': 'plan date',
+      'startTime': 'start time',
+      'endTime': 'end time',
+      'submit': 'submit',
+      'reset': 'reset'
     }
+
   }
 }

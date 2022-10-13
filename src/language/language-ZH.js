@@ -19,6 +19,14 @@ export default {
       'month': '月',
       'year': '年',
       'addEvent': '添加事件'
+    },
+    'schedule': {
+      'name': '日程名',
+      'date': '日程日期',
+      'startTime': '开始时间',
+      'endTime': '结束时间',
+      'submit': '添加',
+      'reset': '重置'
     }
   }
 }

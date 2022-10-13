@@ -5,38 +5,38 @@
     :rules="oneDayTripRules"
     label-width="120px"
   >
-    <el-form-item label="单日行程名称" prop="tripName">
+    <el-form-item :label="$t('message.schedule.name')" prop="tripName">
       <el-input
         v-model="oneDayTrip.tripName"
-        placeholder="单日行程名称"
+        :placeholder="$t('message.schedule.name')"
         clearable
         style="width: 40%"
       />
     </el-form-item>
-    <el-form-item label="单日行程日期" prop="tripDate">
+    <el-form-item :label="$t('message.schedule.date')" prop="tripDate">
       <el-date-picker
         v-model="oneDayTrip.tripDate"
-        placeholder="单日行程日期"
+        :placeholder="$t('message.schedule.date')"
         style="width: 40%"
         value-format="YYYY年MM月DD日"
       />
     </el-form-item>
     <div style="display: flex; flex-direction: row">
-      <el-form-item prop="startTime" label="行程开始时间">
+      <el-form-item prop="startTime" :label="$t('message.schedule.startTime')">
         <el-time-select
           v-model="oneDayTrip.startTime"
           :max-time="oneDayTrip.endTime"
-          placeholder="开始时间"
+          :placeholder="$t('message.schedule.startTime')"
           start="08:00"
           step="00:15"
           end="18:00"
         />
       </el-form-item>
-      <el-form-item prop="endTime" label="行程结束时间">
+      <el-form-item prop="endTime" :label="$t('message.schedule.endTime')">
         <el-time-select
           v-model="oneDayTrip.endTime"
           :min-time="oneDayTrip.startTime"
-          placeholder="结束时间"
+          :placeholder="$t('message.schedule.endTime')"
           start="08:00"
           step="00:15"
           end="18:00"
@@ -44,10 +44,12 @@
       </el-form-item>
     </div>
     <el-form-item>
-      <el-button type="primary" @click="submit(oneDayTripRuleRef)"
-        >Create</el-button
-      >
-      <el-button @click="reset(oneDayTripRuleRef)">Cancel</el-button>
+      <el-button type="primary" @click="submit(oneDayTripRuleRef)">
+        {{ $t("message.schedule.submit") }}
+      </el-button>
+      <el-button @click="reset(oneDayTripRuleRef)">
+        {{ $t("message.schedule.reset") }}
+      </el-button>
     </el-form-item>
   </el-form>
 
@@ -81,6 +83,11 @@ import { ref, reactive } from "vue";
 import getItem from "../../api/getItem";
 import postItem from "../../api/postItem";
 import { ElMessageBox } from "element-plus";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
+console.log(t);
 
 const oneDayTrip = reactive({
   tripName: "",
