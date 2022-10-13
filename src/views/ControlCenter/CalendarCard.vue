@@ -3,7 +3,7 @@
     <div class="calendar-configs">
       <div class="date-now">
         <div v-if="$t('message.lang') === 'zh'">
-          {{ year.split("_")[1] }}年 {{ monthAbbs.indexOf(month) + 1 }}月 第{{
+          {{ year.split("_")[1] }}年 {{ monthAbbsEN.indexOf(month) + 1 }}月 第{{
             week + 1
           }}周
         </div>
@@ -33,7 +33,7 @@
           $t("message.date.week")
         }}</el-button>
         <el-button @click="judge = 'month'">{{
-          $t("message.date.year")
+          $t("message.date.month")
         }}</el-button>
         <el-button @click="drawer = true">{{
           $t("message.date.addEvent")
@@ -76,6 +76,7 @@
                   ? "rd"
                   : "th"
               }}
+              day
             </span>
           </div>
         </div>
@@ -89,7 +90,20 @@
             v-show="day.length != 0"
             @click="changeWeek(index)"
           >
-            <span>{{ month }} 第 {{ index + 1 }} 周</span>
+            <span v-if="$t('message.lang') === 'zh'">第{{ index + 1 }} 周</span>
+            <span v-else-if="$t('message.lang') === 'en'">
+              {{ index + 1 }}
+              {{
+                index + 1 == 1
+                  ? "st"
+                  : index + 1 == 2
+                  ? "nd"
+                  : index + 1 == 3
+                  ? "rd"
+                  : "th"
+              }}
+              week
+            </span>
           </div>
         </div>
         <!-- 以月为单位显示 -->
@@ -101,7 +115,10 @@
             :class="month.arrangements ? 'has-arrangements' : 'no-arrangements'"
             @click="changeMonth(index)"
           >
-            {{ index }}
+            <span v-if="$t('message.lang') === 'en'">{{ index }}</span>
+            <span v-else-if="$t('message.lang') === 'zh'">{{
+              monthAbbsZH[monthAbbsEN.indexOf(index)]
+            }}</span>
           </div>
         </div>
         <!-- 以年为单位显示 -->
@@ -142,7 +159,7 @@ const drawer = ref(false);
 const info = JSON.parse(sessionStorage.getItem("managerInfo"));
 const schedule = info.schedule;
 
-let monthAbbs = [
+let monthAbbsEN = [
   "Jan",
   "Feb",
   "Mar",
@@ -157,12 +174,27 @@ let monthAbbs = [
   "Dec",
 ];
 
+let monthAbbsZH = [
+  "一月",
+  "二月",
+  "三月",
+  "四月",
+  "五月",
+  "六月",
+  "七月",
+  "八月",
+  "九月",
+  "十月",
+  "十一月",
+  "十二月",
+];
+
 const timelineChange = (targetDate) => {
   const [y, m, d] = targetDate.split("/");
 
   const path = [
     y,
-    monthAbbs[m - 1],
+    monthAbbsEN[m - 1],
     Math.ceil(d / 7) - 1,
     Math.ceil(d % 7) - 1 == -1 ? 6 : Math.ceil(d % 7) - 1,
   ];
@@ -194,7 +226,7 @@ const init = () => {
   timelineChange(dateNowPath);
 
   year.value = `year_${date.getFullYear()}`;
-  month.value = monthAbbs[date.getMonth()];
+  month.value = monthAbbsEN[date.getMonth()];
   week.value = Math.floor(date.getDate() / 7);
 };
 
