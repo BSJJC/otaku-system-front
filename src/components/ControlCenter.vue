@@ -1,4 +1,6 @@
 <template>
+  <ConfigCenter></ConfigCenter>
+
   <div :class="store.state.appModule.mainRouterViewClasses">
     <transition name="control-center-container">
       <div
@@ -29,6 +31,7 @@ import InfoOverview from "@/views/ControlCenter/InfoOverview.vue";
 import TeamOverview from "@/views/ControlCenter/TeamOverview.vue";
 
 import { useStore } from "vuex";
+import ConfigCenter from "./ConfigCenter.vue";
 
 const store = useStore();
 </script>

@@ -1,4 +1,6 @@
 <template>
+  <ConfigCenter></ConfigCenter>
+
   <div class="main-router-view">
     <el-form
       ref="formRef"
@@ -58,6 +60,7 @@ import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
 import postItem from "@/api/postItem";
 import getItem from "@/api/getItem";
+import ConfigCenter from "./ConfigCenter.vue";
 
 const { locale } = useI18n();
 const { t } = useI18n();
