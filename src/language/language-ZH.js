@@ -27,6 +27,10 @@ export default {
       'endTime': '结束时间',
       'submit': '添加',
       'reset': '重置'
+    },
+    'memberInfo': {
+      'name': '姓名',
+      'position': '职位'
     }
   }
 }

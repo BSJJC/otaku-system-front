@@ -27,7 +27,10 @@ export default {
       'endTime': 'end time',
       'submit': 'submit',
       'reset': 'reset'
+    },
+    'memberInfo': {
+      'name': 'name',
+      'position': 'position'
     }
-
   }
 }

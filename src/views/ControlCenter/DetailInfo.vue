@@ -24,8 +24,12 @@
           </el-avatar>
 
           <el-form label-width="100px" style="margin-top: 20px">
-            <el-form-item label="name">{{ info.name }}</el-form-item>
-            <el-form-item label="position">{{ info.position }}</el-form-item>
+            <el-form-item :label="$t('message.memberInfo.name')">{{
+              info.name
+            }}</el-form-item>
+            <el-form-item :label="$t('message.memberInfo.position')">{{
+              info.position
+            }}</el-form-item>
           </el-form>
 
           <div class="contactWay">
@@ -57,6 +61,10 @@
 <script setup>
 import { useStore } from "vuex";
 import TodoRecursion from "./TodoRecursion.vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+console.log(t);
 
 const store = useStore();
 
