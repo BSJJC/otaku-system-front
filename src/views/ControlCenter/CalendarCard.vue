@@ -2,12 +2,31 @@
   <div class="calendar-card">
     <div class="calendar-configs">
       <div class="date-now">
-        {{ year.split("_")[1] }}年 {{ month }}月 第{{ week + 1 }}周
+        <div v-if="$t('message.lang') === 'zh'">
+          {{ year.split("_")[1] }}年 {{ monthAbbs.indexOf(month) + 1 }}月 第{{
+            week + 1
+          }}周
+        </div>
+        <div v-else-if="$t('message.lang') === 'en'">
+          {{ month }}
+          {{ week }}{{ week === 1 ? "st" : "" }}{{ week === 2 ? "nd" : ""
+          }}{{ week === 3 ? "rd" : "" }} week year{{ year.split("_")[1] }}
+        </div>
       </div>
-      <el-button @click="judge = 'day'">日</el-button>
-      <el-button @click="judge = 'week'">周</el-button>
-      <el-button @click="judge = 'month'">月</el-button>
-      <el-button @click="drawer = true">添加事件</el-button>
+      <div class="date-range-switch">
+        <el-button @click="judge = 'day'">{{
+          $t("message.date.day")
+        }}</el-button>
+        <el-button @click="judge = 'week'">{{
+          $t("message.date.week")
+        }}</el-button>
+        <el-button @click="judge = 'month'">{{
+          $t("message.date.year")
+        }}</el-button>
+        <el-button @click="drawer = true">{{
+          $t("message.date.addEvent")
+        }}</el-button>
+      </div>
 
       <el-drawer
         v-model="drawer"
@@ -31,7 +50,16 @@
             :class="day.arrangements ? 'has-arrangements' : 'no-arrangements'"
             @click="timelineChange(day.date)"
           >
-            <span>{{ day.date ? day.date : "20010803" }}</span>
+            <span v-if="$t('message.lang') === 'zh'">
+              {{ day.date.split("/")[2] + " 号" }}
+            </span>
+            <span v-else-if="$t('message.lang') === 'en'">
+              {{ day.date.split("/")[2] }}
+              {{ day.date.split("/")[2] == 1 ? "st" : "" }}
+              {{ day.date.split("/")[2] == 2 ? "nd" : "" }}
+              {{ day.date.split("/")[2] == 3 ? "rd" : "" }}
+              {{ day.date.split("/")[2] !== 1 || 2 || 3 ? "th" : "" }}
+            </span>
           </div>
         </div>
         <!-- 以周为单位显示 -->
@@ -79,9 +107,13 @@
 <script setup>
 import { ref } from "vue";
 import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
 import OneDayTrip from "./OneDayTrip.vue";
 
+const { t } = useI18n();
 const store = useStore();
+
+console.log(t);
 
 let judge = ref("day");
 let year = ref("year_2022");
@@ -157,6 +189,11 @@ init();
   display: none;
 }
 
+:deep(.el-button) {
+  padding: 5px;
+  margin: 5px;
+}
+
 :deep(.el-drawer) {
   background-color: #ffffff50;
 }
@@ -180,7 +217,7 @@ rgba(255, 255, 255, 0.295).calendar-enter-active {
   .calendar-configs {
     .date-now {
       position: absolute;
-      left: 13%;
+      left: 0%;
     }
 
     .date-now-enter-active {

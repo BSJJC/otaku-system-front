@@ -53,6 +53,7 @@
 
 <script setup>
 import BackgroundImg from "./BackgroundImg.vue";
+import ConfigCenter from "./ConfigCenter.vue";
 import { useStore } from "vuex";
 import { ref, reactive } from "vue";
 import router from "@/router";
@@ -60,7 +61,6 @@ import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
 import postItem from "@/api/postItem";
 import getItem from "@/api/getItem";
-import ConfigCenter from "./ConfigCenter.vue";
 
 const { locale } = useI18n();
 const { t } = useI18n();

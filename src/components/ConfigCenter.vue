@@ -14,15 +14,28 @@
 
   <el-drawer
     v-model="drawer"
-    title="全局设置"
+    :title="$t('message.globalSettings')"
     :with-header="true"
     direction="ltr"
   >
+    <div>{{ $t("message.hello") }}</div>
+    <button @click="change('zh')">change</button>
+    <button @click="change('en')">change</button>
   </el-drawer>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+const { locale } = useI18n();
+console.log(t);
+
+const change = (lang) => {
+  locale.value = lang;
+  localStorage.setItem("lang", lang);
+};
 
 const drawer = ref(false);
 </script>

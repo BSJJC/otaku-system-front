@@ -3,18 +3,24 @@
     <div class="avatar-img">
       <el-image :src="avatarUrl">
         <template #placeholder>
-          <div class="image-slot">Loading<span class="dot">...</span></div>
+          <div class="image-slot">
+            {{ $t("message.loading") }}<span class="dot">...</span>
+          </div>
         </template>
       </el-image>
     </div>
     <div class="configs">
-      <el-button>切换语言</el-button>
       <el-button>退出登录</el-button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
+console.log(t);
 const avatarUrl = "https://api.yimian.xyz/img?type=head&a:Math.random()";
 </script>
 
