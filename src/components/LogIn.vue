@@ -54,7 +54,6 @@
 <script setup>
 import BackgroundImg from "./BackgroundImg.vue";
 import ConfigCenter from "./ConfigCenter.vue";
-import { useStore } from "vuex";
 import { ref, reactive } from "vue";
 import router from "@/router";
 import { useI18n } from "vue-i18n";
@@ -64,7 +63,6 @@ import getItem from "@/api/getItem";
 
 const { locale } = useI18n();
 const { t } = useI18n();
-const store = useStore();
 
 const formRef = ref(null);
 const accountInput = ref(null);
@@ -144,8 +142,6 @@ const verInfo = (account, password) => {
           duration: 500,
           message: "登陆成功",
         });
-
-        store.commit("appModule/mainRouterViewChange");
 
         setTimeout(() => {
           router.push("/ControlCenter");

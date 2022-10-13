@@ -1,7 +1,7 @@
 <template>
   <ConfigCenter></ConfigCenter>
 
-  <div :class="store.state.appModule.mainRouterViewClasses">
+  <div class="main-router-view">
     <transition name="control-center-container">
       <div
         class="control-center"
@@ -15,7 +15,6 @@
     <router-view
       v-slot="{ Component }"
       v-show="!store.state.controlCenterModule.controlCenterShow"
-      class="detail-info"
     >
       <transition name="router-container">
         <component :is="Component" />

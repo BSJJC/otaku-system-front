@@ -19,8 +19,8 @@
     direction="ltr"
   >
     <div>{{ $t("message.hello") }}</div>
-    <button @click="change('zh')">change</button>
-    <button @click="change('en')">change</button>
+    <button @click="changeLang('zh')">changeLang</button>
+    <button @click="changeLang('en')">changeLang</button>
   </el-drawer>
 </template>
 
@@ -32,7 +32,7 @@ const { t } = useI18n();
 const { locale } = useI18n();
 console.log(t);
 
-const change = (lang) => {
+const changeLang = (lang) => {
   locale.value = lang;
   localStorage.setItem("lang", lang);
 };

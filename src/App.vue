@@ -1,18 +1,8 @@
 <template>
-  <router-view
-    :class="store.state.appModule.transiformAnimate"
-  >
-  </router-view>
+  <router-view class="main-router-view"> </router-view>
 </template>
 
-<script setup>
-import { getAnimates } from "./hooks/useAnimates.js";
-
-import { useStore } from "vuex";
-
-getAnimates();
-const store = useStore();
-</script>
+<script setup></script>
 
 <style lang="less">
 .animate__animated {
