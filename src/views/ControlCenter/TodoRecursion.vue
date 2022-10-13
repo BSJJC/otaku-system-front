@@ -25,13 +25,6 @@
         >
           <ArrowDownBold />
         </el-icon>
-
-        <template v-if="i.finished">
-          <el-icon color="#409EFF" :size="30"><Check /></el-icon>
-        </template>
-        <template v-else-if="!i.finished">
-          <el-icon color="#F56C6C" :size="30"><More /></el-icon>
-        </template>
       </div>
       <div
         :style="{
