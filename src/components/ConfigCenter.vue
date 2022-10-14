@@ -30,14 +30,14 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 const { locale } = useI18n();
+const drawer = ref(false);
+
 console.log(t);
 
 const changeLang = (lang) => {
   locale.value = lang;
   localStorage.setItem("lang", lang);
 };
-
-const drawer = ref(false);
 </script>
 
 <style lang="less" scoped>
