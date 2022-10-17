@@ -12,8 +12,7 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import getItem from "../../api/getItem";
+import postItem from "../../api/postItem";
 import PositionCard from "./PositionCard.vue";
 import { useI18n } from "vue-i18n";
 
@@ -29,26 +28,34 @@ const positionsZH = {
   OM: "运行维护",
 };
 
-let positions = reactive([]);
+const managerProjects = JSON.parse(sessionStorage.getItem("managerInfo"));
 
-getItem("http://localhost:3000/api/rest/Teammember/getTeammemberInfo").then(
-  (d) => {
-    const data = d.data[0];
-    sessionStorage.setItem("teammemberInfo", JSON.stringify(data));
+managerProjects.projectsManaged.forEach((project) => {
+  console.log(project);
+});
 
-    console.log(data);
-    console.log("@@@@@@@@@@");
+postItem(
+  "http://localhost:3000/api/rest/Teammember/getProjects",
+  managerProjects.projectsManaged
+).then((v) => {
+  console.log(v);
+});
 
-    for (const key in data) {
-      if (Object.hasOwnProperty.call(data, key)) {
-        const teammember = data[key];
-        if (teammember.position) {
-          positions.push(teammember.position);
-        }
-      }
-    }
-  }
-);
+// getItem("http://localhost:3000/api/rest/Teammember/getTeammemberInfo").then(
+//   (d) => {
+//     const data = d.data[0];
+//     sessionStorage.setItem("teammemberInfo", JSON.stringify(data));
+
+//     for (const key in data) {
+//       if (Object.hasOwnProperty.call(data, key)) {
+//         const teammember = data[key];
+//         if (teammember.position) {
+//           positions.push(teammember.position);
+//         }
+//       }
+//     }
+//   }
+// );
 </script>
 
 <style lang="less" scoped>
