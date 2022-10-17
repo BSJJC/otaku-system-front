@@ -36,6 +36,9 @@ getItem("http://localhost:3000/api/rest/Teammember/getTeammemberInfo").then(
     const data = d.data[0];
     sessionStorage.setItem("teammemberInfo", JSON.stringify(data));
 
+    console.log(data);
+    console.log("@@@@@@@@@@");
+
     for (const key in data) {
       if (Object.hasOwnProperty.call(data, key)) {
         const teammember = data[key];

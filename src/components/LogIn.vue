@@ -131,7 +131,18 @@ const verInfo = (account, password) => {
         getItem(
           "http://localhost:3000/api/rest/ManagerInfos/getManagerInfo"
         ).then((r) => {
-          sessionStorage.setItem("managerInfo", JSON.stringify(r.data[0]));
+          const temp = r.data[0];
+
+          for (const key in temp) {
+            if (Object.hasOwnProperty.call(temp, key)) {
+              if (key !== "_id") {
+                sessionStorage.setItem(
+                  "managerInfo",
+                  JSON.stringify(temp[key])
+                );
+              }
+            }
+          }
         });
 
         ElMessage({
