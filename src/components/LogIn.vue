@@ -286,10 +286,10 @@ console.log(locale);
 
 @keyframes slide-in {
   0% {
-    transform: translateX(100%);
+    transform: translateX(100%) scale(0);
   }
   100% {
-    transform-box: 0%;
+    transform: translateX(0%) scale(1);
   }
 }
 
@@ -299,7 +299,7 @@ console.log(locale);
 
 @keyframes slide-out {
   to {
-    transform: translateX(-100%);
+    transform: translateX(-100%) scale(0);
   }
 }
 </style>

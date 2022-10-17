@@ -35,7 +35,7 @@ const toLogIn = () => {
 
 @keyframes slide {
   to {
-    transform: translateX(-100%);
+    transform: translateX(-100%) scale(0);
   }
 }
 </style>

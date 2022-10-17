@@ -80,10 +80,10 @@ const animates = reactive({
 
 @keyframes slide-in {
   0% {
-    transform: translateX(100%);
+    transform: translateX(100%) scale(0);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(0%) scale(1);
   }
 }
 </style>
