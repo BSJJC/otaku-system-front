@@ -15,6 +15,7 @@ body {
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  min-width: 100vw;
   margin: 0px;
   overflow: hidden;
 }

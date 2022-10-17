@@ -64,6 +64,7 @@
 import { defineProps, reactive, toRaw } from "vue";
 import TodoRecursion from "./TodoRecursion.vue";
 import { ElMessage, ElMessageBox } from "element-plus";
+import postItem from "@/api/postItem";
 
 const props = defineProps({
   data: {
@@ -105,13 +106,18 @@ const addChidren = (index) => {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     draggable: true,
-    "show-input": true,
-    "input-placeholder": "新任务",
   })
-    .then(() => {
+    .then((v) => {
       ElMessage({
         type: "success",
         message: `新任务添加成功`,
+      });
+
+      postItem("http://localhost:3000/api/rest/Teammember/editTeammemberInfo", {
+        newWork: v.value,
+        position: JSON.parse(sessionStorage.getItem("selectedPosition")),
+      }).then((r) => {
+        console.log(r);
       });
     })
     .catch(() => {
