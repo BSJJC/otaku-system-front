@@ -13,7 +13,7 @@
           class="add-chidren"
           color="white"
           size="large"
-          @click.stop="addChidren(i, index)"
+          @click.stop="addChidren(index)"
         >
           <CirclePlusFilled />
         </el-icon>
@@ -63,6 +63,7 @@
 <script setup>
 import { defineProps, reactive, toRaw } from "vue";
 import TodoRecursion from "./TodoRecursion.vue";
+import { ElMessage, ElMessageBox } from "element-plus";
 
 const props = defineProps({
   data: {
@@ -96,9 +97,29 @@ const sonTodoAfterLeave = (el) => {
   el.style.height = null;
 };
 
-const addChidren = (i, index) => {
-  console.log(i);
+const addChidren = (index) => {
   console.log(index);
+  console.log(data[index]);
+
+  ElMessageBox.prompt("添加新任务", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    draggable: true,
+    "show-input": true,
+    "input-placeholder": "新任务",
+  })
+    .then(() => {
+      ElMessage({
+        type: "success",
+        message: `新任务添加成功`,
+      });
+    })
+    .catch(() => {
+      ElMessage({
+        type: "info",
+        message: "取消添加新任务",
+      });
+    });
 };
 </script>
 
@@ -162,5 +183,10 @@ const addChidren = (i, index) => {
 .son-todo-enter-active,
 .son-todo-leave-active {
   transition: all 0.3s ease-in-out;
+}
+
+:deep(.el-overlay-message-box) {
+  padding: 0px !important;
+  background: red;
 }
 </style>

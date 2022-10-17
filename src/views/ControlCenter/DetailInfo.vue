@@ -159,6 +159,8 @@ const info = teammemberInfo[position];
       align-items: flex-start;
       width: calc(100% - 40px);
       height: calc(100% - 40px);
+
+      background: lightpink;
     }
   }
 }
