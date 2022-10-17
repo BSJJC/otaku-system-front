@@ -10,6 +10,15 @@
     <div class="father-todo" @click="data[index].fold = !data[index].fold">
       <div class="icon">
         <el-icon
+          class="add-chidren"
+          color="white"
+          size="large"
+          @click.stop="addChidren(i, index)"
+        >
+          <CirclePlusFilled />
+        </el-icon>
+
+        <el-icon
           v-if="i.chidren.length !== 0"
           size="large"
           :class="i.fold ? 'arrow-down' : 'arrow-right'"
@@ -26,6 +35,7 @@
           <ArrowDownBold />
         </el-icon>
       </div>
+
       <div
         :style="{
           color: i.finished ? '#409EFF' : '#F56C6C',
@@ -85,6 +95,11 @@ const sonTodoLeave = (el) => {
 const sonTodoAfterLeave = (el) => {
   el.style.height = null;
 };
+
+const addChidren = (i, index) => {
+  console.log(i);
+  console.log(index);
+};
 </script>
 
 <style lang="less" scoped>
@@ -111,8 +126,21 @@ const sonTodoAfterLeave = (el) => {
       justify-content: center;
       align-items: center;
 
+      .add-chidren {
+        opacity: 0;
+      }
+
       & > * {
         margin: 0px 5px 0px 5px;
+      }
+    }
+
+    &:hover {
+      .icon {
+        .add-chidren {
+          opacity: 1;
+          transition: all 0.2s ease-in-out;
+        }
       }
     }
   }
