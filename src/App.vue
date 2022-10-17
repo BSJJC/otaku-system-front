@@ -5,11 +5,6 @@
 <script setup></script>
 
 <style lang="less">
-.animate__animated {
-  --animate-duration: 0.5s;
-  transition: all ease-in-out;
-}
-
 * {
   -webkit-user-drag: none;
 }

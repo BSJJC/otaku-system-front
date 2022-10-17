@@ -1,5 +1,5 @@
 <template>
-  <div class="main-router-view">
+  <div class="main-router-view" :class="animates">
     <ConfigCenter></ConfigCenter>
     <el-form
       ref="formRef"
@@ -142,6 +142,8 @@ const verInfo = (account, password) => {
           message: "登陆成功",
         });
 
+        animates["slide-out"] = true;
+
         setTimeout(() => {
           router.push("/ControlCenter");
         }, 500);
@@ -157,6 +159,11 @@ const verInfo = (account, password) => {
 const resetForm = () => {
   formRef.value.resetFields();
 };
+
+const animates = reactive({
+  "slide-in": true,
+  "slide-out": false,
+});
 
 console.log(locale);
 </script>
@@ -269,6 +276,30 @@ console.log(locale);
   }
   100% {
     background-position: 0 0;
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.5s ease-in-out forwards;
+  height: 100vh;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform-box: 0%;
+  }
+}
+
+.slide-out {
+  animation: slide-out 0.5s ease-in-out forwards;
+}
+
+@keyframes slide-out {
+  to {
+    transform: translateX(-100%);
   }
 }
 </style>
