@@ -3,8 +3,8 @@
     <PositionCard
       v-for="(i, index) in teammembers"
       :key="index"
-      :teammembers="teammembers"
       :position="index"
+      :teammembers="teammembers"
     >
       <template #positionName>
         {{ index }}
@@ -45,6 +45,10 @@ postItem(
     if (Object.hasOwnProperty.call(v[0], key)) {
       if (key !== "_id" && key !== "projectName") {
         target = v[0][key];
+        sessionStorage.setItem(
+          "selectedManagerProject",
+          JSON.stringify(target)
+        );
       }
     }
   }

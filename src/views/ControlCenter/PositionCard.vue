@@ -29,7 +29,10 @@ const props = defineProps({
 
 const show = () => {
   store.commit(`controlCenterModule/change`);
-  sessionStorage.setItem("selectedPosition", JSON.stringify(data.position));
+  sessionStorage.setItem(
+    "selectedPosition",
+    JSON.stringify(data[props.position].position)
+  );
 };
 
 const temp = toRaw(props.teammembers);
