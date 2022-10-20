@@ -13,7 +13,7 @@
           class="add-chidren"
           color="white"
           size="large"
-          @click.stop="addChidren(index)"
+          @click.stop="addChidren(index, i)"
         >
           <CirclePlusFilled />
         </el-icon>
@@ -98,24 +98,34 @@ const sonTodoAfterLeave = (el) => {
   el.style.height = null;
 };
 
-const addChidren = (index) => {
+const addChidren = (index, i) => {
   console.log(index);
-  console.log(data[index]);
+  console.log(i);
 
   ElMessageBox.prompt("添加新任务", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     draggable: true,
   })
-    .then((v) => {
+    .then(() => {
       ElMessage({
         type: "success",
         message: `新任务添加成功`,
       });
 
+      const selectedManagerProjectIndex = JSON.parse(
+        sessionStorage.getItem("selectedManagerProjectIndex")
+      );
+
+      const managerProjects = JSON.parse(
+        sessionStorage.getItem("managerProjects")
+      );
+
+      const projectName =
+        managerProjects[selectedManagerProjectIndex].projectName;
+
       postItem("http://localhost:3000/api/rest/Teammember/editTeammemberInfo", {
-        newWork: v.value,
-        position: JSON.parse(sessionStorage.getItem("selectedPosition")),
+        projectName: projectName,
       }).then((r) => {
         console.log(r);
       });
