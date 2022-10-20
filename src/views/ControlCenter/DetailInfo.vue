@@ -69,7 +69,8 @@ console.log(t);
 const store = useStore();
 
 const temp = JSON.parse(sessionStorage.getItem("selectedManagerProject"));
-const info = temp[JSON.parse(sessionStorage.getItem("selectedPosition"))];
+const info =
+  temp[JSON.parse(sessionStorage.getItem("selectedPosition")).trim()];
 </script>
 
 <style lang="less" scoped>
