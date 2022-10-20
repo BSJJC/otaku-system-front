@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineProps, reactive, ref, toRaw } from "vue";
+import { defineProps, ref, reactive, toRaw } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -22,6 +22,9 @@ const props = defineProps({
   position: {
     type: String,
   },
+  teammembers: {
+    type: Object,
+  },
 });
 
 const show = () => {
@@ -29,12 +32,8 @@ const show = () => {
   sessionStorage.setItem("selectedPosition", JSON.stringify(data.position));
 };
 
-const temp = toRaw(props);
+const temp = toRaw(props.teammembers);
 const data = reactive(temp);
-
-const infos = JSON.parse(sessionStorage.getItem("teammemberInfo"));
-
-const positionInfo = infos[data.position.trim()];
 
 let finishedTodos = 0;
 let allTodos = 0;
@@ -52,7 +51,7 @@ const getProgress = async (arr) => {
 };
 
 let progress = ref(0);
-getProgress(positionInfo.workProgress).then((d) => {
+getProgress(data[props.position].workProgress).then((d) => {
   progress.value = Math.round((d[0] / d[1]) * 100);
 });
 </script>
