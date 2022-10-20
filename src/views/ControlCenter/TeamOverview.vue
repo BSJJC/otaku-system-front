@@ -29,33 +29,15 @@ const positionsZH = {
 };
 
 const managerProjects = JSON.parse(sessionStorage.getItem("managerInfo"));
-
-managerProjects.projectsManaged.forEach((project) => {
-  console.log(project);
-});
-
 postItem(
   "http://localhost:3000/api/rest/Teammember/getProjects",
   managerProjects.projectsManaged
 ).then((v) => {
-  console.log(v);
+  sessionStorage.setItem("managerProjects", JSON.stringify(v));
+  sessionStorage.setItem("selectedManagerProjectIndex", 0);
 });
 
-// getItem("http://localhost:3000/api/rest/Teammember/getTeammemberInfo").then(
-//   (d) => {
-//     const data = d.data[0];
-//     sessionStorage.setItem("teammemberInfo", JSON.stringify(data));
 
-//     for (const key in data) {
-//       if (Object.hasOwnProperty.call(data, key)) {
-//         const teammember = data[key];
-//         if (teammember.position) {
-//           positions.push(teammember.position);
-//         }
-//       }
-//     }
-//   }
-// );
 </script>
 
 <style lang="less" scoped>
