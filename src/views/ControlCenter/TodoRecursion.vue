@@ -13,7 +13,7 @@
           class="add-chidren"
           color="white"
           size="large"
-          @click.stop="addChidren(index, i)"
+          @click.stop="addChidren(i.uuid)"
         >
           <CirclePlusFilled />
         </el-icon>
@@ -76,6 +76,7 @@ const props = defineProps({
 const temp = toRaw(props);
 const data = reactive(temp.data);
 
+//#region 动画
 const sonTodoEnter = (el) => {
   el.style.height = "auto";
   let endHeight = getComputedStyle(el).height;
@@ -97,17 +98,15 @@ const sonTodoLeave = (el) => {
 const sonTodoAfterLeave = (el) => {
   el.style.height = null;
 };
+//#endregion
 
-const addChidren = (index, i) => {
-  console.log(index);
-  console.log(i);
-
+const addChidren = (uuid) => {
   ElMessageBox.prompt("添加新任务", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     draggable: true,
   })
-    .then(() => {
+    .then((v) => {
       ElMessage({
         type: "success",
         message: `新任务添加成功`,
@@ -116,19 +115,23 @@ const addChidren = (index, i) => {
       const selectedManagerProjectIndex = JSON.parse(
         sessionStorage.getItem("selectedManagerProjectIndex")
       );
-
       const managerProjects = JSON.parse(
         sessionStorage.getItem("managerProjects")
       );
-
       const projectName =
         managerProjects[selectedManagerProjectIndex].projectName;
+      const position = JSON.parse(sessionStorage.getItem("selectedPosition"));
+      const value = v.value.trim();
 
       postItem("http://localhost:3000/api/rest/Teammember/editTeammemberInfo", {
-        projectName: projectName,
-      }).then((r) => {
-        console.log(r);
+        projectName,
+        position,
+        uuid,
+        value,
       });
+    })
+    .then(() => {
+      console.log(data);
     })
     .catch(() => {
       ElMessage({
