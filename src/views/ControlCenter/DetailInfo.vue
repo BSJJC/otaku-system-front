@@ -24,12 +24,12 @@
           </el-avatar>
 
           <el-form label-width="100px" style="margin-top: 20px">
-            <el-form-item :label="$t('message.memberInfo.name')">{{
-              info.name
-            }}</el-form-item>
-            <el-form-item :label="$t('message.memberInfo.position')">{{
-              info.position
-            }}</el-form-item>
+            <el-form-item :label="$t('message.memberInfo.name')">
+              {{ info.name }}
+            </el-form-item>
+            <el-form-item :label="$t('message.memberInfo.position')">
+              {{ info.position }}
+            </el-form-item>
           </el-form>
 
           <div class="contactWay">
@@ -59,18 +59,24 @@
 </template>
 
 <script setup>
+import { reactive } from "vue";
 import { useStore } from "vuex";
-import TodoRecursion from "./TodoRecursion.vue";
 import { useI18n } from "vue-i18n";
+import TodoRecursion from "./TodoRecursion.vue";
 
 const { t } = useI18n();
 console.log(t);
 
 const store = useStore();
 
-const temp = JSON.parse(sessionStorage.getItem("selectedManagerProject"));
-const info =
-  temp[JSON.parse(sessionStorage.getItem("selectedPosition")).trim()];
+let info = reactive({});
+
+const selectedManagerProject = JSON.parse(
+  sessionStorage.getItem("selectedManagerProject")
+);
+const selectedPosition = sessionStorage.getItem("selectedPosition");
+
+info = reactive(selectedManagerProject[JSON.parse(selectedPosition).trim()]);
 </script>
 
 <style lang="less" scoped>

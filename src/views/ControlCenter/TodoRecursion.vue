@@ -62,6 +62,7 @@
 
 <script setup>
 import { defineProps, reactive, toRaw } from "vue";
+import { useStore } from "vuex";
 import TodoRecursion from "./TodoRecursion.vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import postItem from "@/api/postItem";
@@ -72,6 +73,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const store = useStore();
 
 const temp = toRaw(props);
 const data = reactive(temp.data);
@@ -131,7 +134,7 @@ const addChidren = (uuid) => {
       });
     })
     .then(() => {
-      console.log(data);
+      store.commit("detailInfoModule/refetchInfo", data);
     })
     .catch(() => {
       ElMessage({
