@@ -74,9 +74,11 @@ let info = reactive({});
 const selectedManagerProject = JSON.parse(
   sessionStorage.getItem("selectedManagerProject")
 );
-const selectedPosition = sessionStorage.getItem("selectedPosition");
+const selectedPosition = JSON.parse(
+  sessionStorage.getItem("selectedPosition")
+).trim();
 
-info = reactive(selectedManagerProject[JSON.parse(selectedPosition).trim()]);
+info = reactive(selectedManagerProject[selectedPosition]);
 </script>
 
 <style lang="less" scoped>
