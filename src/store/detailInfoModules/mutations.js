@@ -10,13 +10,13 @@ const mutations = {
     const info = (selectedManagerProject[selectedPosition]);
 
     this.state.detailInfoModule.info = info;
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@");
 
-    console.log(context);
+    console.log(data);
 
-    data
-      ? console.log(1)
-      : console.log(2);
+    setTimeout(() => {
+      console.log("clear work progress");
+      this.state.detailInfoModule.info.workProgress = []
+    }, 1000);
   }
 }
 

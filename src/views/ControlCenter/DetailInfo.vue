@@ -25,10 +25,12 @@
 
           <el-form label-width="100px" style="margin-top: 20px">
             <el-form-item :label="$t('message.memberInfo.name')">
-              {{ store.state.detailInfoModule.info.name }}
+              <!-- {{ store.state.detailInfoModule.info.name }} -->
+              {{ data.name }}
             </el-form-item>
             <el-form-item :label="$t('message.memberInfo.position')">
-              {{ store.state.detailInfoModule.info.position }}
+              <!-- {{ store.state.detailInfoModule.info.position }} -->
+              {{ data.position }}
             </el-form-item>
           </el-form>
 
@@ -36,8 +38,7 @@
             <a
               :href="i.hyperlink"
               target="blank"
-              v-for="(i, index) in store.state.detailInfoModule.info
-                .contactInfo"
+              v-for="(i, index) in data.contactInfo"
               :key="index"
             >
               <el-image
@@ -51,10 +52,7 @@
 
         <div class="staff-progress">
           <el-scrollbar height="100%">
-            <TodoRecursion
-              :data="store.state.detailInfoModule.info.workProgress"
-            >
-            </TodoRecursion>
+            <TodoRecursion :data="data.workProgress"> </TodoRecursion>
           </el-scrollbar>
         </div>
       </el-main>
@@ -63,6 +61,7 @@
 </template>
 
 <script setup>
+import { reactive, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import TodoRecursion from "./TodoRecursion.vue";
@@ -73,6 +72,20 @@ console.log(t);
 const store = useStore();
 
 store.commit("detailInfoModule/fetchInfo");
+
+const data = reactive(store.state.detailInfoModule.info);
+
+watch(
+  () => store.state.detailInfoModule.info.workProgress,
+  (newValue) => {
+    console.log(data);
+    console.log(newValue);
+    // data.workProgress = newValue;
+  },
+  {
+    deep: true,
+  }
+);
 </script>
 
 <style lang="less" scoped>
