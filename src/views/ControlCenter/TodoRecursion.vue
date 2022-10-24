@@ -131,12 +131,7 @@ const addChidren = (uuid) => {
       });
     })
     .then(() => {
-      ElMessageBox.alert("工作添加成功", "成功", {
-        confirmButtonText: "OK",
-        callback: () => {
-          location.reload();
-        },
-      });
+      
     })
     .catch(() => {
       ElMessage({

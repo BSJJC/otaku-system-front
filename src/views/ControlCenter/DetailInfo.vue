@@ -25,10 +25,10 @@
 
           <el-form label-width="100px" style="margin-top: 20px">
             <el-form-item :label="$t('message.memberInfo.name')">
-              {{ info.name }}
+              {{ store.state.detailInfoModule.info.name }}
             </el-form-item>
             <el-form-item :label="$t('message.memberInfo.position')">
-              {{ info.position }}
+              {{ store.state.detailInfoModule.info.position }}
             </el-form-item>
           </el-form>
 
@@ -36,7 +36,8 @@
             <a
               :href="i.hyperlink"
               target="blank"
-              v-for="(i, index) in info.contactInfo"
+              v-for="(i, index) in store.state.detailInfoModule.info
+                .contactInfo"
               :key="index"
             >
               <el-image
@@ -50,7 +51,10 @@
 
         <div class="staff-progress">
           <el-scrollbar height="100%">
-            <TodoRecursion :data="info.workProgress"> </TodoRecursion>
+            <TodoRecursion
+              :data="store.state.detailInfoModule.info.workProgress"
+            >
+            </TodoRecursion>
           </el-scrollbar>
         </div>
       </el-main>
@@ -59,7 +63,6 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import TodoRecursion from "./TodoRecursion.vue";
@@ -69,16 +72,7 @@ console.log(t);
 
 const store = useStore();
 
-let info = reactive({});
-
-const selectedManagerProject = JSON.parse(
-  sessionStorage.getItem("selectedManagerProject")
-);
-const selectedPosition = JSON.parse(
-  sessionStorage.getItem("selectedPosition")
-).trim();
-
-info = reactive(selectedManagerProject[selectedPosition]);
+store.commit("detailInfoModule/fetchInfo");
 </script>
 
 <style lang="less" scoped>

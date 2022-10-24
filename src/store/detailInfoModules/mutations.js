@@ -1,14 +1,22 @@
 const mutations = {
-  refetchInfo(data) {
+  fetchInfo(context, data) {
     const selectedManagerProject = JSON.parse(
       sessionStorage.getItem("selectedManagerProject")
     );
-    const selectedPosition = sessionStorage.getItem("selectedPosition");
+    const selectedPosition = JSON.parse(
+      sessionStorage.getItem("selectedPosition")
+    ).trim();
 
-    const info = selectedManagerProject[JSON.parse(selectedPosition).trim()];
+    const info = (selectedManagerProject[selectedPosition]);
 
-    info.workProgress = data.info.workProgress
     this.state.detailInfoModule.info = info;
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@");
+
+    console.log(context);
+
+    data
+      ? console.log(1)
+      : console.log(2);
   }
 }
 
