@@ -163,7 +163,7 @@ const addChidren = (uuid) => {
 
       store.commit(
         "detailInfoModule/reRenderInfo",
-        newData.teammembers[position]
+        reactive(newData.teammembers[position])
       );
     })
     .catch(() => {
