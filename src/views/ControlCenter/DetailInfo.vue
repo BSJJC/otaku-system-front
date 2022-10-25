@@ -175,8 +175,10 @@ watch(
       align-items: flex-start;
       width: calc(100% - 40px);
       height: calc(100% - 40px);
-
-      background: lightpink;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 3px 3px 3px rgba(188, 105, 105, 0.498);
+      background: rgba(204, 204, 204, 0.265);
     }
   }
 }
