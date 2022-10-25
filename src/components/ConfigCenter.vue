@@ -18,9 +18,9 @@
     :with-header="true"
     direction="ltr"
   >
-    <div>{{ $t("message.hello") }}</div>
-    <button @click="changeLang('zh')">changeLang</button>
-    <button @click="changeLang('en')">changeLang</button>
+    <el-button @click="changeLang('zh')">中文</el-button>
+    <br />
+    <el-button @click="changeLang('en')">English</el-button>
   </el-drawer>
 </template>
 
