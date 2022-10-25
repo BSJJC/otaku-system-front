@@ -1,5 +1,5 @@
 const mutations = {
-  fetchInfo(context, data) {
+  fetchInfo() {
     const selectedManagerProject = JSON.parse(
       sessionStorage.getItem("selectedManagerProject")
     );
@@ -10,13 +10,11 @@ const mutations = {
     const info = (selectedManagerProject[selectedPosition]);
 
     this.state.detailInfoModule.info = info;
+  },
 
-    console.log(data);
-
-    setTimeout(() => {
-      console.log("clear work progress");
-      this.state.detailInfoModule.info.workProgress = []
-    }, 1000);
+  reRender(context, newData) {
+    console.log(newData);
+    console.log(this.state.detailInfoModule.info);
   }
 }
 

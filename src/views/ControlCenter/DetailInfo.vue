@@ -52,7 +52,8 @@
 
         <div class="staff-progress">
           <el-scrollbar height="100%">
-            <TodoRecursion :data="data.workProgress"> </TodoRecursion>
+            <TodoRecursion :key="key" :data="data.workProgress">
+            </TodoRecursion>
           </el-scrollbar>
         </div>
       </el-main>
@@ -61,7 +62,7 @@
 </template>
 
 <script setup>
-import { reactive, watch } from "vue";
+import { ref, reactive, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import TodoRecursion from "./TodoRecursion.vue";
@@ -74,13 +75,12 @@ const store = useStore();
 store.commit("detailInfoModule/fetchInfo");
 
 const data = reactive(store.state.detailInfoModule.info);
+let key = ref(0);
 
 watch(
   () => store.state.detailInfoModule.info.workProgress,
-  (newValue) => {
-    console.log(data);
-    console.log(newValue);
-    // data.workProgress = newValue;
+  () => {
+    key.value++;
   },
   {
     deep: true,
