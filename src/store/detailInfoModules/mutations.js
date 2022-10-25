@@ -12,7 +12,7 @@ const mutations = {
     this.state.detailInfoModule.info = info;
   },
 
-  reRender(context, newData) {
+  reRenderInfo(context, newData) {
     console.log(newData);
     console.log(this.state.detailInfoModule.info);
   }

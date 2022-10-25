@@ -25,11 +25,9 @@
 
           <el-form label-width="100px" style="margin-top: 20px">
             <el-form-item :label="$t('message.memberInfo.name')">
-              <!-- {{ store.state.detailInfoModule.info.name }} -->
               {{ data.name }}
             </el-form-item>
             <el-form-item :label="$t('message.memberInfo.position')">
-              <!-- {{ store.state.detailInfoModule.info.position }} -->
               {{ data.position }}
             </el-form-item>
           </el-form>
@@ -79,7 +77,9 @@ let key = ref(0);
 
 watch(
   () => store.state.detailInfoModule.info.workProgress,
-  () => {
+  (newValue, oldValue) => {
+    if (newValue == oldValue) return;
+
     key.value++;
   },
   {

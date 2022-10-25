@@ -133,7 +133,7 @@ const addChidren = (uuid) => {
       });
     })
     .then(() => {
-      store.commit("detailInfoModule/reRender", data);
+      store.commit("detailInfoModule/reRenderInfo", data);
     })
     .catch(() => {
       ElMessage({
