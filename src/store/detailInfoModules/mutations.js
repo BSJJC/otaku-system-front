@@ -13,8 +13,7 @@ const mutations = {
   },
 
   reRenderInfo(context, newData) {
-    console.log(newData);
-    this.state.detailInfoModule.info = newData
+    this.state.detailInfoModule.info.workProgress = newData.workProgress
   }
 }
 

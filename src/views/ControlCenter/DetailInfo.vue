@@ -80,8 +80,8 @@ watch(
   (newValue, oldValue) => {
     if (newValue == oldValue) return;
 
-    key.value++;
     console.log("re-render");
+    key.value++;
   },
   {
     deep: true,
