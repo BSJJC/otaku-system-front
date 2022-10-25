@@ -66,6 +66,7 @@ import { useStore } from "vuex";
 import TodoRecursion from "./TodoRecursion.vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import postItem from "@/api/postItem";
+import getItem from "@/api/getItem";
 
 const props = defineProps({
   data: {
@@ -132,8 +133,38 @@ const addChidren = (uuid) => {
         value,
       });
     })
-    .then(() => {
-      store.commit("detailInfoModule/reRenderInfo", data);
+    .then(async () => {
+      let newData, selectedManagerProjectIndex, position;
+      await getItem(
+        "http://localhost:3000/api/rest/Teammember/getTeammemberInfo"
+      ).then((v) => {
+        selectedManagerProjectIndex = JSON.parse(
+          sessionStorage.getItem("selectedManagerProjectIndex")
+        );
+        position = JSON.parse(
+          sessionStorage.getItem("selectedPosition")
+        ).trim();
+
+        newData = v.data[selectedManagerProjectIndex];
+      });
+
+      const managerProjects = JSON.parse(sessionStorage.getItem("managerInfo"));
+      await postItem(
+        "http://localhost:3000/api/rest/Teammember/getProjects",
+        managerProjects.projectsManaged
+      ).then((v) => {
+        sessionStorage.setItem("managerProjects", JSON.stringify(v));
+      });
+
+      sessionStorage.setItem(
+        "selectedManagerProject",
+        JSON.stringify(newData.teammembers)
+      );
+
+      store.commit(
+        "detailInfoModule/reRenderInfo",
+        newData.teammembers[position]
+      );
     })
     .catch(() => {
       ElMessage({

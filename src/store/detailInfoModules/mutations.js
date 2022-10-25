@@ -7,14 +7,13 @@ const mutations = {
       sessionStorage.getItem("selectedPosition")
     ).trim();
 
-    const info = (selectedManagerProject[selectedPosition]);
+    const info = selectedManagerProject[selectedPosition];
 
     this.state.detailInfoModule.info = info;
   },
 
   reRenderInfo(context, newData) {
-    console.log(newData);
-    console.log(this.state.detailInfoModule.info);
+    this.state.detailInfoModule.info = newData
   }
 }
 
